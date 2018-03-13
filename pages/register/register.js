@@ -4,20 +4,91 @@
 // pages/register.js
 
 var app = getApp()  // 微信小程序在 app.js 中定义的是全局函数和全局数据，在页面文件夹 *.js 文件里可以直接使用，在使用之前需要用 getAPP() 函数来获取小程序实例。获取实例后，不要私自调用生命周期函数。 --zyw
-Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    name: '钟亦文',
-    flag: true,
-    id: 201526810530,  // 在 data 对象里可以初始化页面要用到的函数，data 会以 JSON 的形式由逻辑层传至渲染层(视图层)，所以其数据必须是可以转成 JSON 的格式：字符串、数字、布尔值、对象、数组。在页面中通过数据绑定的方式取出，如 <view>{{name}}</view>  --zyw 
-    isShowToast: false,
-    isPsdOver6: false,
-    isPsdSame: false,
-    psd1: '',   //--新增4个变量，前三个分别判断三个框中的条件，psd1为用户密码
+const form = {  //新建一个表单
+  username: '',
+  password: '',
+}
+
+Page({
+// 在 data 对象里可以初始化页面要用到的函数，data 会以 JSON 的形式由逻辑层传至渲染层(视图层)，所以其数据必须是可以转成 JSON 的格式：字符串、数字、布尔值、对象、数组。在页面中通过数据绑定的方式取出，如 <view>{{name}}</view>  
+  data: { 
+    checknum: false,
+    checkpsd: false,
+    validpsd: false,
+    validcolor:"white",
   },
+
+  // 检测学号
+  checkNumber: function (e) {
+    var len = e.detail.value.length;
+    if (len != 0 && (len % 5 == 0 || len % 10 == 0 || len % 12 == 0)) {
+      this.setData({
+        checknum: true  //学号是否5、10、12位
+      })
+      form["username"] = e.detail.value;
+    }
+    else this.setData({
+      checknum: false
+    })
+  },
+
+  // 检测密码
+  getPsd: function (e) {
+    var len = e.detail.value.length;
+    if (len >= 6){
+      this.setData({
+        checkpsd: true // 密码是否超过6位
+      })
+      form["password"] = e.detail.value;
+    }
+    else this.setData({
+      checkpsd: false
+    })
+  },
+
+  // 确认密码是否相同
+  checkPsd:function(e){ 
+    const validate = e.detail.value;
+    const psw = form["password"];
+    if (psw == validate){
+    this.setData({
+     validpsd: true,
+     validcolor: "white"
+   })
+    }
+  else {
+    this.setData({
+      validpsd: false,
+      validcolor: "red"
+      })
+  }
+  },
+
+  register(){
+    wx.request({
+      url: 'http://localhost:8080/zytb/servlet01',  
+            // zhr：在上面输入你的本机Servlet地址
+      data:{
+        uid: form["username"],
+        psw: form["password"]
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        console.log(res.data)  // zhr：在这里输入注册成功的通知
+      },
+      fail: function(res) {
+          console.log("fail");  // zhr：在这里输入注册失败通知
+      }
+    })
+  },
+
+
+
+
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -67,42 +138,4 @@ Page({
   onShareAppMessage: function () {
   },
 
-  // 检测学号
-  checkNumber: function (e) {
-    var value = e.detail.value;
-    var len = value.length;
-    if ((len % 5 == 0 || len % 10 == 0 || len % 12 == 0) && len != 0) {
-      this.setData({
-        isShowToast: true // 学号是否5、10、12位
-      })
-    }
-    else this.setData({
-      isShowToast: false
-    })
-  },
-
-  // 检测密码
-  getPsd: function (e) {
-    var value = e.detail.value;
-    var len = value.length;
-    if (len >= 6)
-      this.setData({
-        isPsdOver6: true, // 密码是否超过6位
-        psd1: value
-      })
-    else this.setData({
-      isPsdOver6: false
-    })
-  },
-
-  /*checkPsd:function(e){ 
-    //关于密码一致性，这里字符串比较有些问题，没有实现
-  var value=e.detail.value;
-    this.setData({
-     psd2:value,
-     isPsdSame=true
-   })
-  
-   //this.setData({isPsdSame=false})
-  }*/
 })

@@ -1,7 +1,7 @@
 <!--pages/register.wxml-->
 <!-- 下面一行是测试绑定数据的。 --zyw
 <view wx:if="{{flag}}">{{name}} {{id}}</view>-->
-<image class="img" src="../../img/logo.png" mode="aspectFit"></image>
+<image class="img" src="../../img/logo.png" mode="center"></image>
 <view class="page">
   <view class="textarea">
     <text class="label">学号/工号</text><text class="divider">|</text>
@@ -15,5 +15,6 @@
     <text class="label">确认密码</text><text class="divider">|</text>
     <input class="input" type="text" password='true' placeholder="与密码一致" bindinput="checkPsd" confirm-type='next'></input>
   </view>
-  <button class='button_wrapper' disabled="{{(isShowToast&&isPsdOver6&&isPsdSame)?false:true}}" type="primary">提交</button>
+  <text style="color:{{validcolor}}" class="validate">尚未与密码一致</text>
+  <button class='button_wrapper' disabled="{{(checknum&&checkpsd&&validpsd)?false:true}}" bindtap="register" type="primary">提交</button>
 </view>
