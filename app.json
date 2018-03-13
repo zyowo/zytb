@@ -6,8 +6,8 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarBackgroundColor": "#CCCCFF",
+    "navigationBarTitleText": "最选导",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -15,13 +15,16 @@
     "selectedColor":"#D53C3E",
     "backgroundColor":"#ffffff",
     "borderStyle":"black",
-    "position":"top",
+    "position":"bottom",
     "list":[{
       "pagePath":"pages/index/index",
-      "text":"首页"
+      "text":"主页"
     },{
-      "pagePath":"pages/register/register",
-      "text":"注册"
+      "pagePath":"pages/index/index",
+      "text":"选导"
+    },{
+      "pagePath": "pages/register/register",
+      "text": "我的"
     }],
     "debug":true
   }

@@ -1,16 +1,19 @@
 <!--pages/register.wxml-->
 <!-- 下面一行是测试绑定数据的。 --zyw
 <view wx:if="{{flag}}">{{name}} {{id}}</view>-->
-
-<image  class="my_type" src="../../img/sn.png"></image>
-<input  type="number" maxlength="12" placeholder='5/10/12位数字' bindinput="checkNumber" confirm-type='next' style='border:1px solid #CCCCCC'></input>
-
-<image  class="my_type" src="../../img/psd.png"></image>
-<input type="text" password='true' placeholder="不低于6位"
- bindinput="getPsd" confirm-type='next' style='border:1px solid #CCCCCC'></input>
-
-<image  class="my_type" src="../../img/cpsd.png"></image>
-<input  type="text" password='true' placeholder="与密码一致" 
-bindinput="checkPsd" confirm-type='next'style='border:1px solid #CCCCCC'></input>
-
-<button class='button_wrapper' disabled="{{(isShowToast&&isPsdOver6&&isPsdSame)?false:true}}"  type="primary">提交</button>
+<image class="img" src="../../img/logo.png" mode="aspectFit"></image>
+<view class="page">
+  <view class="textarea">
+    <text class="label">学号/工号</text><text class="divider">|</text>
+    <input class="input" type="number" maxlength="12" placeholder='5/10/12位数字' bindinput="checkNumber" confirm-type='next'></input>
+  </view>
+  <view class="textarea">
+    <text class="label">密码</text><text class="divider">|</text>
+    <input class="input" type="text" password='true' placeholder="不低于6位" bindinput="getPsd" confirm-type='next'></input>
+  </view>
+  <view class="textarea">
+    <text class="label">确认密码</text><text class="divider">|</text>
+    <input class="input" type="text" password='true' placeholder="与密码一致" bindinput="checkPsd" confirm-type='next'></input>
+  </view>
+  <button class='button_wrapper' disabled="{{(isShowToast&&isPsdOver6&&isPsdSame)?false:true}}" type="primary">提交</button>
+</view>

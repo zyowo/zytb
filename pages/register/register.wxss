@@ -10,3 +10,57 @@
     width: 500rpx;
 
 }
+.img{
+  height:111px;
+  width: 100%;
+}
+.page {    
+  margin-left: 10rpx;  
+  margin-right: 10rpx;  
+}  
+.label {
+  float:left;
+  width:25%;
+  line-height: 35px;
+  margin-left:5px;
+  margin-right: 5px;
+}
+.divider{
+  float: left;
+  line-height: 32px;
+  margin-right: 10px;
+  font-size: 25px;
+  color:#dddddd;
+}
+.input {
+  align-content:center;
+  height: 35px;
+  vertical-align:middle;
+}
+.textarea {
+  margin:10px;
+  height:35px;
+  border:1px solid #CCCCCC;
+  border-radius: 5px;
+}
+
+.swiper-tab {  
+  display: flex;  
+  flex-direction: row;  
+  line-height: 80rpx;  
+  border-bottom: 2rpx solid #777;  
+}  
+.tab-item {  
+  width: 33.3%;  
+  text-align: center;  
+  font-size: 15px;  
+  color: #777;  
+}  
+.swiper {  
+  height: 1100px;  
+  background: #dfdfdf;  
+}  
+.on {  
+  color: blue;  
+  border-bottom: 5rpx solid blue;  
+}  
