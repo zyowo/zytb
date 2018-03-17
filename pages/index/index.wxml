@@ -11,3 +11,5 @@
     <text class="user-motto">{{motto}}</text>
   </view>
 </view>
+
+主页，放今天的日期，放选导师开始/结束的一些公告、头条，放留言板？等待设计

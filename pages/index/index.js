@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    motto: '第一周任务，完成注册页面',
+    motto: '第二周任务，完成“我的”选项卡',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')

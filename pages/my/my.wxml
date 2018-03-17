@@ -1,0 +1,7 @@
+<!--pages/my/my.wxml-->
+<text>还没有登录……</text>
+<button class='button_wrapper' bindtap="register" type="primary">点击登录</button>
+还未完善信息，点击完善
+信息完善度 30% 100%
+信息完善达到30%才可以选导师哦
+详细信息只有你和选择的导师可见，便于导师选择

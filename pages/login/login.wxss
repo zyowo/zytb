@@ -1,4 +1,4 @@
-/* pages/register.wxss */
+/* pages/login.wxss */
 .button_wrapper{
     margin: 50rpx auto 0 auto;
     width: 500rpx;
@@ -32,7 +32,7 @@
   vertical-align:middle;
 }
 .textarea {
-  margin:15px 10px 0 10px;
+  margin:22px 10px 0 10px;
   height:35px;
   border:1px solid #CCCCCC;
   border-radius: 5px;
@@ -59,3 +59,5 @@
   font-size: 15px;  
   color: #777;  
 }  
+
+/* pages/login/login.wxss */

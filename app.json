@@ -1,8 +1,11 @@
 {
   "pages": [
+    "pages/my/my",
+    "pages/login/login",
     "pages/register/register",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/tutor/tutor"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -11,21 +14,31 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "color":"#000000",
-    "selectedColor":"#D53C3E",
-    "backgroundColor":"#ffffff",
-    "borderStyle":"black",
-    "position":"bottom",
-    "list":[{
-      "pagePath":"pages/index/index",
-      "text":"主页"
-    },{
-      "pagePath":"pages/index/index",
-      "text":"选导"
-    },{
-      "pagePath": "pages/register/register",
-      "text": "我的"
-    }],
-    "debug":true
+    "color": "#333333",
+    "selectedColor": "#DD2222",
+    "backgroundColor": "#EEEEEE",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "img/home.png",
+        "selectedIconPath": "img/home-select.png"
+      },
+      {
+        "pagePath": "pages/tutor/tutor",
+        "text": "选导",
+        "iconPath": "img/tutor.png",
+        "selectedIconPath": "img/tutor-select.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "img/my.png",
+        "selectedIconPath": "img/my-select.png"
+      }
+    ],
+    "debug": true
   }
 }
