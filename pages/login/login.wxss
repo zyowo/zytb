@@ -1,3 +1,4 @@
+
 /* pages/login.wxss */
 
 .button_wrapper{
@@ -72,4 +73,5 @@
   margin-left:10rpx;
   color:grey;
 }
+
 /* pages/login/login.wxss */

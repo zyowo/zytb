@@ -17,4 +17,5 @@
   <navigator url="../register/register" class="font_color">点击注册</navigator>
   <navigator url="../register/register" class="font_color">|找回密码</navigator>
   </view>
+
 </view>

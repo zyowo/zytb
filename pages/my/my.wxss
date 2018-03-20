@@ -1,3 +1,4 @@
+
 /* pages/my/my.wxss */
 
 .user_avatar {
@@ -64,3 +65,4 @@
   margin-left: 550rpx;
   border-radius: 50%;
 }
+/* pages/my/my.wxss */

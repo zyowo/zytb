@@ -1,3 +1,4 @@
+
 /* pages/register.wxss */
 .button_wrapper{
     margin: 50rpx auto 0 auto;
