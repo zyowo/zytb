@@ -1,0 +1,66 @@
+/* pages/my/my.wxss */
+
+.user_avatar {
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 200rpx;
+  margin :20rpx 0 0 20rpx;
+  border-radius: 50%;
+}
+
+.message_border{
+  border:2px solid lightblue;
+  margin: 2px 2px 10px 2px;
+  height:225rpx;
+  border-radius:10px;
+  }
+.textarea_fir {
+   margin-left:20rpx;
+   margin-top: 8rpx;
+   height:70rpx;
+   width:270rpx;
+   border:1px solid #CCCCCC;
+   border-radius: 5px;
+}
+.textarea_sec {
+   margin-left:40rpx;
+   margin-top: 8rpx;
+   height:70rpx;
+   width:310rpx;
+   border:1px solid #CCCCCC;
+   border-radius: 5px;
+}
+.label{
+    line-height: 70rpx;
+    float:left;
+    margin-left: 10rpx;
+    font-size: 70%;
+    color:gray; 
+  }
+.array_row {
+  display: flex;
+  flex-direction: row;
+}
+.array_column {
+  display: flex;
+  flex-direction: column;
+}
+.title_line{
+  font-size: 70%;
+  margin:10rpx;
+  color:gray;
+}
+.my_data{
+   font-size: 70%;
+   line-height: 70rpx;
+   align-content:center;
+   vertical-align:middle;
+   color:blue;
+}
+.turn_page_2 {
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 20rpx;
+  margin-left: 550rpx;
+  border-radius: 50%;
+}

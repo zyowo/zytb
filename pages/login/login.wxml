@@ -1,0 +1,20 @@
+<!--pages/login.wxml-->
+<!-- 下面一行是测试绑定数据的。 --zyw
+<view wx:if="{{flag}}">{{name}} {{id}}</view>-->
+<image class="img" src="../../img/logo-green.png" mode="center"></image>
+<view class="page">
+  <view class="textarea">
+    <text class="label">学号/工号</text><text class="divider">|</text>
+    <input class="input" type="number" maxlength="12" placeholder='5/10/12位数字' bindinput="checkNumber" confirm-type='next'></input>
+  </view>
+  <view class="textarea">
+    <text class="label">密码</text><text class="divider">|</text>
+    <input class="input" type="text" password='true' placeholder="不低于6位" bindinput="getPsd" confirm-type='next'></input>
+  </view>
+  <button class='button_wrapper' disabled="{{(checknum&&checkpsd&&validpsd)?false:true}}" bindtap="register" type="primary">登录</button>
+  <view class="regepsd_line">
+  <text>还没账号？</text> 
+  <navigator url="../register/register" class="font_color">点击注册</navigator>
+  <navigator url="../register/register" class="font_color">|找回密码</navigator>
+  </view>
+</view>

@@ -1,0 +1,75 @@
+/* pages/login.wxss */
+
+.button_wrapper{
+    margin-top: 60rpx;
+    width: 500rpx;
+
+}
+.img{
+  height:260rpx;
+  width: 750rpx;
+}
+.page {    
+  margin-left: 10rpx;  
+  margin-right: 10rpx;  
+}  
+.label {
+  float:left;
+  width:25%;
+  line-height: 35px;
+  margin-left:5px;
+  margin-right: 5px;
+}
+.divider{
+  float: left;
+  line-height: 35px;
+  margin-right: 10px;
+  font-size: 25px;
+  color:#dddddd;
+}
+.input {
+  align-content:center;
+  height: 35px;
+  vertical-align:middle;
+}
+.textarea {
+  margin:22px 10px 0 10px;
+  height:35px;
+  border:1px solid #CCCCCC;
+  border-radius: 5px;
+}
+
+.validate{
+  font-size:12px;
+  line-height: 12px;
+  float: left;
+  margin-left: 250rpx;
+}
+
+
+
+.swiper-tab {  
+  display: flex;  
+  flex-direction: row;  
+  line-height: 80rpx;  
+  border-bottom: 2rpx solid #777;  
+}  
+.tab-item {  
+  width: 33.3%;  
+  text-align: center;  
+  font-size: 15px;  
+  color: #777;  
+}  
+.regepsd_line{
+  font-size:80%;
+  line-height: 120rpx;
+  margin-left: 150rpx;
+  display: flex;
+  flex-direction: row; 
+}
+
+.font_color{
+  margin-left:10rpx;
+  color:grey;
+}
+/* pages/login/login.wxss */

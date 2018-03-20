@@ -1,0 +1,49 @@
+<!--pages/my/my.wxml-->
+
+
+<view class="message_border">
+<view class="title_line">基本信息</view>
+<view class="array_row">
+<view class="array_row">
+<image class="user_avatar" src="../../img/cat.png"></image>
+<view class="array_column">
+<view class="textarea_fir">
+ <text class="label">姓名:</text><text class="my_data">{{name}}</text></view>
+<view class="textarea_fir">
+<text class="label">学院:</text><text class="my_data">{{acadmy}}</text></view>
+</view>
+</view>
+<view class="array_column">
+ <view class="textarea_fir">
+ <text class="label">学号:</text><text class="my_data">{{id}}</text></view>
+<view class="textarea_fir">
+<text class="label">专业:</text><text class="my_data">{{major}}</text></view>
+</view></view></view>
+
+<view class="message_border">
+<view class="title_line">我的选导</view>
+<view class="array_row">
+<view class="textarea_sec">
+<text class="label">导师:</text><text class="my_data">{{tutor}}</text></view>
+<view class="textarea_sec">
+<text class="label">状态:</text><text class="my_data">{{status}}</text></view></view>
+<view class="array_row">
+<view class="textarea_sec">
+<text class="label">研究所:</text><text class="my_data">{{institute}}</text></view>
+<view class="textarea_sec">
+<text class="label">状态2:</text><text class="my_data">{{status2}}</text></view></view>
+
+</view>
+<view class="message_border">
+<view class="array_row">
+<view class="title_line">详细信息</view>
+<image class="turn_page_2" src="../../img/home.png" bindtap="register"></image>
+</view></view>
+
+<view class="title_line">消息</view>
+<button class='button_wrapper' bindtap="register" type="primary">点击登录</button>
+还未完善信息，点击完善
+信息完善度 30% 100%
+信息完善达到30%才可以选导师哦
+详细信息只有你和选择的导师可见，便于导师选择
+
