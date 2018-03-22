@@ -1,5 +1,5 @@
 /**index.wxss**/
-.userinfo {
+/**.userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,5 +17,53 @@
 }
 
 .usermotto {
-  margin-top: 20px;
+  margin-top: 200px;
+}**/
+.content{
+  border-bottom:2px solid lightblue;
+}
+.img_sty{
+  height:400rpx;
+  width:100%;
+}
+.date_place{
+  font-size: 80%;
+  margin-top: 10rpx;
+  margin-left: 550rpx;
+}
+.notification{
+  border:2px solid lightblue;
+  margin: 10rpx 4rpx 10rpx 2rpx;
+  height:310rpx;
+  border-radius:10px;
+  box-shadow:6rpx 6rpx 6rpx 6rpx lightblue inset;
+}
+.notice_line{
+  display: flex;
+  margin-left: 40rpx;
+  margin-top:10rpx;
+  border-bottom: 1px solid gray;
+  width:90%;
+}
+.notice_head{
+  margin-left:30rpx;
+  margin-top:40rpx;
+  font-weight:700;
+  font-size:80%;
+}
+.notice_text{
+  font-size:80%;
+}
+.notice_text{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: grey;
+  margin-left: 40rpx;
+  font-size: 80%;
+}
+.instruction{
+  color: grey;
+  margin-left: 40rpx;
+  font-size: 80%;
 }

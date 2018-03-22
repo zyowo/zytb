@@ -106,18 +106,18 @@ Page{
 }
 
 .name{
-  padding-top: 15rpx;
+  padding-top: 15px;
   padding-left: 12px;
   font-size: 15px;
-  padding-bottom: 15rpx;
+  padding-bottom: 15px;
 }
 
 .detail{
   font-size: 15px;
   position: absolute;
   right: 10px;
-  height: 30rpx;
-  line-height: 30rpx;
+  height: 30px;
+  line-height: 30px;
   color: #888;
 }
 

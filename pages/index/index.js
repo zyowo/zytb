@@ -1,9 +1,16 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+var util = require('../../utils/util.js');  
 Page({
   data: {
+   imgUrls:[
+      "../../img/1.jpg",
+      "../../img/2.jpg",
+      "../../img/3.jpg",
+    ],
+   instrucion:'王秀梅王秀梅王秀梅王秀梅王秀梅王秀梅'+
+    '王秀梅王秀梅王秀梅王秀梅王秀梅王秀梅',
     motto: '第二周任务，完成“我的”选项卡',
     userInfo: {},
     hasUserInfo: false,
@@ -15,8 +22,9 @@ Page({
       url: '../logs/logs'
     })
   },
+  
   onLoad: function () {
-    if (app.globalData.userInfo) {
+    /**if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
@@ -41,7 +49,13 @@ Page({
           })
         }
       })
-    }
+    }**/
+    // 调用函数时，传入new Date()参数，返回值是日期和时间  
+    var time = util.formatTime(new Date());
+    // 再通过setData更改Page()里面的data，动态更新页面的数据  
+    this.setData({
+      time: time
+    });
   },
   getUserInfo: function(e) {
     console.log(e)

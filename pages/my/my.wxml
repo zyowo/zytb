@@ -1,4 +1,4 @@
-<!--pages/my/my.wxml-->
+<!--<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad"  bindscroll="scroll">-->
 
 
 <view class="top_border">
@@ -42,6 +42,7 @@
     <image class="img_edit" src="../../img/home.png" bindtap="register"></image>
   </view>
     <progress percent="80" stroke-width="12" active show-info/>
+    <button bindtap="edit" size='mini'>完善信息</button>
 </view>
 <view class="hr"></view>
 <view class="item" bindtap="feedback">

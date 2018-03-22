@@ -5,7 +5,8 @@
     "pages/register/register",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/tutor/tutor"
+    "pages/tutor/tutor",
+    "pages/edit/edit"
   ],
   "window": {
     "backgroundTextStyle": "light",

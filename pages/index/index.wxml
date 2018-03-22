@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container">
+<!--<view class="container">
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
@@ -10,6 +10,35 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
+</view>-->
+<view class="content">
+    <swiper autoplay="true" interval="3000" duration="1000">
+      <block wx:for="{{imgUrls}}">
+      <swiper-item>
+       <image src="{{item}}" class="img_sty"/>
+      </swiper-item>
+      </block>
+    </swiper>
 </view>
-
-主页，放今天的日期，放选导师开始/结束的一些公告、头条，放留言板？等待设计
+<view class="date_place">{{time}}</view>
+<view class="notification">
+<view class="notice_head">通知:</view>
+  <view class="notice_line">
+    <text class="notice_text">第三方我就号偶尔金佛第三方我就号偶尔金佛第三方我就号偶尔金佛第三方我就号偶尔金佛</text>
+  </view>
+  <view class="notice_line">
+    <text class="notice_text">3月4日进行选导师</text>
+  </view>
+  <view class="notice_line">
+    <text class="notice_text">选导师</text>
+  </view>
+  <view class="notice_line">
+    <text class="notice_text">选导师122</text>
+  </view>
+</view>
+<view class="notification">
+<view class="notice_head">"最选导"系统简介:</view>
+   <view class="instruction">
+     <text decode="emsp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{instrucion}}</text>
+   </view>
+</view>
