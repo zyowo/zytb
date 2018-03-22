@@ -1,14 +1,35 @@
 
 /* pages/my/my.wxss */
-
-.user_avatar {
-  width: 120rpx;
-  height: 120rpx;
-  line-height: 200rpx;
-  margin :20rpx 0 0 20rpx;
-  border-radius: 50%;
+Page{
+  background-color:#FEF;
 }
 
+.user_avatar {
+  float: left;
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  margin-left:40rpx;
+  margin-right:20rpx;
+  border:groove 2px #EEEEEE;
+  border-radius: 50%;
+}
+.user_info{
+  font-size: 90%;
+  color:#FEF;
+  padding-top: 15rpx;
+  padding-left: 15rpx;
+}
+.user_name{
+  font-size: 130%;
+  padding-right: 80rpx;
+}
+.top_border{
+  flex-direction: column;
+  background-color: #ff8888;
+  height: 150rpx;
+  vertical-align: text-top;
+}
 .message_border{
   border:2px solid lightblue;
   margin: 2px 2px 10px 2px;

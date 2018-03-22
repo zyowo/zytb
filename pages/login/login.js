@@ -1,4 +1,9 @@
 // pages/login/login.js
+const form = {  //新建一个表单
+  username: '',
+  password: '',
+}
+
 Page({
 
   /**
@@ -7,6 +12,35 @@ Page({
   data: {
   
   },
+
+  // 检测学号
+  checkNumber: function (e) {
+    var len = e.detail.value.length;
+    if (len != 0 && (len % 5 == 0 || len % 10 == 0 || len % 12 == 0)) {
+      this.setData({
+        checknum: true  //学号是否5、10、12位
+      })
+      form["username"] = e.detail.value;
+    }
+    else this.setData({
+      checknum: false
+    })
+  },
+
+  // 检测密码
+  getPsd: function (e) {
+    var len = e.detail.value.length;
+    if (len >= 6) {
+      this.setData({
+        checkpsd: true // 密码是否超过6位
+      })
+      form["password"] = e.detail.value;
+    }
+    else this.setData({
+      checkpsd: false
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载

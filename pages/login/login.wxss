@@ -62,16 +62,20 @@
   color: #777;  
 }  
 .regepsd_line{
-  font-size:80%;
+  font-size: 80%;
   line-height: 120rpx;
-  margin-left: 150rpx;
+  margin-left: 140rpx;
   display: flex;
   flex-direction: row; 
 }
 
 .font_color{
-  margin-left:10rpx;
+  margin-right: 25rpx;
   color:grey;
 }
 
+.divider2{
+  margin-right:25rpx;
+  line-height: 118rpx;
+}
 /* pages/login/login.wxss */
