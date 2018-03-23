@@ -12,17 +12,26 @@
   </view>
 </view>-->
 <view class="content">
-    <swiper autoplay="true" interval="3000" duration="1000">
-      <block wx:for="{{imgUrls}}">
+  <swiper autoplay="true" interval="3000" duration="1000">
+    <block wx:for="{{imgUrls}}">
       <swiper-item>
-       <image src="{{item}}" class="img_sty"/>
+        <image src="{{item}}" class="img_sty" />
       </swiper-item>
-      </block>
-    </swiper>
+    </block>
+  </swiper>
 </view>
-<view class="date_place">{{time}}</view>
+
+
 <view class="notification">
-<view class="notice_head">通知:</view>
+
+  <view class="time">
+    <view class="date_place">{{day}}</view>
+    <view class="weekday">星期{{week[date]}}
+      <view class="year_month">{{year}}年{{month}}月</view>
+    </view>
+    <view class="countdown">第2轮选导开始还有93天</view>
+  </view>
+<view class="hr"></view>
   <view class="notice_line">
     <text class="notice_text">第三方我就号偶尔金佛第三方我就号偶尔金佛第三方我就号偶尔金佛第三方我就号偶尔金佛</text>
   </view>
@@ -36,9 +45,10 @@
     <text class="notice_text">选导师122</text>
   </view>
 </view>
+
 <view class="notification">
-<view class="notice_head">"最选导"系统简介:</view>
-   <view class="instruction">
-     <text decode="emsp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{instrucion}}</text>
-   </view>
+  <view class="notice_head">"最选导"系统简介:</view>
+  <view class="instruction">
+    <text decode="emsp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{instrucion}}</text>
+  </view>
 </view>

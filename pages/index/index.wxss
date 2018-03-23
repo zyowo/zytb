@@ -19,6 +19,7 @@
 .usermotto {
   margin-top: 200px;
 }**/
+
 .content{
   border-bottom:2px solid lightblue;
 }
@@ -27,16 +28,44 @@
   width:100%;
 }
 .date_place{
+  font-size: 200%;
+  color: red;
+  margin: 10rpx;
+  border: 2px solid red;
+  border-radius: 10px;
+  line-height: 40px;
+}
+.time{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10rpx;
+}
+.countdown{
+  margin-left: 60rpx;
+  color:#353535;
+}
+.weekday{
   font-size: 80%;
-  margin-top: 10rpx;
-  margin-left: 550rpx;
+  display: flex;
+  flex-direction: column;
+}
+.year_month{
+  font-size: 80%;
+}
+.hr{
+  display: flex;
+  margin-left: 20rpx;
+  margin-top:5rpx;
+  border-bottom: 1px solid lightgrey;
+  width:95%;
 }
 .notification{
   border:2px solid lightblue;
   margin: 10rpx 4rpx 10rpx 2rpx;
-  height:310rpx;
   border-radius:10px;
   box-shadow:6rpx 6rpx 6rpx 6rpx lightblue inset;
+  padding-bottom: 10rpx;
 }
 .notice_line{
   display: flex;
@@ -51,9 +80,7 @@
   font-weight:700;
   font-size:80%;
 }
-.notice_text{
-  font-size:80%;
-}
+
 .notice_text{
   overflow: hidden;
   white-space: nowrap;
