@@ -35,8 +35,8 @@ Page{
 .message_border{
   background-color: #fff;
   border:2px solid lightblue;
-  margin: 10px 2px 2px 2px;
-  height:225rpx;
+  margin: 10rpx 2px 2px 2px;
+  padding-bottom:60rpx;
   border-radius:10px;
   }
 .textarea_fir {
@@ -95,7 +95,7 @@ Page{
 
 .hr{
   width: 100%;
-  height: 30rpx;
+  height: 20rpx;
 }
 
 .item{
@@ -132,4 +132,9 @@ Page{
   height: 16px;
   margin-left: 10px;
 }
+.progress_sty{
+  margin-top: 60rpx;
+  margin-left: 10rpx;
+}
+
 /* pages/my/my.wxss */
