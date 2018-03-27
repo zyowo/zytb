@@ -1,7 +1,7 @@
-
 /* pages/my/my.wxss */
-Page{
-  background-color:#EFEFEF;
+
+Page {
+  background-color: #efefef;
 }
 
 .user_avatar {
@@ -9,80 +9,99 @@ Page{
   width: 120rpx;
   height: 120rpx;
   line-height: 120rpx;
-  margin-left:40rpx;
-  margin-right:20rpx;
-  border:groove 2px #EEEEEE;
+  margin-left: 40rpx;
+  margin-right: 20rpx;
+  border: groove 2px #eee;
   border-radius: 50%;
 }
-.user_info{
+
+.user_info {
   font-size: 90%;
-  color:#FEF;
+  color: #fef;
   padding-top: 15rpx;
   padding-left: 15rpx;
 }
-.user_name{
+
+.user_name {
   font-size: 130%;
   padding-right: 80rpx;
 }
-.top_border{
+
+.top_border {
   flex-direction: column;
-  background-color: #ff8888;
+  background-color: #f88;
   height: 150rpx;
   align-items: center;
 }
 
-
-.message_border{
+.message_border {
   background-color: #fff;
-  border:2px solid lightblue;
+  border: 2px solid lightcoral;
   margin: 10rpx 2px 2px 2px;
-  padding-bottom:60rpx;
-  border-radius:10px;
-  }
+  padding-bottom: 30rpx;
+  border-radius: 10px;
+}
+
 .textarea_fir {
-   margin-left:20rpx;
-   margin-top: 8rpx;
-   height:70rpx;
-   width:270rpx;
-   border:1px solid #CCCCCC;
-   border-radius: 5px;
+  margin-left: 20rpx;
+  margin-top: 8rpx;
+  height: 70rpx;
+  width: 270rpx;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
+
 .textarea_sec {
-   margin-left:40rpx;
-   margin-top: 8rpx;
-   height:70rpx;
-   width:310rpx;
-   border:1px solid #CCCCCC;
-   border-radius: 5px;
+  margin-left: 40rpx;
+  margin-top: 8rpx;
+  height: 70rpx;
+  width: 310rpx;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
-.label{
-    line-height: 70rpx;
-    float:left;
-    margin-left: 10rpx;
-    font-size: 70%;
-    color:gray; 
-  }
+
+.label {
+  line-height: 70rpx;
+  float: left;
+  margin-left: 10rpx;
+  font-size: 70%;
+  color: gray;
+}
+
 .array_row {
   display: flex;
   flex-direction: row;
 }
+
 .array_column {
   display: flex;
   flex-direction: column;
 }
-.title_line{
+
+.title_line {
   font-size: 80%;
-  margin-top:10rpx;
-  margin-left: 10rpx;
-  color:gray;
+  margin-top: 10rpx;
+  margin-left: 20rpx;
+  color: gray;
 }
-.my_data{
-   font-size: 70%;
-   line-height: 70rpx;
-   align-content:center;
-   vertical-align:middle;
-   color:blue;
+.my_stu{
+  margin-left: 40rpx;
+  display: flex;
+  flex-direction: row;
 }
+.student{
+  margin:10rpx;
+  border: 1px lightgray;
+  border-style: none none dashed none;
+}
+.my_data {
+  font-size: 70%;
+  line-height: 70rpx;
+  align-content: center;
+  vertical-align: middle;
+  color: crimson;
+}
+
 .img_edit {
   width: 30rpx;
   height: 30rpx;
@@ -92,27 +111,44 @@ Page{
   right: 10px;
   line-height: 30rpx;
 }
+.block_detail {
+  margin-top:10rpx;
+}
+.right_detail {
+  float: right;
+  padding-right: 10rpx;
+}
 
-.hr{
+.item_detail {
+  margin-left: 40rpx;
+  color:darkslategray;
+  font-size: 85%;
+}
+
+.hr {
   width: 100%;
   height: 20rpx;
 }
-
-.item{
+.hr_small{
+  margin: 3rpx 50rpx 10rpx 35rpx;
+  border: 1rpx grey;
+  border-style:dashed none none none;
+}
+.item {
   display: flex;
   flex-direction: row;
-  background-color:white;
+  background-color: white;
   align-items: center;
 }
 
-.name{
+.name {
   padding-top: 15px;
   padding-left: 12px;
   font-size: 15px;
   padding-bottom: 15px;
 }
 
-.detail{
+.detail {
   font-size: 15px;
   position: absolute;
   right: 10px;
@@ -121,18 +157,18 @@ Page{
   color: #888;
 }
 
-.line{
+.line {
   border: 1px solid #ccc;
   opacity: 0.2;
 }
 
-.img{
-  background-color: #ccc;
-  width: 17px;
-  height: 16px;
+.img {
+  width: 18px;
+  height: 18px;
   margin-left: 10px;
 }
-.progress_sty{
+
+.progress_sty {
   margin-top: 60rpx;
   margin-left: 10rpx;
 }

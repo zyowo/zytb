@@ -1,5 +1,4 @@
-<!--<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad"  bindscroll="scroll">-->
-
+<!-- 【我的】 选项卡 -->
 
 <view class="top_border">
   <image bindtap="bindViewTap" class="user_avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
@@ -12,39 +11,77 @@
   </view>
 </view>
 
-<view class="message_border">
-  <view class="title_line">我的选导</view>
-  <view class="array_row">
-    <view class="textarea_sec">
-      <text class="label">导师:</text>
-      <text class="my_data">{{tutor}}</text>
+<!--使用isStudent判断学生和导师，以下是学生的模块-->
+<block wx:if="{{isStudent}}">
+  <view class="message_border">
+    <view class="title_line">我的选导</view>
+    <view class="array_row">
+      <view class="textarea_sec">
+        <text class="label">导师:</text>
+        <text class="my_data">{{tutor}}</text>
+      </view>
+      <view class="textarea_sec">
+        <text class="label">状态:</text>
+        <text class="my_data">{{status}}</text>
+      </view>
     </view>
-    <view class="textarea_sec">
-      <text class="label">状态:</text>
-      <text class="my_data">{{status}}</text>
+    <view class="array_row">
+      <view class="textarea_sec">
+        <text class="label">研究所:</text>
+        <text class="my_data">{{institute}}</text>
+      </view>
+      <view class="textarea_sec">
+        <text class="label">状态2:</text>
+        <text class="my_data">{{status2}}</text>
+      </view>
     </view>
   </view>
-  <view class="array_row">
-    <view class="textarea_sec">
-      <text class="label">研究所:</text>
-      <text class="my_data">{{institute}}</text>
+  <view bindtap="edit" class="message_border">
+    <view class="title_line">个人信息完善度
+      <text class="right_detail">点击编辑</text>
     </view>
-    <view class="textarea_sec">
-      <text class="label">状态2:</text>
-      <text class="my_data">{{status2}}</text>
+    <progress class="progress_sty" percent="45" stroke-width="15" active show-info/>
+  </view>
+</block>
+
+<!--以下是导师的模块-->
+<block wx:else>
+  <view class="message_border" bindtap="tutor">
+    <view class="title_line">我的学生
+      <text class="right_detail">前往操作 > </text>
+    </view>
+    <view class="my_stu">
+      <block wx:for='{{students}}' wx:key='unique'>
+        <view wx:if="{{item.status=='接受'}}" style='color:green;' class='student'> {{item.name}} </view>
+        <view wx:elif="{{item.status=='已读'}}" style='color:grey;' class='student'> {{item.name}} </view>
+        <view wx:elif="{{item.status=='拒绝'}}" style='color:red;' class='student'> {{item.name}} </view>
+        <view wx:elif="{{item.status=='超期'}}" style='color:black;' class='student'> {{item.name}} </view>
+        <view wx:else style='color:grey;' class='student'> {{item.name}} </view>
+      </block>
     </view>
   </view>
 
-</view>
-<view bindtap="edit" class="message_border">
-    <view class="title_line">个人信息完善度
-    <text style="margin-left:380rpx;font-size:80%;">点击编辑</text></view>
-    <progress class="progress_sty" percent="45" stroke-width="15" active     show-info/>
-</view>
+  <view bindtap="edit" class="message_border">
+    <view class="title_line">详细信息
+      <text class="right_detail">点击编辑 > </text>
+    </view>
+    <view class="block_detail">
+      <text class="item_detail">办公室：{{office}}</text>
+      <view class="hr_small"></view>
+      <view class="item_detail">联系电话：{{tel}}</view>
+      <view class="hr_small"></view>
+      <view class="item_detail">电子邮箱：{{email}}</view>
+      <view class="hr_small"></view>
+      <view class="item_detail">研究方向：{{direction}}</view>
+      <view class="hr_small"></view>
+    </view>
+  </view>
+</block>
+
 <view class="hr"></view>
 <view class="item" bindtap="feedback">
   <view class="img">
-    <image></image>
+    <image style="width:18px; height:18px;" src="../../img/notice.png"> </image>
   </view>
   <view class="name">通知</view>
   <view class='detail'>
@@ -52,9 +89,10 @@
   </view>
 </view>
 <view class="line"></view>
+
 <view class="item" bindtap="feedback">
   <view class="img">
-    <image></image>
+    <image style="width:18px; height:18px;" src="../../img/message.png"> </image>
   </view>
   <view class="name">留言板</view>
   <view class='detail'>
@@ -66,7 +104,7 @@
 <view class="line"></view>
 <view class="item" bindtap="feedback">
   <view class="img">
-    <image></image>
+    <image style="width:18px; height:18px;" src="../../img/about.png"> </image>
   </view>
   <view class="name">关于</view>
   <view class='detail'>

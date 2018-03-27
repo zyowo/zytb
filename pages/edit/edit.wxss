@@ -1,1 +1,31 @@
 /* pages/edit/edit.wxss */
+
+Page
+{
+  background-color:#EFEFEF;
+}
+
+.tip
+{
+  font-size: 80%;
+  color: lightgray;
+}
+
+.form
+{
+  padding: 10px;
+}
+.item
+{
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.input
+{
+  border: 1px solid grey;
+}

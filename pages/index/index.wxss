@@ -20,9 +20,15 @@
   margin-top: 200px;
 }**/
 
-.content{
-  border-bottom:2px solid lightblue;
+Page
+{
+  background-color: #EFEFEF;
 }
+
+.content{
+  border-bottom:2px solid limegreen;
+}
+
 .img_sty{
   height:400rpx;
   width:100%;
@@ -31,7 +37,7 @@
   font-size: 200%;
   color: red;
   margin: 10rpx;
-  border: 2px solid red;
+  border: 2px solid crimson;
   border-radius: 10px;
   line-height: 40px;
 }
@@ -57,20 +63,22 @@
   display: flex;
   margin-left: 20rpx;
   margin-top:5rpx;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid grey;
   width:95%;
 }
 .notification{
-  border:2px solid lightblue;
+  background-color: white;
+  border:2px solid lightgray;
   margin: 10rpx 4rpx 10rpx 2rpx;
   border-radius:10px;
-  box-shadow:6rpx 6rpx 6rpx 6rpx lightblue inset;
+  box-shadow:6rpx 6rpx 6rpx 6rpx gray inset;
   padding-bottom: 10rpx;
 }
 .notice_line{
   display: flex;
   margin-left: 40rpx;
-  margin-top:10rpx;
+  padding-top:20rpx;
+  margin-bottom: 10rpx;
   border-bottom: 1px solid gray;
   width:90%;
 }
@@ -87,7 +95,7 @@
   text-overflow: ellipsis;
   color: grey;
   margin-left: 40rpx;
-  font-size: 80%;
+  font-size: 90%;
 }
 .instruction{
   color: grey;

@@ -13,7 +13,7 @@
     <text class="divider">|</text>
     <input class="input" type="text" password='true' placeholder="不低于6位" bindinput="getPsd" confirm-type='next'></input>
   </view>
-  <button class='button_wrapper' disabled="{{(checknum&&checkpsd)?false:true}}" bindtap="register" type="primary">登录</button>
+  <button class='button_wrapper' disabled="{{(checknum&&checkpsd)?false:true}}" bindtap="login" type="primary">登录</button>
 
   <view class="regepsd_line">
     <text>还没账号？</text>

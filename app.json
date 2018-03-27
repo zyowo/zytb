@@ -1,12 +1,12 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/my/my",
+    "pages/tutor/tutor",
+    "pages/edit/edit",
+    "pages/index/index",
     "pages/login/login",
     "pages/register/register",
-    "pages/logs/logs",
-    "pages/tutor/tutor",
-    "pages/edit/edit"
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -16,7 +16,7 @@
   },
   "tabBar": {
     "color": "#333333",
-    "selectedColor": "#cc2222",
+    "selectedColor": "#09BB07",
     "backgroundColor": "#EEEEEE",
     "borderStyle": "black",
     "position": "bottom",
