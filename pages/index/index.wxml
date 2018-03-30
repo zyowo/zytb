@@ -1,4 +1,4 @@
-<!--index.wxml-->
+<!--index.wxml 【主页】选项卡-->
 <!--<view class="container">
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
@@ -15,7 +15,7 @@
   <swiper autoplay="true" interval="3000" duration="1000">
     <block wx:for="{{imgUrls}}">
       <swiper-item>
-        <image src="{{item}}" class="img_sty" />
+        <image src="{{item}}" class="img_sty" mode='widthFix' />
       </swiper-item>
     </block>
   </swiper>
@@ -31,19 +31,12 @@
     </view>
     <view class="countdown">第2轮选导开始还有93天</view>
   </view>
-<view class="hr"></view>
-  <view class="notice_line">
-    <text class="notice_text">浙江工业大学硕士研究生第一轮导师选择注意事项</text>
-  </view>
-  <view class="notice_line">
-    <text class="notice_text">第一轮导师选择填报须知</text>
-  </view>
-  <view class="notice_line">
-    <text class="notice_text">研究生报道通知</text>
-  </view>
-  <view class="notice_line">
-    <text class="notice_text">2017-2018学年日历</text>
-  </view>
+  <view class="hr"></view>
+  <block wx:for="{{news}}">
+    <view class="notice_line">
+      <text class="notice_text">{{item.topic}}</text>
+    </view>
+  </block>
 </view>
 
 <view class="notification">
@@ -51,4 +44,13 @@
   <view class="instruction">
     <text decode="emsp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{instrucion}}</text>
   </view>
+</view>
+
+<view class="teacher">
+  优秀导师展示
+  <scroll-view scroll-x="true" scroll-left="50" scroll-with-animation='true'>
+    <block wx:for='{{teacher}}'>
+        <image src="{{item.src}}" mode="aspectFit"></image>
+    </block>
+  </scroll-view>
 </view>

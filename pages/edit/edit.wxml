@@ -1,4 +1,4 @@
-<!--pages/edit/edit.wxml-->
+<!--pages/edit/edit.wxml 学生信息编辑界面 -->
 <view class='form'>
 <view class="tip">以下信息仅你和你选择的导师可见</view>
 <form bindsubmit='formSubmit'>

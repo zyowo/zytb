@@ -4,6 +4,7 @@ Page {
   background-color: #efefef;
 }
 
+/* --- 最上方 基本信息 模块 --- */
 .user_avatar {
   float: left;
   width: 120rpx;
@@ -14,19 +15,16 @@ Page {
   border: groove 2px #eee;
   border-radius: 50%;
 }
-
 .user_info {
   font-size: 90%;
   color: #fef;
   padding-top: 15rpx;
   padding-left: 15rpx;
 }
-
 .user_name {
   font-size: 130%;
   padding-right: 80rpx;
 }
-
 .top_border {
   flex-direction: column;
   background-color: #f88;
@@ -34,74 +32,85 @@ Page {
   align-items: center;
 }
 
+/* --- 我的选导 模块 --- */
 .message_border {
   background-color: #fff;
   border: 2px solid lightcoral;
-  margin: 10rpx 2px 2px 2px;
-  padding-bottom: 30rpx;
+  margin: 20rpx 2px 2px 2px;
+  padding-bottom: 20rpx;
   border-radius: 10px;
 }
-
-.textarea_fir {
-  margin-left: 20rpx;
-  margin-top: 8rpx;
-  height: 70rpx;
-  width: 270rpx;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.textarea_sec {
-  margin-left: 40rpx;
-  margin-top: 8rpx;
-  height: 70rpx;
-  width: 310rpx;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.label {
-  line-height: 70rpx;
-  float: left;
-  margin-left: 10rpx;
-  font-size: 70%;
-  color: gray;
-}
-
-.array_row {
-  display: flex;
-  flex-direction: row;
-}
-
-.array_column {
-  display: flex;
-  flex-direction: column;
-}
-
 .title_line {
   font-size: 80%;
   margin-top: 10rpx;
   margin-left: 20rpx;
   color: gray;
 }
-.my_stu{
+.right_detail {
+  float: right;
+  padding-right: 20rpx;
+}
+.textarea_sec {
+  margin: 8rpx 25rpx 0 0;
+  height: 70rpx;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.label {
+  line-height: 70rpx;
+  float: left;
+  margin-left: 20rpx;
+  padding-right: 8rpx;
+  font-size: 80%;
+  color: gray;
+}
+.my_data {
+  font-size: 80%;
+  line-height: 70rpx;
+  align-content: center;
+  vertical-align: middle;
+  color: crimson;
+  margin-right:20rpx;
+}
+.array_row {
   margin-left: 40rpx;
   display: flex;
   flex-direction: row;
+}
+.array_column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- 详细信息 模块 --- */
+.warn{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 20rpx;
+  justify-content:center;
+}
+.warn_content{
+  color:darkslategray;
+  font-size: 80%;
+  margin-left:10rpx;
+}
+.my_stu{
+  margin-left: 40rpx;
+  margin-right:40rpx;
+  display: flex;
+  flex-direction: row;
+  overflow:hidden;
+  text-overflow:ellipsis; 
 }
 .student{
   margin:10rpx;
   border: 1px lightgray;
   border-style: none none dashed none;
-}
-.my_data {
-  font-size: 70%;
-  line-height: 70rpx;
-  align-content: center;
-  vertical-align: middle;
-  color: crimson;
+  word-break: keep-all;
 }
 
+/* --- 下方导航条  --- */
 .img_edit {
   width: 30rpx;
   height: 30rpx;
@@ -114,21 +123,16 @@ Page {
 .block_detail {
   margin-top:10rpx;
 }
-.right_detail {
-  float: right;
-  padding-right: 10rpx;
-}
-
 .item_detail {
   margin-left: 40rpx;
   color:darkslategray;
   font-size: 85%;
 }
-
 .hr {
   width: 100%;
   height: 20rpx;
 }
+
 .hr_small{
   margin: 3rpx 50rpx 10rpx 35rpx;
   border: 1rpx grey;
@@ -169,8 +173,7 @@ Page {
 }
 
 .progress_sty {
-  margin-top: 60rpx;
-  margin-left: 10rpx;
+  margin: 10rpx 20rpx 10rpx 20rpx;
 }
 
 /* pages/my/my.wxss */

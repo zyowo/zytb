@@ -1,1 +1,16 @@
 /* pages/tutor/tutor.wxss */
+view text {
+  color: red;
+}
+
+.animation {
+  background:#e64340;
+  height:50px;
+  width:100%;
+  position: absolute;
+  top:-50px;
+  font-size: 90%;
+  color: white;
+  line-height: 50px;
+  padding-left: 10px;
+}

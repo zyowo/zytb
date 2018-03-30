@@ -30,7 +30,6 @@ Page
 }
 
 .img_sty{
-  height:400rpx;
   width:100%;
 }
 .date_place{
@@ -101,4 +100,32 @@ Page
   color: grey;
   margin-left: 40rpx;
   font-size: 80%;
+}
+
+.teacher{
+  background-color: white;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #353535;
+}
+scroll-view {
+  white-space: nowrap;
+  height: 400rpx;
+  width: 90%;
+  margin: 10px;
+  border: 1px solid #353535;
+}
+scroll-view image {
+  height: 400rpx;
+  width:  250rpx;
+}
+scroll-view view{
+  display: flex;
+  flex-direction: column;
+}
+scroll-view view text {
+  display:inline-block;
 }

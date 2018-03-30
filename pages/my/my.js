@@ -3,7 +3,7 @@ var app = getApp()
 Page({
   data: {
     // --- 展示用户头像 ---
-    userInfo: {   //默认展示的图片
+    userInfo: {   // 默认展示的图片
       avatarUrl: "../../img/cat.png",
     },
     hasUserInfo: false,
@@ -20,9 +20,10 @@ Page({
     // --- 学生数据 ---
     major: '数字媒体技术',
     tutor: '王秀梅',
-    status: 'loading',
-    status2: 'amazing',
+    round: '2',
+    status: '已读',
     institute: '马克思主义学院',
+    percent: 80,  // 信息完善度
 
     // --- 导师数据 ---
     office: '计算机大楼B403',
@@ -32,6 +33,18 @@ Page({
     students: [{
       name: '钟亦文',
       status: '接受'
+    }, {
+      name: '张浩然',
+      status: '已读'
+    }, {
+      name: '周志雄',
+      status: '超期'
+    }, {
+      name: '张浩然',
+      status: '已读'
+    }, {
+      name: '周志雄',
+      status: '超期'
     }, {
       name: '张浩然',
       status: '已读'

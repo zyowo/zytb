@@ -1,33 +1,54 @@
 //index.js
 //获取应用实例
 const app = getApp()
-var util = require('../../utils/util.js');  
+var util = require('../../utils/util.js');
 Page({
   data: {
-   imgUrls:[
-      "../../img/1.jpg",
-      "../../img/2.jpg",
-      "../../img/3.jpg",
+    imgUrls: [
+      "../../img/1.png",
+      "../../img/2.png",
+      "../../img/3.png",
     ],
-   instrucion:'王秀梅王秀梅王秀梅王秀梅王秀梅王秀梅'+
+    teacher:[
+      { src:"../../img/wwl.png",
+        name:'王万良'},
+      {
+        src: "../../img/lsc.png",
+        name: '龙胜春'
+      },
+      {
+        src: "../../img/hdc.png",
+        name: '黄德才'
+      },
+      {
+        src: "../../img/lq.png",
+        name: '李曲'
+      }
+    ],
+    news: [
+      { topic: '浙江工业大学硕士研究生第一轮导师选择注意事项' },
+      { topic: '第一轮导师选择填报须知' },
+      { topic: '研究生报道通知' }
+    ],
+    instrucion: '王秀梅王秀梅王秀梅王秀梅王秀梅王秀梅' +
     '王秀梅王秀梅王秀梅王秀梅王秀梅王秀梅',
     motto: '第二周任务，完成“我的”选项卡',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    year:'',
-    month:'',
+    year: '',
+    month: '',
     day: '',
     date: 0,
-    week:['日','一','二','三','四','五','六','日']
+    week: ['日', '一', '二', '三', '四', '五', '六', '日']
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
-  
+
   onLoad: function () {
     //获取当前时间戳  
     var timestamp = Date.parse(new Date());
@@ -53,8 +74,8 @@ Page({
     var w = date.getDay();
 
     this.setData({
-      year:Y,
-      month:M,
+      year: Y,
+      month: M,
       day: D,
       date: w,
     });
@@ -66,7 +87,7 @@ Page({
       time: time,
     });
   },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({

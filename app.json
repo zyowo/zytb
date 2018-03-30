@@ -1,9 +1,11 @@
 {
   "pages": [
-    "pages/my/my",
-    "pages/tutor/tutor",
-    "pages/edit/edit",
     "pages/index/index",
+    "pages/news/news",
+    "pages/tutor/tutor",
+    "pages/my/my",
+    "pages/edit/edit",
+
     "pages/login/login",
     "pages/register/register",
     "pages/logs/logs"
