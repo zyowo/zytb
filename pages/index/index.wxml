@@ -40,7 +40,7 @@
 </view>
 
 <view class="notification">
-  <view class="notice_head">"最选导"系统简介:</view>
+  <view class="notice_head">每日小贴士:</view>
   <view class="instruction">
     <text decode="emsp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{instrucion}}</text>
   </view>

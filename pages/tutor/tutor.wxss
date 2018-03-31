@@ -1,7 +1,4 @@
 /* pages/tutor/tutor.wxss */
-view text {
-  color: red;
-}
 
 .animation {
   background:#e64340;
