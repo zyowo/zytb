@@ -1,68 +1,91 @@
 // pages/tutor/tutor.js
 
-var app = getApp()
+var app = getApp();
+var tutor_name;
+var recordline;
 var idinfolist = [
-  { "name": "潘翔", "faculty": '数字媒体',"picknum":20, "allnum":30},
-  { "name": "王秀梅", "faculty": '网络工程', "picknum": 10, "allnum": 50 },
-  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10 },
-  { "name": "王万良", "faculty": '计算机自动化', "picknum": 13, "allnum": 26 }, 
-  { "name": "王鑫", "faculty": '软件工程', "picknum": 10, "allnum": 10 },
-  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10 },
-  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10 },
-  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10 },
-  { "name": "潘翔", "faculty": '数字媒体', "picknum": 20, "allnum": 30 },
-  { "name": "王秀梅", "faculty": '网络工程', "picknum": 50, "allnum": 50 },
-  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10 },
-  { "name": "王万良", "faculty": '计算机自动化', "picknum": 13, "allnum": 26 },
-  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10 },
-  { "name": "汤颖", "faculty": '数字媒体', "picknum": 5, "allnum": 10 },
-  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10 },
-  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10 },
-]  
-var facultyli=['', '数字媒体', '网络工程', '软件工程', '计算机自动化']
+  { "name": "潘翔", "faculty": '数字媒体', "picknum": 20, "allnum": 30,"select":false },
+  { "name": "王秀梅", "faculty": '网络工程', "picknum": 10, "allnum": 50, "select": false },
+  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10, "select": false },
+  { "name": "王万良", "faculty": '计算机自动化', "picknum": 13, "allnum": 26, "select": false },
+  { "name": "亦文", "faculty": '数字媒体', "picknum": 20, "allnum": 30, "select": false },
+  { "name": "王老师", "faculty": '网络工程', "picknum": 50, "allnum": 50, "select": false},
+  { "name": "王鑫", "faculty": '计算机自动化', "picknum": 5, "allnum": 10, "select": false },
+  { "name": "王万良1", "faculty": '计算机自动化', "picknum": 13, "allnum": 26, "select": false },
+  { "name": "王春平", "faculty": '软件工程', "picknum": 5, "allnum": 10, "select": false},
+  { "name": "龙胜春", "faculty": '软件工程', "picknum": 5, "allnum": 10, "select": false },
+  { "name": "汤颖", "faculty": '数字媒体', "picknum": 5, "allnum": 10, "select": false },
+
+]
+var facultyli = ['数字媒体', '网络工程', '软件工程', '计算机自动化']
 Page({
   data: {
     animation: '',
     animationData: {},
-    percent:0,
-    listData: idinfolist,  
+    percent: 0,
+    listData: idinfolist,
     facultyList: facultyli,
-    xindex:0,
-    tutors:[],
-    faculties:[],
-    searchtu:true,
+    xindex: -1,
+    tutors: [],
+    faculties: [],
+    searchtu: true,
+    record_line: 1,
+    pick:false
   },
-  bindPickerChange:function(e) {
-      this.setData({
-        xindex: e.detail.value,
-      })
-      
-  },
-  searchtutor:function(e){
-    var name=e.detail.value;
-    var arr=new Array();
-    for (var i = 0; i < idinfolist.length;i++){
-      var m = idinfolist[i];
-      if (name == m.name)  arr.push(m); 
-    }
+  bindPickerChange: function (e) {
     this.setData({
-      tutors:arr,
-      searchtu: true
+      xindex: e.detail.value,
+    })
+
+  },
+  choose:function(e){
+    this.setData({
+      pick: false
     });
   },
+  
+  unchoose: function (e) {
+    this.setData({
+      pick:true
+    });
+
+  },
+  searchtutor: function (e) {
+    var name = e.detail.value;
+    var arr = new Array();
+    for (var i = 0; i < idinfolist.length; i++) {
+      var m = idinfolist[i];
+      if (name == m.name) arr.push(m);
+    }
+    this.setData({
+      tutors: arr,
+      searchtu: true
+    });
+    tutor_name=this.data.tutors;
+  },
   searchfaculty: function () {
-    var x=this.data.xindex;
+    var x = this.data.xindex;
     var facul = facultyli[x];
     var arr = new Array();
     for (var i = 0; i < idinfolist.length; i++) {
       var m = idinfolist[i];
       if (facul == m.faculty) arr.push(m);
     }
-    this.setData({ faculties: arr, searchtu: false, });
+    this.setData({
+      faculties: arr,
+      searchtu: false,
+    });
+    tutor_name = this.data.faculties;
+ 
   },
-  tutordetail:function(){
+  tutordetail: function (e) {
+
+    this.setData({
+      record_line: e.currentTarget.dataset.index
+    });
+    recordline = this.data.record_line;
     wx.navigateTo({
-      url: '../edit/edit'
+      url: '../tutor/info'
     })
   },
   onShow: function () {
@@ -154,15 +177,30 @@ Page({
   onReachBottom: function () {
 
   },
-onLoad:function(){
-  this.setData({
-    percent: getApp().globalData.percent
-  })
-},
+  onLoad: function () {
+    this.setData({
+      percent: getApp().globalData.percent
+    })
+
+  },
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  
 })
+var getMylist=function(){
+  return tutor_name;
+}
+var getRecord=function(){
+  return recordline;
+}
+module.exports={
+  tutor_name: tutor_name,
+  recordline: recordline,
+  getMylist: getMylist,
+  getRecord: getRecord
+}
+

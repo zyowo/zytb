@@ -28,7 +28,7 @@
     </picker>
     <button bindtap="searchfaculty" class="searchcube" style="margin-top:50rpx;">搜索</button>
   </view>
-
+  <view style="margin-top:40rpx;">点击老师姓名可查看详细信息</view>
   <view class="table">
     <view class="tr bg_w">
       <view style="width:20%" class="th">姓名</view>
@@ -40,18 +40,23 @@
     <block wx:if="{{searchtu}}">
       <block wx:for="{{tutors}}" wx:key="{{code}}">
         <view class="tr bg_g" wx:if="{{index % 2 == 0}}">
-          <view style="width:20%" class="td">{{item.name}}</view>
+          <view bindtap="tutordetail" data-index="{{index}}" style="width:20%" class="td">{{item.name}}</view>
           <view style="width:35%" class="td">{{item.faculty}}</view>
           <view style="width:25%" class="td">{{item.picknum}}/{{item.allnum}}</view>
-          <text bindtap="tutordetail" style="color:blue;width:20%" class="td" wx:if="{{item.picknum<item.allnum}}">选择</text>
-          <text style="width:20%" class="td" wx:else>不可选</text>
+          <text bindtap="choose" style="color:blue;width:20%" class="td" wx:if="{{(item.picknum<item.allnum)&&pick}}">选择</text>
+          <text bindtap="unchoose"style="color:red;width:20%" class="td" wx:if="{{(item.picknum<item.allnum)&&!pick}}">退选</text>
+          <text style="width:20%" class="td" wx:if="{{item.picknum>=item.allnum}}">不可选</text>
+
         </view>
         <view class="tr" wx:else>
-          <view style="width:20%" class="td">{{item.name}}</view>
+          <view bindtap="tutordetail" data-index="{{index}}" style="width:20%" class="td">{{item.name}}</view>
           <view style="width:35%" class="td">{{item.faculty}}</view>
           <view style="width:25%" class="td">{{item.picknum}}/{{item.allnum}}</view>
-          <text bindtap="tutordetail" style="color:blue;width:20%" class="td" wx:if="{{item.picknum<item.allnum}}">选择</text>
-          <text style="width:20%" class="td" wx:else>不可选</text>
+
+ <text bindtap="choose" style="color:blue;width:20%" class="td" wx:if="{{(item.picknum<item.allnum)&&pick}}">选择</text>
+          <text bindtap="unchoose"style="color:red;width:20%" class="td" wx:if="{{(item.picknum<item.allnum)&&!pick}}">退选</text>
+          <text style="width:20%" class="td" wx:if="{{item.picknum>=item.allnum}}">不可选</text>
+
         </view>
       </block>
     </block>
@@ -59,20 +64,30 @@
     <block wx:else>
       <block wx:for="{{faculties}}" wx:key="{{code}}">
         <view class="tr bg_g" wx:if="{{index % 2 == 0}}">
-          <view style="width:20%" class="td">{{item.name}}</view>
+          <view bindtap="tutordetail" data-index="{{index}}" style="width:20%" class="td">{{item.name}}</view>
           <view style="width:35%" class="td">{{item.faculty}}</view>
           <view style="width:25%" class="td">{{item.picknum}}/{{item.allnum}}</view>
-          <text bindtap="tutordetail" style="color:blue;width:20%" class="td" wx:if="{{item.picknum<item.allnum}}">选择</text>
-          <text style="width:20%" class="td" wx:else>不可选</text>
+
+          <text bindtap="choose"style="color:blue;width:20%" class="td" wx:if="{{(item.picknum<item.allnum)&&pick}}">选择</text>
+          <text  bindtap="unchoose"style="color:red;width:20%" class="td" wx:if="{{(item.picknum<item.allnum)&&!pick}}">退选</text>
+          <text style="width:20%" class="td" wx:if="{{item.picknum>=item.allnum}}">不可选</text>
+
         </view>
+
         <view class="tr" wx:else>
-          <view style="width:20%" class="td">{{item.name}}</view>
+          <view bindtap="tutordetail" data-index="{{index}}" style="width:20%" class="td">{{item.name}}</view>
           <view style="width:35%" class="td">{{item.faculty}}</view>
           <view style="width:25%" class="td">{{item.picknum}}/{{item.allnum}}</view>
-          <text bindtap="tutordetail" style="color:blue;width:20%" class="td" wx:if="{{item.picknum<item.allnum}}">选择</text>
-          <text style="width:20%" class="td" wx:else>不可选</text>
+
+          <text bindtap="choose" style="color:blue;width:20%" class="td" wx:if="{{(item.picknum<item.allnum)&&pick}}">选择</text>
+          <text bindtap="unchoose"style="color:red;width:20%" class="td" wx:if="{{(item.picknum<item.allnum)&&!pick}}">退选</text>
+          <text style="width:20%" class="td" wx:if="{{item.picknum>=item.allnum}}">不可选</text>
+
         </view>
       </block>
     </block>
   </view>
+</view>
+<view wx:else>
+  <view animation="{{animationData}}" bindtap='' class="animation">导师填报还没开始哦。先去完善个人信息>>></view>
 </view>
