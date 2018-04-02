@@ -1,5 +1,5 @@
 <!--pages/tutor/tutor.wxml-->
-<view animation="{{animationData}}" bindtap='' class="animation">导师填报还没开始哦。先去完善个人信息>>></view>
+<!--<view animation="{{animationData}}" bindtap='' class="animation">导师填报还没开始哦。先去完善个人信息>>></view>
 <view>
 <input></input>
 <button>搜索</button>
@@ -12,3 +12,67 @@
 <view class="loading"><text>pages/tutor/tutor.wxml</text></view>
 请先完善个人信息，再进行导师填报>>>
 导师填报已经结束啦。查看选导进度>>>
+-->
+<view wx:if="{{percent>=80}}">
+  <view class="dis">
+    <view style="margin-left:10rpx;margin-top:60rpx;font-size:95%;">导师姓名:</view>
+    <input bindblur="searchtutor" class="input"></input>
+    <button style="margin-left:60rpx;" class="searchcube">搜索</button>
+  </view>
+  <view class="dis">
+    <view class="picker" style="margin-left:10rpx;margin-top:70rpx;font-size:95%;">部门/研究所:</view>
+    <picker mode="selector" bindchange="bindPickerChange" value="{{xindex}}" range="{{facultyList}}">
+      <view class="textarea_thr">
+        <text class="label">{{facultyList[xindex]}}</text>
+      </view>
+    </picker>
+    <button bindtap="searchfaculty" class="searchcube" style="margin-top:50rpx;">搜索</button>
+  </view>
+
+  <view class="table">
+    <view class="tr bg_w">
+      <view style="width:20%" class="th">姓名</view>
+      <view style="width:35%" class="th">研究所</view>
+      <view style="width:25%" class="th">已选/总数</view>
+      <view style="width:20%" class="th_1">选择</view>
+    </view>
+
+    <block wx:if="{{searchtu}}">
+      <block wx:for="{{tutors}}" wx:key="{{code}}">
+        <view class="tr bg_g" wx:if="{{index % 2 == 0}}">
+          <view style="width:20%" class="td">{{item.name}}</view>
+          <view style="width:35%" class="td">{{item.faculty}}</view>
+          <view style="width:25%" class="td">{{item.picknum}}/{{item.allnum}}</view>
+          <text bindtap="tutordetail" style="color:blue;width:20%" class="td" wx:if="{{item.picknum<item.allnum}}">选择</text>
+          <text style="width:20%" class="td" wx:else>不可选</text>
+        </view>
+        <view class="tr" wx:else>
+          <view style="width:20%" class="td">{{item.name}}</view>
+          <view style="width:35%" class="td">{{item.faculty}}</view>
+          <view style="width:25%" class="td">{{item.picknum}}/{{item.allnum}}</view>
+          <text bindtap="tutordetail" style="color:blue;width:20%" class="td" wx:if="{{item.picknum<item.allnum}}">选择</text>
+          <text style="width:20%" class="td" wx:else>不可选</text>
+        </view>
+      </block>
+    </block>
+
+    <block wx:else>
+      <block wx:for="{{faculties}}" wx:key="{{code}}">
+        <view class="tr bg_g" wx:if="{{index % 2 == 0}}">
+          <view style="width:20%" class="td">{{item.name}}</view>
+          <view style="width:35%" class="td">{{item.faculty}}</view>
+          <view style="width:25%" class="td">{{item.picknum}}/{{item.allnum}}</view>
+          <text bindtap="tutordetail" style="color:blue;width:20%" class="td" wx:if="{{item.picknum<item.allnum}}">选择</text>
+          <text style="width:20%" class="td" wx:else>不可选</text>
+        </view>
+        <view class="tr" wx:else>
+          <view style="width:20%" class="td">{{item.name}}</view>
+          <view style="width:35%" class="td">{{item.faculty}}</view>
+          <view style="width:25%" class="td">{{item.picknum}}/{{item.allnum}}</view>
+          <text bindtap="tutordetail" style="color:blue;width:20%" class="td" wx:if="{{item.picknum<item.allnum}}">选择</text>
+          <text style="width:20%" class="td" wx:else>不可选</text>
+        </view>
+      </block>
+    </block>
+  </view>
+</view>

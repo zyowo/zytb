@@ -1,29 +1,30 @@
 // pages/my/my.js
 var app = getApp()
+
 Page({
   data: {
     // --- 展示用户头像 ---
     userInfo: {   // 默认展示的图片
       avatarUrl: "../../img/cat.png",
+   
     },
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
     // --- 判断是学生还是导师 ---
-    isStudent: false,
-
+    isStudent: true,
+    percent:0,
     // --- 公用数据 ---
     uname: '王秀梅',
     uid: '07373',
     academy: '马克思主义学院',
-
     // --- 学生数据 ---
     major: '数字媒体技术',
     tutor: '王秀梅',
     round: '2',
     status: '已读',
     institute: '马克思主义学院',
-    percent: 80,  // 信息完善度
+    
 
     // --- 导师数据 ---
     office: '计算机大楼B403',
@@ -88,6 +89,7 @@ Page({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
+      
     } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
@@ -109,6 +111,9 @@ Page({
         }
       })
     }
+    this.setData({
+      percent: getApp().globalData.percent
+    })
   },
 
   getUserInfo: function (e) {

@@ -1,11 +1,70 @@
 // pages/tutor/tutor.js
 
+var app = getApp()
+var idinfolist = [
+  { "name": "潘翔", "faculty": '数字媒体',"picknum":20, "allnum":30},
+  { "name": "王秀梅", "faculty": '网络工程', "picknum": 10, "allnum": 50 },
+  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10 },
+  { "name": "王万良", "faculty": '计算机自动化', "picknum": 13, "allnum": 26 }, 
+  { "name": "王鑫", "faculty": '软件工程', "picknum": 10, "allnum": 10 },
+  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10 },
+  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10 },
+  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10 },
+  { "name": "潘翔", "faculty": '数字媒体', "picknum": 20, "allnum": 30 },
+  { "name": "王秀梅", "faculty": '网络工程', "picknum": 50, "allnum": 50 },
+  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10 },
+  { "name": "王万良", "faculty": '计算机自动化', "picknum": 13, "allnum": 26 },
+  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10 },
+  { "name": "汤颖", "faculty": '数字媒体', "picknum": 5, "allnum": 10 },
+  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10 },
+  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10 },
+]  
+var facultyli=['', '数字媒体', '网络工程', '软件工程', '计算机自动化']
 Page({
   data: {
     animation: '',
-    animationData: {}
+    animationData: {},
+    percent:0,
+    listData: idinfolist,  
+    facultyList: facultyli,
+    xindex:0,
+    tutors:[],
+    faculties:[],
+    searchtu:true,
   },
-
+  bindPickerChange:function(e) {
+      this.setData({
+        xindex: e.detail.value,
+      })
+      
+  },
+  searchtutor:function(e){
+    var name=e.detail.value;
+    var arr=new Array();
+    for (var i = 0; i < idinfolist.length;i++){
+      var m = idinfolist[i];
+      if (name == m.name)  arr.push(m); 
+    }
+    this.setData({
+      tutors:arr,
+      searchtu: true
+    });
+  },
+  searchfaculty: function () {
+    var x=this.data.xindex;
+    var facul = facultyli[x];
+    var arr = new Array();
+    for (var i = 0; i < idinfolist.length; i++) {
+      var m = idinfolist[i];
+      if (facul == m.faculty) arr.push(m);
+    }
+    this.setData({ faculties: arr, searchtu: false, });
+  },
+  tutordetail:function(){
+    wx.navigateTo({
+      url: '../edit/edit'
+    })
+  },
   onShow: function () {
     // 实例化一个动画
     var animation = wx.createAnimation({
@@ -95,7 +154,11 @@ Page({
   onReachBottom: function () {
 
   },
-
+onLoad:function(){
+  this.setData({
+    percent: getApp().globalData.percent
+  })
+},
   /**
    * 用户点击右上角分享
    */

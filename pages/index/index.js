@@ -78,11 +78,11 @@ Page({
     //日  
     var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
     //时  
-    var h = date.getHours();
+    //var h = date.getHours();
     //分  
-    var m = date.getMinutes();
+    //var m = date.getMinutes();
     //秒  
-    var s = date.getSeconds();
+    //var s = date.getSeconds();
     //星期
     var w = date.getDay();
 
