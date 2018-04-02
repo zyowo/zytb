@@ -1,0 +1,49 @@
+<!--pages/edit/edit_t.wxml 教师信息编辑界面 -->
+<view class='form'>
+  <view class="tip">以下信息为所有学生可见</view>
+  <form bindsubmit='formSubmit'>
+  <view class='menu'>详细信息</view>
+    <view class="item">
+      <view class="title">办公室</view>
+      <input maxlength='20' class="input" name="class" confirm-type="next" placeholder="请输入办公室地址" value="{{office}}"></input>
+    </view>
+
+    <view class='line'></view>
+
+    <view class="item">
+      <view class="title">联系电话</view>
+      <view style='width:36%'>
+        <input maxlength='11' type="number" name="class" confirm-type="next" placeholder="长号" value="{{long}}"></input>
+      </view>
+      <text style='width:6%'>/</text>
+      <view style='width:28%'>
+        <input maxlength='6' class="input_dh" type="number" name="class" confirm-type="next" placeholder="短号" value="{{short}}"></input>
+      </view>
+    </view>
+
+    <view class='line'></view>
+
+    <view class="item">
+      <view class="title">电子邮箱</view>
+      <input class="input" name="class" confirm-type="next" placeholder="请输入电子邮箱" value="{{email}}"></input>
+    </view>
+
+    <view class='line'></view>
+
+    <view class="item">
+      <view class="title">研究方向</view>
+      <input class="input" value="{{research}}" confirm-type="next" placeholder="请输入您的研究方向，例如“人工智能 / 模式识别”"></input>
+    </view>
+
+    <view class='line'></view>
+
+    <view class="item">
+      <view class="title">个人介绍</view>
+      <textarea class="inputarea" placeholder="(可选) 输入个人介绍，帮助您的学生进行选择"></textarea>
+    </view>
+
+    <view class='line'></view>
+    <view class='hr'></view>
+    <button type="primary" form-type='submit'>提交</button>
+  </form>
+</view>

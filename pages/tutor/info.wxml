@@ -1,0 +1,11 @@
+<!--pages/tutor/info.wxml-->
+<view class='category'>
+<text class='item'>工号：{{uid}}</text>
+<text class='item'>姓名：{{uname}}</text>
+<text class='item'>部门/研究所：{{academy}}</text>
+<text class='item'>办公室：{{office}}</text>
+<text class='item'>联系电话：{{long}}{{short}}</text>
+<text class='item'>电子邮箱：{{email}}</text>
+<text class='item'>研究方向：{{research}}</text>
+<text class='item'>个人介绍：{{intro}}</text>
+</view>

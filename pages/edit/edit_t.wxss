@@ -1,4 +1,4 @@
-/* pages/edit/edit.wxss */
+/* pages/edit/edit_t.wxss */
 
 Page {
   background-color: #efefef;

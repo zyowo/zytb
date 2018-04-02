@@ -1,0 +1,5 @@
+/* pages/tutor/info.wxss */
+.category{
+  display: flex;
+  flex-direction: column;
+}

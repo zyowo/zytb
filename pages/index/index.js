@@ -1,4 +1,4 @@
-//index.js
+//index.js 【主页】选项卡
 //获取应用实例
 const app = getApp()
 var util = require('../../utils/util.js');
@@ -48,6 +48,20 @@ Page({
     })
   },
 
+  //跳转到新闻通知
+  news(){
+    wx.navigateTo({
+      url: '../news/news',
+    })
+  },
+
+  //跳转到导师介绍
+  info(){
+    wx.navigateTo({
+      url: '../tutor/info',
+    })
+  },
+  
   onLoad: function () {
     //获取当前时间戳  
     var timestamp = Date.parse(new Date());

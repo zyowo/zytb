@@ -29,7 +29,7 @@ Page({
     office: '计算机大楼B403',
     tel: 12345678901,
     email: 'wxm@zjut.edu.cn',
-    direction: '模式识别 人工智能',
+    research: '模式识别 人工智能',
     students: [{
       name: '钟亦文',
       status: '接受'
@@ -73,6 +73,12 @@ Page({
     })
   },
 
+  // -- 点击 编辑资料(教师) --
+  edit_t() {
+    wx.navigateTo({
+      url: '../edit/edit_t'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

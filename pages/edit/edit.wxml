@@ -1,50 +1,76 @@
 <!--pages/edit/edit.wxml 学生信息编辑界面 -->
 <view class='form'>
-<view class="tip">以下信息仅你和你选择的导师可见</view>
-<form bindsubmit='formSubmit'>
-  <view class="item">
-    <view class="title">班级</view>
-    <input class="input" name="class" confirm-type="next" placeholder="请输入班级" value="{{class}}"></input>
-  </view>
+  <view class="tip">以下信息仅你和你选择的导师可见</view>
+  <form bindsubmit='formSubmit'>
+  <view class='menu'>详细信息</view>
+    <view class="item">
+      <view class="title">班级</view>
+      <input maxlength='20' class="input" name="class" confirm-type="next" placeholder="请输入班级" value="{{class}}"></input>
+    </view>
 
-  <view class="item">
-    <view class="title">政治面貌</view>
-    <!--mode默认selector range数据源value选择的index bindchange事件监听-->
-    <picker mode="selector" range="{{array}}" value="{{index}}" bindchange="listenerPickerSelected">
-      <text>{{array[index]}}</text>
-    </picker>
-  </view>
+    <view class='line'></view>
 
-  <view class="item">
-    <view class="title">联系电话</view>
-    <input class="input" type="number" name="class" confirm-type="next" placeholder="长号" value="{{class}}"></input>
-    <input class="input" type="number" name="class" confirm-type="next" placeholder="短号" value="{{class}}"></input>
-  </view>
+    <view class="item">
+      <view class="title">政治面貌</view>
+      <!--mode默认selector range数据源value选择的index bindchange事件监听-->
+      <picker mode="selector" range="{{array}}" value="{{index}}" bindchange="listenerPickerSelected">
+        <text wx:if="{{index!=-1}}">{{array[index]}}</text>
+        <text wx:else>请选择</text>
+      </picker>
+    </view>
 
-  <view class="item">
-    <view class="title">电子邮箱</view>
-    <input class="input" name="class" confirm-type="next" placeholder="请输入电子邮箱" value="{{class}}"></input>
-  </view>
+    <view class='line'></view>
 
-  <view class="item">
-    <view class="title">职业方向</view>
-    <input class="input" name="class" confirm-type="next" placeholder="前端 / UI" value="{{class}}"></input>
-  </view>
+    <view class="item">
+      <view class="title">联系电话</view>
+      <view style='width:36%'>
+        <input maxlength='11' type="number" name="class" confirm-type="next" placeholder="长号" value="{{long}}"></input>
+      </view>
+      <text style='width:6%'>/</text>
+      <view style='width:28%'>
+        <input maxlength='6' class="input_dh" type="number" name="class" confirm-type="next" placeholder="短号" value="{{short}}"></input>
+      </view>
+    </view>
 
-  <view class="item">
-    <view class="title">个人荣誉</view>
-    <textarea class="inputarea" value="{{honor}}" placeholder="多项荣誉请用空格分隔"></textarea>
-  </view>
+    <view class='line'></view>
 
-  <view class="item">
-    <view class="title">专业兴趣研究方向</view>
-    <textarea class="inputarea" value="{{research}}" placeholder="多项研究方向请用空格分隔"></textarea>
-  </view>
+    <view class="item">
+      <view class="title">电子邮箱</view>
+      <input class="input" name="class" confirm-type="next" placeholder="请输入电子邮箱" value="{{email}}"></input>
+    </view>
 
-  <view class="item">
-    <view class="title">个人介绍</view>
-    <textarea class="inputarea" placeholder="请输入个人介绍"></textarea>
-  </view>
+    <view class='line'></view>
+  <view class='menu'>选导参考信息</view>
+    <view class="item">
+      <view class="title">职业方向</view>
+      <view style='width:70%'>
+      <input class="input" name="class" confirm-type="next" placeholder="例如“前端 / UI”" value="{{direction}}"></input>
+      </view>
+    </view>
 
-  <button>提交</button>
-</form></view>
+    <view class='line'></view>
+
+    <view class="item">
+      <view class="title">个人荣誉</view>
+      <textarea class="inputarea" value="{{honor}}" placeholder="请输入个人荣誉，例如“ACM区域赛金牌”"></textarea>
+    </view>
+
+    <view class='line'></view>
+
+    <view class="item">
+      <view class="title">研究方向</view>
+      <textarea class="inputarea" value="{{research}}" placeholder="请输入专业兴趣 / 研究方向，例如“人工智能 / 区块链”"></textarea>
+    </view>
+
+    <view class='line'></view>
+
+    <view class="item">
+      <view class="title">个人介绍</view>
+      <textarea class="inputarea" placeholder="请输入个人介绍"></textarea>
+    </view>
+
+    <view class='line'></view>
+    <view class='hr'></view>
+    <button type="primary" form-type='submit'>提交</button>
+  </form>
+</view>

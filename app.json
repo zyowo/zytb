@@ -1,14 +1,15 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/news/news",
-    "pages/tutor/tutor",
     "pages/my/my",
     "pages/edit/edit",
-
+    "pages/news/news",
+    "pages/tutor/tutor",
     "pages/login/login",
     "pages/register/register",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/edit/edit_t",
+    "pages/tutor/info"
   ],
   "window": {
     "backgroundTextStyle": "light",

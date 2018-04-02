@@ -75,7 +75,7 @@
     </view>
   </view>
 
-  <view bindtap="edit" class="message_border">
+  <view bindtap="edit_t" class="message_border">
     <view class="title_line">详细信息
       <text class="right_detail">点击编辑 > </text>
     </view>
@@ -86,7 +86,7 @@
       <view class="hr_small"></view>
       <view class="item_detail">电子邮箱：{{email}}</view>
       <view class="hr_small"></view>
-      <view class="item_detail">研究方向：{{direction}}</view>
+      <view class="item_detail">研究方向：{{research}}</view>
       <view class="hr_small"></view>
     </view>
   </view>

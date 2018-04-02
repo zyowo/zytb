@@ -1,2 +1,10 @@
 <!--pages/news/news.wxml-->
-<text>pages/news/news.wxml</text>
+<import src="../../wemark/wemark.wxml"/>
+<view class='title'>{{title}}</view>
+<view class='flex'>
+<view class='time'>{{time}}</view>
+<view class='author'>{{author}}</view>
+</view>
+<view class='content'>
+<template is="wemark" data="{{...wemark}}"></template>
+</view>

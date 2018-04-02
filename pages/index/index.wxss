@@ -66,7 +66,7 @@ Page
   width:95%;
 }
 .notification{
-  background-color: white;
+  background-color:white;
   border:2px solid lightgray;
   margin: 10rpx 4rpx 10rpx 2rpx;
   border-radius:10px;

@@ -34,7 +34,7 @@
   <view class="hr"></view>
   <block wx:for="{{news}}">
     <view class="notice_line">
-      <text class="notice_text">{{item.topic}}</text>
+      <text bindtap="news" class="notice_text">{{item.topic}}</text>
     </view>
   </block>
 </view>
@@ -50,7 +50,7 @@
   优秀导师展示
   <scroll-view scroll-x="true" scroll-left="50" scroll-with-animation='true'>
     <block wx:for='{{teacher}}'>
-        <image src="{{item.src}}" mode="aspectFit"></image>
+        <image bindtap="info" src="{{item.src}}" mode="aspectFit"></image>
     </block>
   </scroll-view>
 </view>

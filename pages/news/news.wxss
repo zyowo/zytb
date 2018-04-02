@@ -1,1 +1,32 @@
 /* pages/news/news.wxss */
+@import '../../wemark/wemark.wxss';
+Page{
+  margin-left: 25rpx;
+}
+.title{
+  margin-top: 25rpx;
+  font-size: 130%;
+}
+
+.time{
+  margin-top: 10rpx;
+  font-size: 85%;
+  color:grey;
+}
+
+.flex{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.author{
+  margin-top:10rpx;
+  color:steelblue;
+  margin-left:20px;
+  font-size:85%;
+}
+
+.content{
+  width:700rpx;
+}
