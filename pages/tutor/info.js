@@ -24,8 +24,9 @@ Page({
   onLoad: function (options) {
     var a = remark.getMylist();
     var b = remark.getRecord();
+    var c = remark.getstu();
     this.setData({
-      uname: a[b].name
+      uname: c[b].sname
     })
     /**console.log('hhhhh', remark.faculties);
     console.log('hhhhh', remark.record_line);**/

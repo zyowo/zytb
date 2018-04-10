@@ -3,7 +3,6 @@ var app = getApp()
 var idinfolist = [
   { "name": "潘翔", "choice": '第一志愿', "status": '未选中' },
   { "name": "王秀梅", "choice": '第二志愿', "status": '已选' },
-  { "name": "王秀梅", "choice": '第二志愿', "status": '已选' },
   { "name": "王秀梅", "choice": '第san志愿', "status": '已选' },
   ]
 Page({

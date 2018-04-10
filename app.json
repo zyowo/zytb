@@ -1,5 +1,7 @@
 {
   "pages": [
+
+    "pages/tutor/tutor",
     "pages/my/my",
     "pages/login/login",
     "pages/register/register",
@@ -7,7 +9,7 @@
     
     "pages/edit/edit",
     "pages/news/news",
-    "pages/tutor/tutor",
+    
     
 
     "pages/logs/logs",

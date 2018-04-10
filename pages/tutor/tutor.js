@@ -1,26 +1,7 @@
 // pages/tutor/tutor.js
-/* 从数据库获取查询到的数组
-  var n = getNumberOfWidgetsFromDatabase();
-  var widgets = new Array(n);
-  for(var i=0; i<n; i=+){
-    widgets[i] = getDatabaseRecord(i);
-  }
--- 老师的构造函数如下：
-  //  用一个对象字面量代替所有实参
-  var teacher = { uname: "潘翔",
-                  academy: "计算机视觉研究所",
-                  picknum: 32  };
-  //  对象构造函数
-  var tea1 = new Teacher(teacher);
-  //  传入对象和属性
-  function Teacher(tea) {
-    this.uname = tea.uname;
-    this.academy = tea.academy;
-    this.picknum = tea.picknum;
-  }
-*/
 var app = getApp();
 var tutor_name;
+var student_name;
 var recordline;
 var idinfolist = [
   { "name": "潘翔", "faculty": '数字媒体', "picknum": 20, "allnum": 30,"select":false },
@@ -36,6 +17,16 @@ var idinfolist = [
   { "name": "汤颖", "faculty": '数字媒体', "picknum": 5, "allnum": 10, "select": false },
 
 ]
+
+var idinfolist2 = [
+  { "sname": "钟亦文", "faculty": '数字媒体' },
+  { "sname": "钟亦文2", "faculty": '网络工程' },
+  { "sname": "钟亦文3", "faculty": '软件工程' },
+  { "sname": "钟亦文4", "faculty": '数字媒体' },
+  { "sname": "钟亦文5", "faculty": '网络工程' },
+  { "sname": "钟亦文6", "faculty": '计算机自动化' },
+
+]
 var facultyli = ['数字媒体', '网络工程', '软件工程', '计算机自动化']
 Page({
   data: {
@@ -44,12 +35,15 @@ Page({
     percent: 0,
     listData: idinfolist,
     facultyList: facultyli,
+    stuList:idinfolist2,
     xindex: -1,
     tutors: [],
     faculties: [],
+    students:[],
     searchtu: true,
     record_line: 1,
-    pick:false
+    tutor_pick:false,
+    selectall:false
   },
   bindPickerChange: function (e) {
     this.setData({
@@ -59,15 +53,34 @@ Page({
   },
   choose:function(e){
     this.setData({
-      pick: false
+      tutor_pick: false
     });
   },
   
   unchoose: function (e) {
     this.setData({
-      pick:true
+      tutor_pick:true
     });
 
+  },
+
+  searchStu:function(e){
+    var sname = e.detail.value;
+    var arr = new Array();
+    for (var i = 0; i < idinfolist2.length; i++) {
+      var m = idinfolist2[i];
+      if (sname == m.sname) arr.push(m);
+    }
+    this.setData({
+      selectall: false,
+      students: arr,
+    });
+    student_name = this.data.students;
+  },
+  selectall:function(){
+    this.setData({
+      selectall: true
+    });
   },
   searchtutor: function (e) {
     var name = e.detail.value;
@@ -103,6 +116,18 @@ Page({
       record_line: e.currentTarget.dataset.index
     });
     recordline = this.data.record_line;
+    wx.navigateTo({
+      url: '../tutor/info'
+    })
+  }, 
+  studetail: function (e) {
+    if (this.data.selectall) 
+      student_name = idinfolist2
+    this.setData({
+      record_line: e.currentTarget.dataset.index,
+    });
+    recordline = this.data.record_line;
+   
     wx.navigateTo({
       url: '../tutor/info'
     })
@@ -216,10 +241,15 @@ var getMylist=function(){
 var getRecord=function(){
   return recordline;
 }
+var getstu=function(){
+  return student_name;
+}
 module.exports={
+  student_name: student_name,
   tutor_name: tutor_name,
   recordline: recordline,
   getMylist: getMylist,
-  getRecord: getRecord
+  getRecord: getRecord,
+  getstu: getstu
 }
 
