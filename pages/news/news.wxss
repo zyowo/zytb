@@ -5,6 +5,7 @@ Page{
 }
 .title{
   margin-top: 25rpx;
+  margin-right: 25rpx;
   font-size: 130%;
 }
 

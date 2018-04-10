@@ -6,7 +6,7 @@
   <view class="textarea">
     <text class="label">学号/工号</text>
     <text class="divider">|</text>
-    <input class="input" type="number" maxlength="12" placeholder='5/10/12位数字' bindinput="checkNumber" confirm-type='next'></input>
+    <input class="input" type="number" maxlength="12" value="{{uid}}" placeholder='5/10/12位数字' bindinput="checkNumber" confirm-type='next'></input>
   </view>
   <view class="textarea">
     <text class="label">密码</text>

@@ -10,6 +10,7 @@
   color: white;
   line-height: 50px;
   padding-left: 10px;
+  z-index: 9999;
 }
 .input{
   margin-left: 70rpx;

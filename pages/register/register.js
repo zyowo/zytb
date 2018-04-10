@@ -66,8 +66,11 @@ Page({
   },
 
   register(){
+    wx.showLoading({
+      title: '提交中...',
+    })
     wx.request({
-      url: 'http://localhost:8080/zytb/servlet01',  
+      url: 'http://localhost:8443/register',  
             // zhr：在上面输入你的本机Servlet地址
       data:{
         uid: form["username"],
@@ -77,10 +80,26 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
-        console.log(res.data)  // zhr：在这里输入注册成功的通知
+        wx.hideLoading();
+        wx.showToast({
+          title: 'res.data.message',
+          icon:'success',
+          duration: 1500,
+          mask: true,
+        })
+        app.globalData.uid = form["username"];  //login
+        wx.redirectTo({
+          url: '../login/login',
+        })
       },
       fail: function(res) {
-          console.log("fail");  // zhr：在这里输入注册失败通知
+          wx.hideLoading();
+          wx.showToast({
+            title: '服务器连接失败',
+            image: '../../img/fail.ico',
+            duration: 1500,
+            mask: true,
+          })
       }
     })
   },

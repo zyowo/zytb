@@ -1,12 +1,31 @@
 // pages/tutor/tutor.js
-
+/* 从数据库获取查询到的数组
+  var n = getNumberOfWidgetsFromDatabase();
+  var widgets = new Array(n);
+  for(var i=0; i<n; i=+){
+    widgets[i] = getDatabaseRecord(i);
+  }
+-- 老师的构造函数如下：
+  //  用一个对象字面量代替所有实参
+  var teacher = { uname: "潘翔",
+                  academy: "计算机视觉研究所",
+                  picknum: 32  };
+  //  对象构造函数
+  var tea1 = new Teacher(teacher);
+  //  传入对象和属性
+  function Teacher(tea) {
+    this.uname = tea.uname;
+    this.academy = tea.academy;
+    this.picknum = tea.picknum;
+  }
+*/
 var app = getApp();
 var tutor_name;
 var recordline;
 var idinfolist = [
   { "name": "潘翔", "faculty": '数字媒体', "picknum": 20, "allnum": 30,"select":false },
   { "name": "王秀梅", "faculty": '网络工程', "picknum": 10, "allnum": 50, "select": false },
-  { "name": "王鑫", "faculty": '软件工程', "picknum": 5, "allnum": 10, "select": false },
+  { "name": "王鑫", "faculty": '软件工程', "picknum": 15, "allnum": 10, "select": false },
   { "name": "王万良", "faculty": '计算机自动化', "picknum": 13, "allnum": 26, "select": false },
   { "name": "亦文", "faculty": '数字媒体', "picknum": 20, "allnum": 30, "select": false },
   { "name": "王老师", "faculty": '网络工程', "picknum": 50, "allnum": 50, "select": false},

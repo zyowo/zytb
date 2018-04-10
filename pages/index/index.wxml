@@ -29,7 +29,7 @@
     <view class="weekday">星期{{week[date]}}
       <view class="year_month">{{year}}年{{month}}月</view>
     </view>
-    <view class="countdown">第2轮选导开始还有93天</view>
+    <view class="countdown">志愿填报开始还有13天</view>
   </view>
   <view class="hr"></view>
   <block wx:for="{{news}}">
@@ -37,6 +37,9 @@
       <text bindtap="news" class="notice_text">{{item.topic}}</text>
     </view>
   </block>
+  <text class="notice_more_text" bindtap="news">更多...</text>
+  <view class="notice_more"></view>
+    
 </view>
 
 <view class="notification">

@@ -1,12 +1,15 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/my/my",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/index/index",
+    
     "pages/edit/edit",
     "pages/news/news",
     "pages/tutor/tutor",
-    "pages/login/login",
-    "pages/register/register",
+    
+
     "pages/logs/logs",
     "pages/edit/edit_t",
     "pages/tutor/info"

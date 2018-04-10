@@ -1,10 +1,5 @@
 /**index.wxss**/
-/**.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
+/**
 .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
@@ -15,10 +10,7 @@
 .userinfo-nickname {
   color: #aaa;
 }
-
-.usermotto {
-  margin-top: 200px;
-}**/
+**/
 
 Page
 {
@@ -78,9 +70,20 @@ Page
   margin-left: 40rpx;
   padding-top:20rpx;
   margin-bottom: 10rpx;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid lightgray;
   width:90%;
 }
+.notice_more{
+  height: 40rpx;
+}
+.notice_more_text{
+  position: absolute;
+  right: 40rpx;
+  color: slateblue;
+  font-size: 80%;
+  opacity: 0.75;
+}
+
 .notice_head{
   margin-left:25rpx;
   margin-top:30rpx;

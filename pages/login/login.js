@@ -1,4 +1,5 @@
 // pages/login/login.js
+var app = getApp();
 const form = {  //新建一个表单
   username: '',
   password: '',
@@ -10,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    uid:""
   },
 
   // 检测学号
@@ -43,8 +44,52 @@ Page({
 
   // 点击登录
   login() {
-    wx.switchTab({
-      url: '../my/my'
+    wx.showLoading({
+      title: '提交中...',
+    })
+    wx.request({
+      url: 'http://localhost:8443/login',
+      // zhr：在上面输入你的本机Servlet地址
+      data: {
+        uid: form["username"],
+        psw: form["password"]
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        if(res.data.success){
+        wx.hideLoading();
+        wx.showToast({
+          title: 'res.data.message',
+          icon: 'success',
+          duration: 1500,
+          mask: true,
+        })
+        app.globalData.uid = res.data.uid;
+        wx.redirectTo({
+          url: '../index/index',
+        })}
+        //登录失败
+        else {
+          wx.hideLoading();
+          wx.showToast({
+            title: 'res.data.message',
+            image: '../../img/fail.ico',
+            duration: 1500,
+            mask: true,
+          })
+        }
+      },
+      fail: function (res) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '服务器连接失败',
+          image: '../../img/fail.ico',
+          duration: 1500,
+          mask: true,
+        })
+      }
     })
   },
 
@@ -52,7 +97,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.setData({
+      uid: getApp().globalData.uid
+    })
   },
 
   /**

@@ -1,18 +1,6 @@
 <!--pages/tutor/tutor.wxml-->
-<!--<view animation="{{animationData}}" bindtap='' class="animation">导师填报还没开始哦。先去完善个人信息>>></view>
-<view>
-<input></input>
-<button>搜索</button>
-学院
-<picker></picker>
-部门/研究所
-<picker></picker>
-姓名 部门 研究所 剩余名额
-</view>
-<view class="loading"><text>pages/tutor/tutor.wxml</text></view>
-请先完善个人信息，再进行导师填报>>>
-导师填报已经结束啦。查看选导进度>>>
--->
+<view animation="{{animationData}}" bindtap='' class="animation">导师填报还没开始哦。先去完善个人信息>>></view>
+
 <view wx:if="{{percent>=80}}">
   <view class="dis">
     <view style="margin-left:10rpx;margin-top:60rpx;font-size:95%;">导师姓名:</view>
