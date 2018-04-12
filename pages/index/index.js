@@ -84,8 +84,13 @@ Page({
     var timestamp = Date.parse(new Date());
     timestamp = timestamp / 1000;
     console.log("当前时间戳为：" + timestamp);
+    var n = timestamp * 1000;
+
     var nodeDate = new Date(n);
-    nodeDate.setDate(28);   //测试时间用的
+
+    nodeDate.setDate(28);   //TO DELETE:测试时间用的
+    console.log(nodeDate);
+
     //从服务器获取时间节点
     wx.request({
       url: 'http://localhost:8443/time',
@@ -105,7 +110,6 @@ Page({
     })
 
     //获取当前时间  
-    var n = timestamp * 1000;
     var date = new Date(n);
     //年  
     var Y = date.getFullYear();
@@ -128,14 +132,16 @@ Page({
       day: D,
       date: w,
     });
+
     var days = 0, countTime = 0;
     if (date >= nodeDate)  // 说明时间已经过了
     {
       this.setData({ 
-        timenode : 5
+        timeNode : 5
         })    // 输出最后一条
       days = date.getTime() - nodeDate.getTime();
     }
+
     else //时间还没到，看看差了几天？
       days = nodeDate.getTime() - date.getTime();
 
