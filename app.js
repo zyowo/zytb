@@ -37,6 +37,6 @@ App({
     userInfo: null,
     percent:80,  //全局数据
     uid:""  ,   //学号/工号
-    isStudent:''
+    isStudent:true
   }
 })

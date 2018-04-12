@@ -1,5 +1,6 @@
 // pages/tutor/info.js
 var remark = require("../tutor/tutor.js");
+
 Page({
 
   /**
@@ -7,7 +8,9 @@ Page({
    */
   data: {
     // --- 公用数据 ---
-    uname: '王万良',
+
+
+    uname: '王秀梅',
     uid: '07373',
     academy: '计算机智能系统研究所',
     office: '计算机大楼B403',
@@ -21,12 +24,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var a = remark.getMylist();
-    var b = remark.getRecord();
-    var c = remark.getstu();
-    this.setData({
-      uname: c[b].sname
-    })
+    /**var recline = remark.getRecord();
+   
+    if (isStu) {
+       var infoT = remark.getTutor();
+       this.setData({
+         uname: infoT[recline].name
+       })
+       }
+    else { 
+      var infoS = remark.getStu();
+      this.setData({
+        uname: infoS[recline].sname
+      })
+    }**/
+    
+    
     /**console.log('hhhhh', remark.faculties);
     console.log('hhhhh', remark.record_line);**/
   },

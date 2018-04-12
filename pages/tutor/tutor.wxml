@@ -1,4 +1,5 @@
 <!--pages/tutor/tutor.wxml-->
+<image class='bg' src="../../img/back.jpg"></image>
 <block wx:if="{{!isStudent}}">
   <view class="dis">
     <view style="margin-left:10rpx;margin-top:60rpx;font-size:95%;">学生姓名:</view>
@@ -7,7 +8,7 @@
   </view>
   <view class="dis">
     <view style="margin-top:60rpx;">点击姓名可查看详细信息</view>
-    <button style="margin-left:60rpx;" class="searchcube" bindtap='selectall'>查看全部</button>
+    <button style="margin-left:110rpx;" class="searchcube" bindtap='selectall'>查看全部</button>
   </view>
   <view class="table">
     <view class="tr bg_w">
@@ -55,10 +56,10 @@
 
 
   </view>
-</block>
+</block>  
 
 <block wx:else>
-  <view wx:if="{{percent<80}}">
+<view wx:if="{{percent<80}}">
     <view animation="{{animationData}}" bindtap='' class="animation">导师填报还没开始哦。先去完善个人信息>>></view>
   </view>
 

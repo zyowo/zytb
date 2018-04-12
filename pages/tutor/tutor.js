@@ -3,6 +3,7 @@ var app = getApp();
 var tutor_name;
 var student_name;
 var recordline;
+var isStu = getApp().globalData.isStudent;
 var idinfolist = [
   { "name": "潘翔", "faculty": '数字媒体', "picknum": 20, "allnum": 30,"select":false },
   { "name": "王秀梅", "faculty": '网络工程', "picknum": 10, "allnum": 50, "select": false },
@@ -43,7 +44,8 @@ Page({
     searchtu: true,
     record_line: 1,
     tutor_pick:false,
-    selectall:false
+    selectall:false,
+    isStudent: isStu
   },
   bindPickerChange: function (e) {
     this.setData({
@@ -117,7 +119,7 @@ Page({
     });
     recordline = this.data.record_line;
     wx.navigateTo({
-      url: '../tutor/info'
+      url: '../tutor/info_t'
     })
   }, 
   studetail: function (e) {
@@ -129,7 +131,7 @@ Page({
     recordline = this.data.record_line;
    
     wx.navigateTo({
-      url: '../tutor/info'
+      url: '../tutor/info_s'
     })
   },
   onShow: function () {
@@ -224,8 +226,8 @@ Page({
   onLoad: function () {
     this.setData({
       percent: getApp().globalData.percent
-    })
 
+    })
   },
   /**
    * 用户点击右上角分享
@@ -235,21 +237,21 @@ Page({
   },
   
 })
-var getMylist=function(){
+var getTutor=function(){
   return tutor_name;
 }
 var getRecord=function(){
   return recordline;
 }
-var getstu=function(){
+var getStu=function(){
   return student_name;
 }
 module.exports={
   student_name: student_name,
   tutor_name: tutor_name,
   recordline: recordline,
-  getMylist: getMylist,
+  getTutor: getTutor,
   getRecord: getRecord,
-  getstu: getstu
+  getStu: getStu
 }
 

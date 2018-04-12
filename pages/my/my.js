@@ -1,5 +1,6 @@
 // pages/my/my.js
 var app = getApp()
+var isStu = getApp().globalData.isStudent;
 var idinfolist = [
   { "name": "潘翔", "choice": '第一志愿', "status": '未选中' },
   { "name": "王秀梅", "choice": '第二志愿', "status": '已选' },
@@ -16,7 +17,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     my_choice: idinfolist,
     // --- 判断是学生还是导师 ---
-    isStudent: false,
+    isStudent: isStu,
     percent:0,
     // --- 公用数据 ---
     uname: '王秀梅',

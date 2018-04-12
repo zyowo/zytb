@@ -1,0 +1,45 @@
+<!--pages/tutor/info.wxml-->
+<image class='bg' src="../../img/back.jpg"></image>
+<view class='category'>
+  <view class='blur'>
+    <view class='item'>
+      <text class='label'>学号：</text>
+      <text class='value'>{{uid}}</text>
+    </view>
+    <view class='item'>
+      <text class='label'>姓名：</text>
+      <text class='value'>{{uname}}</text>
+    </view>
+    <view class='item'>
+      <text class='label'>学院：</text>
+      <text class='value'>{{academy}}</text>
+    </view>
+  </view>
+  <view class='blur'>
+    <view class='item'>
+      <text class='label'>联系电话：</text>
+      <text class='value'>{{tel}}</text>
+    </view>
+    <view class='item'>
+      <text class='label'>电子邮箱：</text>
+      <text class='value'>{{email}}</text>
+    </view>
+     <view class='item'>
+      <text class='label'>QQ:</text>
+      <text class='value'>{{qqnum}}</text>
+    </view>
+    
+  </view>
+  <view class='blur'>
+    <view class='item'>
+      <text class='label'>个人奖项</text>
+      <text class='value'>{{research}}</text>
+    </view>
+    </view>
+ <view class='blur'>
+    <view class='item'>
+      <text class='label'>个人介绍：</text>
+      <text class='value'>{{intro}}</text>
+    </view>
+  </view>
+</view>

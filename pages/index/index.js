@@ -58,7 +58,7 @@ Page({
   //跳转到导师介绍
   info(){
     wx.navigateTo({
-      url: '../tutor/info',
+      url: '../tutor/info_t',
     })
   },
   
