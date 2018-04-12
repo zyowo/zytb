@@ -1,5 +1,41 @@
 /* pages/tutor/info.wxss */
 .category{
+  margin: 60rpx 40rpx 40rpx 40rpx;
+}
+.blur{
   display: flex;
   flex-direction: column;
+  margin-bottom: 35rpx;
+  padding: 25rpx 25rpx 10rpx 25rpx;
+  border-radius: 15rpx;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.01) inset, 0 5px 10px #ccc;
+  -ms-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.01) inset, 0 5px 10px #ccc;
+  -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.01) inset, 0 5px 10px #ccc;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.01) inset, 0 5px 10px #ccc;
+}
+.bg{
+  position:absolute;
+  left:0px;
+  top:0px;
+  z-index:-1;
+  width: 100%;
+  height: 100%;
+  -webkit-filter: blur(5px);
+  filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='1');
+}
+
+.item{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10rpx;
+}
+
+.label{
+  width:35%;
+  white-space:nowrap;
+  color:#666;
+}
+
+.value{
+  width:65%;
 }

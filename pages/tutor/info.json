@@ -1,1 +1,5 @@
-{}
+{
+  "enablePullDownRefresh": false,
+  "navigationBarBackgroundColor": "#EFEFEF",
+  "navigationBarTitleText": "查看信息"
+}

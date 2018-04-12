@@ -7,26 +7,25 @@ Page({
    */
   data: {
     // --- 公用数据 ---
-    uname: '王秀梅',
+    uname: '王万良',
     uid: '07373',
-    academy: '马克思主义学院',
+    academy: '计算机智能系统研究所',
     office: '计算机大楼B403',
-    long: 12345678901,
-    short: 123456,
-    email: 'wxm@zjut.edu.cn',
-    research: '模式识别 人工智能',
-    intro:'国家级教学名师——王万良，男，1957年生，博士、教授、博士生导师。现任计算机科学与技术学院、软件学院院长，主讲课程有：自动控制原理、现代控制工程、人工智能导论等。其中《自动控制原理》系国家级精品课程（2005）、国家级资源共享课（2013），《人工智能导论》（2010）系校级精品课程。'
+    tel: 12345678901,
+    email: 'wwl@zjut.edu.cn',
+    research: '人工智能',
+    intro:'高校教师应该具有高尚的职业道德，诲人不倦；较高的学术造诣，诲人有术；丰富的教学经验，诲人有方。'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var a = remark.getMylist();
-    var b = remark.getRecord();
-    this.setData({
-      uname: a[b].name
-    })
+    //var a = remark.getMylist();
+    //var b = remark.getRecord();
+    //this.setData({
+    //  uname: a[b].name
+    //})
     /**console.log('hhhhh', remark.faculties);
     console.log('hhhhh', remark.record_line);**/
   },

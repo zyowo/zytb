@@ -12,7 +12,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
     // --- 判断是学生还是导师 ---
-    isStudent: true,
+    isStudent: false,
     percent:0,
     // --- 公用数据 ---
     uname: '王秀梅',
@@ -88,7 +88,7 @@ Page({
       url: '',
     })
 
-    
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

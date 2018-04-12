@@ -1,18 +1,15 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/tutor/tutor",
+    "pages/tutor/info",
     "pages/my/my",
     "pages/login/login",
     "pages/register/register",
-    "pages/index/index",
-    
     "pages/edit/edit",
     "pages/news/news",
-    "pages/tutor/tutor",
-    
-
     "pages/logs/logs",
-    "pages/edit/edit_t",
-    "pages/tutor/info"
+    "pages/edit/edit_t"
   ],
   "window": {
     "backgroundTextStyle": "light",
