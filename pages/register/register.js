@@ -72,6 +72,7 @@ Page({
     wx.request({
       url: 'http://localhost:8443/register',  
             // zhr：在上面输入你的本机Servlet地址
+      method: 'POST',
       data:{
         uid: form["username"],
         psw: form["password"]
