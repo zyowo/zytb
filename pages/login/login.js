@@ -58,6 +58,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
+
         if(res.data.success){
         wx.hideLoading();
         wx.showToast({
@@ -70,6 +71,7 @@ Page({
         wx.redirectTo({
           url: '../index/index',
         })}
+        
         //登录失败
         else {
           wx.hideLoading();
