@@ -29,7 +29,7 @@
     <view class="weekday">星期{{week[date]}}
       <view class="year_month">{{year}}年{{month}}月</view>
     </view>
-    <view class="countdown">志愿填报开始还有13天</view>
+    <view class="countdown">{{description[timeNode]}}{{countdown}}天</view>
   </view>
   <view class="hr"></view>
   <block wx:for="{{news}}">
