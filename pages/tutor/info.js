@@ -21,11 +21,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //var a = remark.getMylist();
-    //var b = remark.getRecord();
-    //this.setData({
-    //  uname: a[b].name
-    //})
+    var a = remark.getMylist();
+    var b = remark.getRecord();
+    var c = remark.getstu();
+    this.setData({
+      uname: c[b].sname
+    })
     /**console.log('hhhhh', remark.faculties);
     console.log('hhhhh', remark.record_line);**/
   },

@@ -46,42 +46,71 @@ Page {
   margin-left: 20rpx;
   color: gray;
 }
-.right_detail {
-  float: right;
-  padding-right: 20rpx;
-}
-.textarea_sec {
-  margin: 8rpx 25rpx 0 0;
-  height: 70rpx;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-.label {
-  line-height: 70rpx;
-  float: left;
-  margin-left: 20rpx;
-  padding-right: 8rpx;
-  font-size: 80%;
-  color: gray;
-}
-.my_data {
-  font-size: 80%;
-  line-height: 70rpx;
-  align-content: center;
-  vertical-align: middle;
-  color: crimson;
-  margin-right:20rpx;
-}
+
+
 .array_row {
   margin-left: 40rpx;
   display: flex;
   flex-direction: row;
 }
-.array_column {
-  display: flex;
-  flex-direction: column;
+
+/* --- 详细信息 模块 --- */
+.warn{
+    display: flex;
+      flex-direction: row;
+}
+.th{
+  width:33%;
+  justify-content: center;  
+  display: flex;  
+  height: 50rpx;  
+  align-items: center; 
+  border-right: 2px solid #ddd;  
+  font-size: 90%;
+}
+.th_1{
+  width:33%;
+  justify-content: center;  
+  display: flex;  
+  height: 50rpx;  
+  align-items: center; 
+  font-size: 90%;
 }
 
+.table{
+  border: 2px solid darkgray;  
+  width: 95%;  
+  margin-top: 10rpx;  
+  margin-left: 15rpx;  
+}
+.tr {  
+  display: flex;  
+  width: 100%;  
+  justify-content: center;  
+  height: 50rpx;  
+  align-items: center;  
+}  
+.td {  
+    width:33%;
+    justify-content: center;  
+    display: flex;  
+    height: 50rpx;
+    align-items: center;   
+    border-top: 2px solid #ddd;  
+    border-right: 2px solid #ddd; 
+    font-size: 85%;
+    color: red;
+} 
+.td_1 {  
+    width:33%;
+    justify-content: center;  
+    display: flex;  
+    height: 50rpx;
+    align-items: center;   
+    border-top: 2px solid #ddd;  
+    font-size: 85%;
+    color: red;
+} 
 /* --- 详细信息 模块 --- */
 .warn{
   display: flex;

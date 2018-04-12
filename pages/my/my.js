@@ -1,6 +1,10 @@
 // pages/my/my.js
 var app = getApp()
-
+var idinfolist = [
+  { "name": "潘翔", "choice": '第一志愿', "status": '未选中' },
+  { "name": "王秀梅", "choice": '第二志愿', "status": '已选' },
+  { "name": "王秀梅", "choice": '第san志愿', "status": '已选' },
+  ]
 Page({
   data: {
     // --- 展示用户头像 ---
@@ -10,7 +14,7 @@ Page({
     },
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-
+    my_choice: idinfolist,
     // --- 判断是学生还是导师 ---
     isStudent: false,
     percent:0,
@@ -21,8 +25,8 @@ Page({
     // --- 学生数据 ---
     major: '数字媒体技术',
     tutor: '王秀梅',
-    round: '2',
-    status: '已读',
+    round: '第一志愿',
+    status: '未选中',
     institute: '马克思主义学院',
     
 
