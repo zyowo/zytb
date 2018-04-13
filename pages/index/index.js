@@ -90,7 +90,7 @@ Page({
 
     nodeDate.setDate(28);   //TO DELETE:测试时间用的
     console.log(nodeDate);
-
+    var that = this;
     //从服务器获取时间节点
     wx.request({
       url: 'http://localhost:8443/time',
@@ -102,7 +102,7 @@ Page({
       },
       success: function (res) {
         nodeDate = res.data.time;
-        this.setData({
+        that.setData({
           headline: res.data.time,
           timeNode: res.data.node
         })

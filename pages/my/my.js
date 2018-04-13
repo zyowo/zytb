@@ -195,9 +195,9 @@ Page({
         url: 'http://localhost:8443/report/mychoice',
         data: {
           // 已经读过缓存了，用全局变量写入
-          uid: app.globalData.uid,
+          sid: app.globalData.uid,
         },
-        method: 'GET',
+        method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
         },
@@ -231,15 +231,24 @@ Page({
                 st_index = 1;
               else st_index = 2;
 
+            // 先定义一个item，方便填表呀！
+            var fill = {
+              name: '',
+              status: 0,
+              choice: 0
+            }
+
             // 填表 idInfoList[] name choice status
               st_tid = st_item[i].tid;
               for (var j in res.data.reportList)
               {
                 if(res.data.reportList[j].tid == st_tid)
-                  idInfoList[st_index].name = res.data.reportList[j].tname; 
+                  fill.name = res.data.reportList[j].tname; 
               } // 名字填好了
-              idInfoList[st_index].status = st_item[i].status;
-              idInfoList[st_index].choice = st_item[i].choiceNumber;
+              fill.status = st_item[i].status;
+              fill.choice = st_item[i].choiceNumber;
+
+              idInfoList[st_index] = fill;
             } // st_item 结束
             // 将填好的数据存入缓存
             // 把学生的选导记录存到本地缓存
