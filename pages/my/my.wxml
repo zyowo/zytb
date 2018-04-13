@@ -28,7 +28,7 @@
             <view class="th">志愿情况</view>
             <view class="th_1">状态</view>
           </view>
-          <block wx:for="{{my_choice}}" wx:key="{{code}}">
+          <block wx:for="{{my_choice}}" wx:key="unique">
             <view class="tr">
               <view class="td">{{item.name}}</view>
               <view class="td">{{item.choice}}</view>
