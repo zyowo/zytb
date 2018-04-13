@@ -1,19 +1,28 @@
 /* pages/my/my.wxss */
 
 Page {
+  background-color: #ff8888;
+}
+
+#bottom_grey {
   background-color: #efefef;
 }
 
 /* --- 最上方 基本信息 模块 --- */
+.top_border{
+    background-color: #ff8888;
+    position: fixed;
+    width: 100%;
+    display: flex;
+}
 .user_avatar {
-  float: left;
   width: 120rpx;
   height: 120rpx;
-  line-height: 120rpx;
   margin-left: 40rpx;
   margin-right: 20rpx;
   border: groove 2px #eee;
   border-radius: 50%;
+  margin-bottom: 20rpx;
 }
 .user_info {
   font-size: 90%;
@@ -24,12 +33,6 @@ Page {
 .user_name {
   font-size: 130%;
   padding-right: 80rpx;
-}
-.top_border {
-  flex-direction: column;
-  background-color: #f88;
-  height: 150rpx;
-  align-items: center;
 }
 
 /* --- 我的选导 模块 --- */
@@ -46,10 +49,7 @@ Page {
   margin-left: 20rpx;
   color: gray;
 }
-.right_detail{
-  float:right;
-  margin-right: 15rpx;
-}
+
 
 .array_row {
   margin-left: 40rpx;
@@ -159,6 +159,10 @@ Page {
   margin-left: 40rpx;
   color:darkslategray;
   font-size: 85%;
+}
+.right_detail {
+  float: right;
+  margin-right: 15rpx;
 }
 .hr {
   width: 100%;
