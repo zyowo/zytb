@@ -17,26 +17,20 @@
   <block wx:if="{{isStudent}}">
     <view class="message_border">
       <view class="title_line">我的选导记录</view>
-      <view wx:if="{{isNoTutor}}" class='warn'>
-        <image src="../../img/none.jpg" style='width:200rpx;height:150rpx;' mode='aspectFit' />
-        <text style='line-height:100rpx; color:darkslategray'>没有找到选导师的记录哦~</text>
-      </view>
-      <block wx:else>
-        <view class="table">
-          <view class="tr">
-            <view class="th">导师姓名</view>
-            <view class="th">志愿情况</view>
-            <view class="th_1">状态</view>
-          </view>
-          <block wx:for="{{my_choice}}" wx:key="{{code}}">
-            <view class="tr">
-              <view class="td">{{item.name}}</view>
-              <view class="td">{{item.choice}}</view>
-              <view class="td_1">{{item.status}}</view>
-            </view>
-          </block>
+      <view class="table">
+        <view class="tr">
+          <view class="th">导师姓名</view>
+          <view class="th">志愿情况</view>
+          <view class="th_1">状态</view>
         </view>
-      </block>
+        <block wx:for="{{my_choice}}" wx:key="{{code}}">
+          <view class="tr">
+            <view class="td">{{item.name}}</view>
+            <view class="td">{{item.choice}}</view>
+            <view class="td_1">{{item.status}}</view>
+          </view>
+        </block>
+      </view>
     </view>
     <view bindtap="edit" class="message_border">
       <view class="title_line">个人信息完善度

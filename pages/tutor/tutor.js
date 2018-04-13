@@ -3,9 +3,17 @@ var app = getApp();
 var tutor_name;
 var student_name;
 var recordline;
-var isStu = getApp().globalData.isStudent;
+var checkindex = [];
 var choice_stu = 0;
-var idinfolist = [
+var recordindex = 0;
+var select = ['选择', '退选']
+var isStu = getApp().globalData.isStudent;
+var voluneidinfolist = [
+  { "name": "王万良", "choice": '第一志愿', "status": '未选中' },
+  { "name": "王秀梅", "choice": '第二志愿', "status": '未选中' },
+  { "name": "王秀梅", "choice": '第三志愿', "status": '已选' },
+]
+var tutorinfolist = [
   { "name": "潘翔", "faculty": '数字媒体', "picknum": 20, "allnum": 30 },
   { "name": "王秀梅", "faculty": '网络工程', "picknum": 10, "allnum": 50 },
   { "name": "王鑫", "faculty": '软件工程', "picknum": 15, "allnum": 10 },
@@ -19,7 +27,7 @@ var idinfolist = [
   { "name": "汤颖", "faculty": '数字媒体', "picknum": 5, "allnum": 10 },
 ]
 
-var idinfolist2 = [
+var stuinfolist = [
   { "sname": "钟亦文1", "faculty": '数字媒体' },
   { "sname": "钟亦文2", "faculty": '网络工程' },
   { "sname": "钟亦文3", "faculty": '软件工程' },
@@ -27,15 +35,16 @@ var idinfolist2 = [
   { "sname": "钟亦文5", "faculty": '网络工程' },
   { "sname": "钟亦文6", "faculty": '计算机自动化' },
 ]
+var volinfolist = [];
 var facultyli = ['数字媒体', '网络工程', '软件工程', '计算机自动化']
 Page({
   data: {
     animation: '',
     animationData: {},
     percent: 0,
-    listData: idinfolist,
+    listData: tutorinfolist,
     facultyList: facultyli,
-    stuList: idinfolist2,
+    stuList: stuinfolist,
     xindex: -1,
     tutors: [],
     faculties: [],
@@ -45,6 +54,7 @@ Page({
     tutor_pick: true,
     selectall: false,
     isStudent: isStu,
+    my_choice: voluneidinfolist
 
   },
   bindPickerChange: function (e) {
@@ -54,8 +64,8 @@ Page({
     var x = this.data.xindex;
     var facul = facultyli[x];
     var arr = new Array();
-    for (var i = 0; i < idinfolist.length; i++) {
-      var m = idinfolist[i];
+    for (var i = 0; i < tutorinfolist.length; i++) {
+      var m = tutorinfolist[i];
       if (facul == m.faculty) arr.push(m);
     }
     this.setData({
@@ -63,7 +73,8 @@ Page({
       searchtu: false,
     });
     tutor_name = this.data.faculties;
-
+    checkindex.length = tutor_name.length;
+    for (var i = 0; i < checkindex.length; i++)checkindex[i] = true;
   },
   choose: function (e) {
     this.setData({
@@ -72,79 +83,143 @@ Page({
     recordline = this.data.record_line;
     if (isStu) {
 
-      /*wx.setStorage({
-        key: 'volune',
-        data: { "name": tutor_name[recordline].name, "faculty": tutor_name[recordline].faculty}
-      })*/
-      //向数据库request，数据与tutor_name[recordline].name, "faculty": tutor_name[recordline].faculty比较
+      checkindex[recordline] = true;
       choice_stu++;
-      //向数据库提交uid,tutorname,faculty,choice
-      /* for (var i = 0; i < idinfolist.length; i++) {
-         if (tutor_name[recordline] == idinfolist[i]) {
-           tutor_name[recordline].select=false;
-           idinfolist[i].select = false;
-         }
-       }*/
+      tutor_name[recordline].picknum++;
+     /* wx.showLoading({
+        title: '提交中...',
+      })
+      wx.request({
+        url: 'http://localhost:8443/report/findReport',
+        // zhr：在上面输入你的本机Servlet地址
+        method: 'POST',
+        data: {
+          sid: getApp().globalData.uid,//向数据库提交学生id,老师id,choice,picknum
+          tid: tutor_name[recordline].tid,
+          choice: choice_stu,
+        }
+        ,
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: function (res) {
+          wx.hideLoading();
+          wx.showToast({
+            title: res.data.message,
+            icon: 'success',
+            duration: 1500,
+            mask: true,
+          })
 
-      if (choice_stu == 2) this.setData({ tutor_pick: false, });
-      //与之对应数据库表中的picknum加一，tutor_name[recordline].picknum++
+
+        },
+        fail: function (res) {
+          wx.hideLoading();
+          wx.showToast({
+            title: '服务器连接失败',
+            image: '../../img/fail.png',
+            duration: 1500,
+            mask: true,
+          })
+        }
+      })*/
+
+      //if (choice_stu == 2) this.setData({ tutor_pick: false, });
     }
     else {
-      //向数据库请求，查找选择了自己的学生
+     /* var restatus = 0;
+      for (var i = 0; i < volinfolist.length; i++) {
+        if (stuinfolist[recordline].sid == volinfolist[i].sid) {
+          volinfolist[i].status = 1;
+          restatus = i;
+          break;
+        }
+      }*/
+
       if (this.data.selectall) {
-        idinfolist2[recordline].select = false;
+       /* wx.showLoading({
+          title: '提交中...',
+        })
+        wx.request({
+          url: 'http://localhost:8443/report/findReportItem',
+          // zhr：在上面输入你的本机Servlet地址
+          method: 'POST',
+          data: {
+            tid: getApp().globalData.uid,//向数据库提交 学生id,老师id,choice
+            sid: stuinfolist[recordline].sid,
+            choice: choice_stu,
+            status: volinfolist[restatus].status
+          }
+          ,
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success: function (res) {
+            wx.hideLoading();
+            wx.showToast({
+              title: res.data.message,
+              icon: 'success',
+              duration: 1500,
+              mask: true,
+            })
+
+          },
+          fail: function (res) {
+            wx.hideLoading();
+            wx.showToast({
+              title: '服务器连接失败',
+              image: '../../img/fail.png',
+              duration: 1500,
+              mask: true,
+            })
+          }
+        })*/
+        /*checkindex[recordline] = false;*/
       }
       else {
-        /*for (var i = 0; i < idinfolist2.length; i++) {
-          if (student_name[recordline] == idinfolist2[i]) {
-            student_name[recordline].select = false;
-            idinfolist2[i].select = false;}
-          }*/
-       }
+      }
+     // tutor_name[recordline].picknum++;
     }
-    //向数据库提交该学生的数据，添加tname,suid,等等
+
     //刷新
   },
 
   unchoose: function (e) {
     this.setData({
-      tutor_pick: true,
       record_line: e.currentTarget.dataset.index
     });
     recordline = this.data.record_line;
     if (isStu) {
-    //向数据库请求数据，当前选择的数据和数据库中的数据对比(name,faculty,uid,choice)，若一样则选取该条数据，进行删除操作
-    choice_stu--;
-    /*for (var i = 0; i < idinfolist.length; i++) {
-      if (tutor_name[recordline] == idinfolist[i]) {
-        tutor_name[recordline].select = true;
-        idinfolist[i].select = true;
-      }
-    }*/ 
-    //与之对应数据库表中的picknum减一，tutor_name[recordline].picknum--
+      //向数据库请求数据，当前选择的数据和数据库中的数据对比(name,faculty,uid,choice)，若一样则选取该条数据，进行删除操作
+      choice_stu--;
+     
+      checkindex[recordline] = false;
+
+      /*for (var i = 0; i < tutorinfolist.length; i++) {
+        if (tutor_name[recordline] == tutorinfolist[i]) {
+          tutor_name[recordline].select = true;
+          tutorinfolist[i].select = true;
+        }
+      }*/
+      //与之对应数据库表中的picknum减一，tutor_name[recordline].picknum--
     }
-    else{
+    else {
       if (this.data.selectall) {
-        idinfolist2[recordline].select=true;
+        stuinfolist[recordline].select = true;
       }
-      else{
-        /*for (var i = 0; i < idinfolist2.length; i++) {
-          if (student_name[recordline] == idinfolist2[i]) {
-            student_name[recordline].select = true;
-            idinfolist2[i].select = true;
-          }
-        }*/
+      else {
+
       }
     }
-   //向数据库提交该老师的数据，添加tname,suid,等等
+    //向数据库提交该老师的数据，添加tname,suid,等等
     ////刷新
   },
 
   searchStu: function (e) {
     var sname = e.detail.value;
     var arr = new Array();
-    for (var i = 0; i < idinfolist2.length; i++) {
-      var m = idinfolist2[i];
+    for (var i = 0; i < stuinfolist.length; i++) {
+      var m = stuinfolist[i];
       if (sname == m.sname) arr.push(m);
     }
     this.setData({
@@ -161,8 +236,8 @@ Page({
   searchtutor: function (e) {
     var name = e.detail.value;
     var arr = new Array();
-    for (var i = 0; i < idinfolist.length; i++) {
-      var m = idinfolist[i];
+    for (var i = 0; i < tutorinfolist.length; i++) {
+      var m = tutorinfolist[i];
       if (name == m.name) arr.push(m);
     }
     this.setData({
@@ -170,6 +245,8 @@ Page({
       searchtu: true
     });
     tutor_name = this.data.tutors;
+    checkindex.length = tutor_name.length;
+    for (var i = 0; i < checkindex.length; i++)checkindex[i] = true;
   },
 
   tutordetail: function (e) {
@@ -185,9 +262,10 @@ Page({
   },
   studetail: function (e) {
     if (this.data.selectall)
-      student_name = idinfolist2
+    { student_name = stuinfolist;
+      console.log(student_name) }
     this.setData({
-
+      record_line: e.currentTarget.dataset.index
     });
     recordline = this.data.record_line;
 
@@ -288,9 +366,66 @@ Page({
     this.setData({
       percent: getApp().globalData.percent
     })
-    idinfolist
-    wx.getStorageSync('logs')
 
+    /*wx.showLoading({
+      title: '加载中...',
+    })
+    wx.request({
+      url: 'http://localhost:8443/report/findReport',//？？？
+      // zhr：在上面输入你的本机Servlet地址
+      method: 'GET',
+      success: function (res) {
+        volinfolist: res.data.reportList.reportItems//获取suid,tuid,choice
+        tutorinfolist: res.data.reportList
+      },
+      fail: function (res) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '服务器连接失败',
+          image: '../../img/fail.png',
+          duration: 2000,
+          mask: true,
+        })
+      }
+    })*/
+    //var arr = new Array();
+    if (isStu) {
+      /*for (var i = 0; i < volinfolist.length; i++) {
+        if (getApp().globalData.uid == volinfolist[i].sid)
+          arr.push(volinfolist[i]);
+      }
+      voluneidinfolist = arr;*/
+    }
+    else {
+      /*wx.showLoading({
+        title: '加载中...',
+      })
+      wx.request({
+        url: 'http://localhost:8443/info',//？？？
+        // zhr：在上面输入你的本机Servlet地址
+        method: 'GET',
+        success: function (res) {
+          stuinfolist: res.data.studentInfo//获取suid,tuid,choice
+        },
+        fail: function (res) {
+          wx.hideLoading();
+          wx.showToast({
+            title: '服务器连接失败',
+            image: '../../img/fail.png',
+            duration: 2000,
+            mask: true,
+          })
+        }
+      })
+      for (var i = 0; i < volinfolist.length; i++) {
+        for (var j = 0; j < stuinfolist.length; j++) {
+          if (volinfolist[i].sid == stuinfolist[j].sid) {
+            arr.push(stuinfolist[j]);
+          }
+        }
+      }
+      stuinfolist = arr;*/
+    }
   },
   /**
    * 用户点击右上角分享

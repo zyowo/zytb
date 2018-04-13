@@ -1,4 +1,56 @@
 /* pages/tutor/tutor.wxss */
+.thChoice{
+  width:33%;
+  justify-content: center;  
+  display: flex;  
+  height: 50rpx;  
+  align-items: center; 
+  border-right: 2px solid #ddd;  
+  font-size: 90%;
+}
+.th_1Choice{
+  width:33%;
+  justify-content: center;  
+  display: flex;  
+  height: 50rpx;  
+  align-items: center; 
+  font-size: 90%;
+}
+
+.tableChoice{
+  border: 2px solid darkgray;  
+  width: 95%;  
+  margin-top: 10rpx;  
+  margin-left: 15rpx;  
+}
+.trChoice {  
+  display: flex;  
+  width: 100%;  
+  justify-content: center;  
+  height: 50rpx;  
+  align-items: center;  
+}  
+.tdChoice {  
+    width:33%;
+    justify-content: center;  
+    display: flex;  
+    height: 50rpx;
+    align-items: center;   
+    border-top: 2px solid #ddd;  
+    border-right: 2px solid #ddd; 
+    font-size: 85%;
+    color: red;
+} 
+.td_1Choice {  
+    width:33%;
+    justify-content: center;  
+    display: flex;  
+    height: 50rpx;
+    align-items: center;   
+    border-top: 2px solid #ddd;  
+    font-size: 85%;
+    color: red;
+} 
 .bg{
   position:absolute;
   left:0px;
