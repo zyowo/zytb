@@ -24,7 +24,7 @@
 .input{
   margin-left: 70rpx;
   margin-top:50rpx;
-  width:300rpx;
+  width:490rpx;
   height: 80rpx;
   border-radius: 5px;
   border: 1px solid #CCCCCC;
@@ -42,7 +42,7 @@
   height:35px;
   border:1px solid #CCCCCC;
   border-radius: 5px;
-  width:300rpx;
+  width:500rpx;
   margin-top: 50rpx;
 }
 .label{
@@ -58,9 +58,9 @@
   margin-left: 15rpx;  
 }
 .searchcube{
-  margin-left:40rpx;
   margin-top:50rpx;
   font-size:95%;
+  float:right;
 }
 .th{
   justify-content: center;  

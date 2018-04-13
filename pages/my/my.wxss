@@ -46,7 +46,10 @@ Page {
   margin-left: 20rpx;
   color: gray;
 }
-
+.right_detail{
+  float:right;
+  margin-right: 15rpx;
+}
 
 .array_row {
   margin-left: 40rpx;

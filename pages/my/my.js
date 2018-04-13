@@ -20,7 +20,7 @@ Page({
     isStudent: isStu,
     percent:0,
     // --- 公用数据 ---
-    uname: '王秀梅',
+    uname: '幼熊',
     uid: '07373',
     academy: '马克思主义学院',
     // --- 学生数据 ---
