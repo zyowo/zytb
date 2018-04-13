@@ -72,6 +72,7 @@ Page({
     wx.request({
       url: 'http://localhost:8443/register',  
             // zhr：在上面输入你的本机Servlet地址
+      method: 'POST',
       data:{
         uid: form["username"],
         psw: form["password"]
@@ -82,7 +83,7 @@ Page({
       success: function (res) {
         wx.hideLoading();
         wx.showToast({
-          title: 'res.data.message',
+          title: res.data.message,
           icon:'success',
           duration: 1500,
           mask: true,
@@ -96,7 +97,7 @@ Page({
           wx.hideLoading();
           wx.showToast({
             title: '服务器连接失败',
-            image: '../../img/fail.ico',
+            image: '../../img/fail.png',
             duration: 1500,
             mask: true,
           })

@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    uid:""
+    uid: 0
   },
 
   // 检测学号
@@ -50,6 +50,7 @@ Page({
     wx.request({
       url: 'http://localhost:8443/login',
       // zhr：在上面输入你的本机Servlet地址
+      method: 'POST',
       data: {
         uid: form["username"],
         psw: form["password"]
@@ -57,27 +58,44 @@ Page({
       header: {
         'content-type': 'application/json' // 默认值
       },
+      // [1] 如果连接成功， 登录也成功
       success: function (res) {
+        if (res.data.success) {
+          wx.hideLoading();
+          wx.showToast({
+            title: res.data.message,
+            icon: 'success',
+            duration: 1500,
+            mask: true,
+          })
+          app.globalData.uid = form["username"];
 
-        if(res.data.success){
-        wx.hideLoading();
-        wx.showToast({
-          title: 'res.data.message',
-          icon: 'success',
-          duration: 1500,
-          mask: true,
-        })
-        app.globalData.uid = res.data.uid;
-        wx.redirectTo({
-          url: '../index/index',
-        })}
-        
-        //登录失败
+          // [1.1]  在这里判断好学生还是老师
+          if (app.globalData.uid > 99999)
+            app.globalData.isStudent = true;
+          else
+            app.globalData.isStudent = false;
+
+          // [1.2] 将登录返回的个人信息存入数据缓存
+          wx.setStorage({
+            key: '个人信息',
+            data: {
+              studentInfo: res.data.userInfo
+            },
+          })
+
+          // [1.3] 切换到主页
+          wx.switchTab({
+            url: '../index/index',
+          })
+        }
+
+        // [2] 连接成功，但登录失败
         else {
           wx.hideLoading();
           wx.showToast({
-            title: 'res.data.message',
-            image: '../../img/fail.ico',
+            title: res.data.message,
+            image: '../../img/fail.png',
             duration: 1500,
             mask: true,
           })
@@ -87,7 +105,7 @@ Page({
         wx.hideLoading();
         wx.showToast({
           title: '服务器连接失败',
-          image: '../../img/fail.ico',
+          image: '../../img/fail.png',
           duration: 1500,
           mask: true,
         })
@@ -108,48 +126,48 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

@@ -1,10 +1,6 @@
 //app.js 注册一个微信小程序，可接收object对象参数，同时还可以指定微信小程序的生命周期函数、全局函数和全局数据。 --zyw
 App({
   onLaunch: function () { // 当小程序初始化完成时触发。 --zyw
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
 
     // 登录
     wx.login({
@@ -34,9 +30,11 @@ App({
     })
   },
   globalData: {
-    userInfo: null,
-    percent:80,  //全局数据
-    uid:""  ,   //学号/工号
-    isStudent:false
+
+    userInfo: null,   //用户信息
+    percent:0,       //个人信息完善度
+    uid:""  ,         //学号/工号
+    isStudent: true,   //是否为学生
+    timeNode:0        //时间节点
   }
 })

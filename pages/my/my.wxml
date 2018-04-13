@@ -1,7 +1,7 @@
 <!-- 【我的】 选项卡 -->
 
 <view class="top_border">
-  <image bindtap="bindViewTap" class="user_avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+  <image open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="user_avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
   <view class="user_info">
     <view>
       <text class="user_name">{{uname}}</text>
@@ -11,6 +11,8 @@
   </view>
 </view>
 
+<view id='bottom_grey'>
+<view style="height:140rpx"></view>
 <!--使用isStudent判断学生和导师，以下是学生的模块-->
 <block wx:if="{{isStudent}}">
   <view class="message_border">
@@ -61,7 +63,6 @@
       <view class="my_stu">
         <block wx:for='{{students}}' wx:key='unique'>
           <view wx:if="{{item.status=='接受'}}" style='color:green;' class='student'> {{item.name}} </view>
-          <view wx:elif="{{item.status=='已读'}}" style='color:grey;' class='student'> {{item.name}} </view>
           <view wx:elif="{{item.status=='拒绝'}}" style='color:red;' class='student'> {{item.name}} </view>
           <view wx:elif="{{item.status=='超期'}}" style='color:black;' class='student'> {{item.name}} </view>
           <view wx:else style='color:grey;' class='student'> {{item.name}} </view>
@@ -122,3 +123,4 @@
   <view class="line"></view>
   <view class="hr"></view>
   <button bindtap="register" type="warn">退出登录</button>
+</view>
