@@ -1,7 +1,7 @@
 
 <view class="content">
   <swiper autoplay="true" interval="3000" duration="1000">
-    <block wx:for="{{imgUrls}}">
+    <block wx:for="{{imgUrls}}" wx:key='unique'>
       <swiper-item>
         <image src="{{item}}" class="img_sty" mode='widthFix' />
       </swiper-item>
@@ -20,7 +20,7 @@
     <view class="countdown">{{description[timeNode]}}{{countdown}}天</view>
   </view>
   <view class="hr"></view>
-  <block wx:for="{{news}}">
+  <block wx:for="{{news}}" wx:key='unique'>
     <view class="notice_line">
       <text bindtap="news" class="notice_text">{{item.topic}}</text>
     </view>
@@ -40,7 +40,7 @@
 <view class="teacher">
   优秀导师展示
   <scroll-view scroll-x="true" scroll-left="50" scroll-with-animation='true'>
-    <block wx:for='{{teacher}}'>
+    <block wx:for='{{teacher}}' wx:key='unique'>
         <image bindtap="info" src="{{item.src}}" mode="aspectFit"></image>
     </block>
   </scroll-view>

@@ -5,7 +5,7 @@
   <view class='menu'>详细信息</view>
     <view class="item">
       <view class="title">班级</view>
-      <input maxlength='20' class="input" name="class" confirm-type="next" placeholder="请输入班级" value="{{class}}"></input>
+      <view style="width:70%"><input maxlength='20' class="input" name="class" confirm-type="next" placeholder="请输入班级" value="{{class}}"></input></view>
     </view>
 
     <view class='line'></view>
@@ -36,7 +36,7 @@
 
     <view class="item">
       <view class="title">电子邮箱</view>
-      <input class="input" name="class" confirm-type="next" placeholder="请输入电子邮箱" value="{{email}}"></input>
+      <view style="width:70%"><input class="input" name="class" confirm-type="next" placeholder="请输入电子邮箱" value="{{email}}"></input></view>
     </view>
 
     <view class='line'></view>

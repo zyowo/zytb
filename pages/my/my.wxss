@@ -1,7 +1,12 @@
 /* pages/my/my.wxss */
 
 Page {
+  background-color: #efefef;
+}
+
+#top_red {
   background-color: #ff8888;
+  width: 100%;
 }
 
 #bottom_grey {
@@ -29,6 +34,7 @@ Page {
   color: #fef;
   padding-top: 15rpx;
   padding-left: 15rpx;
+  line-height: 50rpx;
 }
 .user_name {
   font-size: 130%;
@@ -44,9 +50,8 @@ Page {
   border-radius: 10px;
 }
 .title_line {
-  font-size: 80%;
-  margin-top: 10rpx;
-  margin-left: 20rpx;
+  font-size: 85%;
+  margin:12rpx 0 2rpx 20rpx;
   color: gray;
 }
 
@@ -58,10 +63,6 @@ Page {
 }
 
 /* --- 详细信息 模块 --- */
-.warn{
-    display: flex;
-      flex-direction: row;
-}
 .th{
   width:33%;
   justify-content: center;  
@@ -126,6 +127,7 @@ Page {
   color:darkslategray;
   font-size: 80%;
   margin-left:10rpx;
+  line-height: 20rpx;
 }
 .my_stu{
   margin-left: 40rpx;

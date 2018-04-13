@@ -5,7 +5,9 @@
   <view class='menu'>详细信息</view>
     <view class="item">
       <view class="title">办公室</view>
+      <view style="width:70%">
       <input maxlength='20' class="input" name="class" confirm-type="next" placeholder="请输入办公室地址" value="{{office}}"></input>
+      </view>
     </view>
 
     <view class='line'></view>
@@ -25,14 +27,18 @@
 
     <view class="item">
       <view class="title">电子邮箱</view>
+      <view style="width:70%">
       <input class="input" name="class" confirm-type="next" placeholder="请输入电子邮箱" value="{{email}}"></input>
+      </view>
     </view>
 
     <view class='line'></view>
 
     <view class="item">
       <view class="title">研究方向</view>
+      <view style="width:70%">
       <input class="input" value="{{research}}" confirm-type="next" placeholder="请输入您的研究方向，例如“人工智能 / 模式识别”"></input>
+      </view>
     </view>
 
     <view class='line'></view>

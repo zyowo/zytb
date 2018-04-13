@@ -117,9 +117,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '自动登录中...',
+    })
+    wx.getStorage({
+      key: '个人信息',
+      success: function(res) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '自动登录成功',
+          icon: 'success',
+          duration: 1500,
+          mask: true,
+        })
+        // 切换到主页
+        wx.switchTab({
+          url: '../index/index',
+        })
+      },
+      fail: function(res){
+        wx.hideLoading();
+        //需要登录，不要提示用户
+      }
+    })
     this.setData({
       uid: getApp().globalData.uid
     })
+    
   },
 
   /**

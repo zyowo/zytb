@@ -1,11 +1,10 @@
 // pages/my/my.js
 var app = getApp()
 var isStu = getApp().globalData.isStudent;
-var idinfolist = [
-  { "name": "王万良", "choice": '第一志愿', "status": '未选中' },
-  { "name": "王秀梅", "choice": '第二志愿', "status": '未选中' },
-  { "name": "王秀梅", "choice": '第三志愿', "status": '已选' },
-]
+var idInfoList = [
+  // { name:王万良 choice:1~3 status:0~2 } 
+];  // 这里存了学生的选导记录
+
 Page({
   data: {
     // --- 展示用户头像 ---
@@ -15,9 +14,11 @@ Page({
     },
     hasUserInfo: false,
     canIUse: wx.canIUse('image.open-type.getUserInfo'),
-    my_choice: idinfolist,
+    my_choice: idInfoList,    // 在这里，把选导记录重新赋给 my_choice
     // --- 判断是学生还是导师 ---
     isStudent: isStu,
+    // --- 判断学生是否含有选导记录 ---
+    isNoTutor: true,
     percent: 0,
 
     // --- 公用数据 ---
@@ -40,13 +41,20 @@ Page({
     email: 'wxm@zjut.edu.cn',
     research: '模式识别 人工智能',
     students: [{
-      name: '钟亦文',      status: '接受'    }, {
-      name: '张浩然',      status: '已读'    }, {
-      name: '周志雄',      status: '超期'    }, {
-      name: '张浩然',      status: '已读'    }, {
-      name: '周志雄',      status: '超期'    }, {
-      name: '张浩然',      status: '已读'    }, {
-      name: '周志雄',      status: '超期'    }]
+      name: '钟亦文', status: '接受'
+    }, {
+      name: '张浩然', status: '已读'
+    }, {
+      name: '周志雄', status: '超期'
+    }, {
+      name: '张浩然', status: '已读'
+    }, {
+      name: '周志雄', status: '超期'
+    }, {
+      name: '张浩然', status: '已读'
+    }, {
+      name: '周志雄', status: '超期'
+    }]
   },
   // -- 点击 前往操作 --
   tutor() {
@@ -90,24 +98,24 @@ Page({
    */
   onLoad: function () {
     wx.showNavigationBarLoading();
-    this.setData({
-      uid:app.globalData.uid
-    })
+    var that = this;    // 很重要，存入一份this指针的变量，后面调用
 
-    wx.getStorage({
-      key: '个人信息',
-      success: function(res) {
-        if(isStudent) // 如果是学生，则初始化学生数据
+    // [1] 获取个人信息
+    // 因为后面马上就要用到缓存传参，所以这里必须是同步的
+    try{
+      var st_value = wx.getStorageSync('个人信息')
+      console.log("读取个人信息")
+      if (st_value){
+        if (isStu) // 如果是学生，则初始化学生数据
         {
-          this.setData ({
-            uname: res.data.userInfo.sname,
-            uid: res.data.userInfo.sid,
+          that.setData({
+            uname: st_value.studentInfo.sname,
+            uid: st_value.studentInfo.sid,
             academy: '计算机科学与技术学院、软件学院'
           })
           var count = 0;
-          for (var i in res)
-          { // 统计一下有哪些项是填好的
-            if(res[i]) count++;
+          for (var i in res) { // 统计一下有哪些项是填好的
+            if (res[i]) count++;
           }
           count *= 10;
           // 这里就计算出学生的信息完善度了
@@ -115,43 +123,46 @@ Page({
         }
         else // 如果是老师，则初始化教师数据
         {
-          this.setData({
-            uname: res.data.userInfo.tname,
-            uid: res.data.userInfo.tid,
-            academy: res.data.userInfo.department,
-            office: res.data.userInfo.office,
-            email: res.data.userInfo.email,
-            tel: res.data.userInfo.phone,
-            research: res.data.userInfo.researchField,
+          that.setData({
+            uname: st_value.teacherInfo.tname,
+            uid: st_value.teacherInfo.tid,
+            academy: st_value.teacherInfo.department,
+            office: st_value.teacherInfo.office,
+            email: st_value.teacherInfo.email,
+            tel: st_value.teacherInfo.phone,
+            research: st_value.teacherInfo.researchField,
           })
         }
-      },
-      fail: function (res) {
-        // 如果缓存失败，请求学生的基本信息
-        wx.request({
-          url: 'http://localhost:8443/info',
-          // zhr：在上面输入你的本机Servlet地址
-          method: 'GET',
-          data: {
-            uid: this.data.uid
-          },
-          header: {
-            'content-type': 'application/json' // 默认值
-          },
-          success: function (res) { },
-          fail: function(res) {
-            console.log("缓存失败，连接失败")
-           }
-        })
       }
-    })
-    
+    } catch (e) {
+      // 如果缓存失败，请求学生的基本信息
+      wx.request({
+        url: 'http://localhost:8443/info',
+        // zhr：在上面输入你的本机Servlet地址
+        method: 'GET',
+        data: {
+          uid: that.data.uid
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: function (res) { },
+        fail: function (res) {
+          console.log("缓存失败，连接失败")
+        }
+      })
+    }
+
+    // [1.1] 把 uid 存入全局变量，这样不用每次都调用
+    app.globalData.uid = that.data.uid;
+    console.log("已经存入全局变量，现在是" + app.globalData.uid);
+
+    // [2] 获取UserInfo
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-
     } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
@@ -176,6 +187,115 @@ Page({
     this.setData({
       percent: app.globalData.percent
     })
+
+    // [3] TODO: 获取选导记录、学生记录 
+    if (isStu) // 如果是学生
+    {
+      wx.request({
+        url: 'http://localhost:8443/report/mychoice',
+        data: {
+          // 已经读过缓存了，用全局变量写入
+          uid: app.globalData.uid,
+        },
+        method: 'GET',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: function (res) {
+          if(res.data.success)
+          { // 如果查询成功，说明有导师
+            that.setData({
+              isNoTutor: false
+            })
+          /* CANUSE: 成功获取服务端的内容，先存一份缓存
+          wx.setStorage({
+            key: '选导记录',
+            data: {
+              //这里存的是 sid - tid - status - choice
+              reportItemList: res.data.reportItemList,
+              
+              //这里存的是 tid-tname-allnum-picknum-reportItem
+              //教师工号、姓名、总人数、已选人数、学生
+              reportList: res.data.reportList
+            },
+          })*/
+          // [3.2] 遍历sid-tid表，录入第一、第二、第三志愿
+            var st_item = res.data.reportItemList;
+            var st_index = 0, st_tid = 0;
+            for(var i in st_item)
+            {
+              // 判断是第几志愿，
+              if(st_item[i].choiceNumber == 1)
+                st_index = 0;
+              else if (st_item[i].choiceNumber == 2)
+                st_index = 1;
+              else st_index = 2;
+
+            // 填表 idInfoList[] name choice status
+              st_tid = st_item[i].tid;
+              for (var j in res.data.reportList)
+              {
+                if(res.data.reportList[j].tid == st_tid)
+                  idInfoList[st_index].name = res.data.reportList[j].tname; 
+              } // 名字填好了
+              idInfoList[st_index].status = st_item[i].status;
+              idInfoList[st_index].choice = st_item[i].choiceNumber;
+            } // st_item 结束
+            // 将填好的数据存入缓存
+            // 把学生的选导记录存到本地缓存
+            wx.setStorage({
+              key: '选导记录',
+              data: {
+                // 左边是 两个大写，右边是定义的 var 页面全局变量
+                idInfoList: idInfoList
+              },
+            })
+          } // 有选导信息结束
+
+          else  // 没有选导信息，服务器的success字段为false
+            that.setData({
+              isNoTutor: true
+            })
+        },
+        fail: function (res) {
+          // 尝试调取本地的缓存
+          wx.getStorage({
+            key: '选导记录',
+            success: function(res) {
+              that.setData({
+                isNoTutor: false,
+              })
+              idInfoList: res.data.idInfoList;
+            },
+            fail: function (res) {
+              that.setData({
+                isNoTutor: true,
+              })
+              console.log("读取选导记录时，服务器连接失败，读取缓存失败");
+            },
+          })
+        },
+      })
+    }
+    else {  // 如果是老师
+        // TODO: 写老师获取学生的逻辑
+    }
+    // [3-1] 渲染到视图，需要把 数字 改成 字符串 显示 (可以在HTML层实现)
+    for(var i in idInfoList)
+    {
+      switch(idInfoList[i].choice)
+      {
+        case 1: idInfoList[i].choice = '第一志愿'; break;
+        case 2: idInfoList[i].choice = '第二志愿'; break;
+        default: idInfoList.choice = '随机匹配';
+      }
+      switch(idInfoList[i].status)
+      {
+        case 0: idInfoList[i].status = '处理中'; break;
+        case 1: idInfoList[i].status = '成功'; break;
+        case 2: idInfoList[i].status = '失败'; break;
+      }
+    }
   },
 
   getUserInfo: function (e) {
@@ -220,7 +340,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    wx.stopPullDownRefresh()
   },
 
   /**

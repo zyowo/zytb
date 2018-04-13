@@ -1,57 +1,61 @@
 <!-- 【我的】 选项卡 -->
-
-<view class="top_border">
-  <image open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="user_avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-  <view class="user_info">
-    <view>
-      <text class="user_name">{{uname}}</text>
-      <text>{{uid}}</text>
+<view id='top_red'>
+  <view class="top_border">
+    <image open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="user_avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <view class="user_info">
+      <view>
+        <text class="user_name">{{uname}}</text>
+        <text>{{uid}}</text>
+      </view>
+      <text>{{academy}}</text>
     </view>
-    <text>{{academy}}</text>
   </view>
 </view>
-
 <view id='bottom_grey'>
-<view style="height:140rpx"></view>
-<!--使用isStudent判断学生和导师，以下是学生的模块-->
-<block wx:if="{{isStudent}}">
-  <view class="message_border">
-    <view class="title_line">我的选导记录</view>
-
-    <view class="table">
-      <view class="tr">
-        <view class="th">导师姓名</view>
-        <view class="th">志愿情况</view>
-        <view class="th_1">状态</view>
+  <view style="height:140rpx"></view>
+  <!--使用isStudent判断学生和导师，以下是学生的模块-->
+  <block wx:if="{{isStudent}}">
+    <view class="message_border">
+      <view class="title_line">我的选导记录</view>
+      <view wx:if="{{isNoTutor}}" class='warn'>
+        <image src="../../img/none.jpg" style='width:200rpx;height:150rpx;' mode='aspectFit' />
+        <text style='line-height:100rpx; color:darkslategray'>没有找到选导师的记录哦~</text>
       </view>
-      <block wx:for="{{my_choice}}" wx:key="{{code}}">
-        <view class="tr">
-          <view class="td">{{item.name}}</view>
-          <view class="td">{{item.choice}}</view>
-          <view class="td_1">{{item.status}}</view>
+      <block wx:else>
+        <view class="table">
+          <view class="tr">
+            <view class="th">导师姓名</view>
+            <view class="th">志愿情况</view>
+            <view class="th_1">状态</view>
+          </view>
+          <block wx:for="{{my_choice}}" wx:key="{{code}}">
+            <view class="tr">
+              <view class="td">{{item.name}}</view>
+              <view class="td">{{item.choice}}</view>
+              <view class="td_1">{{item.status}}</view>
+            </view>
+          </block>
         </view>
-        </block>
+      </block>
     </view>
-
-  </view>
-  <view bindtap="edit" class="message_border">
-    <view class="title_line">个人信息完善度
-      <text class="right_detail">点击编辑</text>
+    <view bindtap="edit" class="message_border">
+      <view class="title_line">个人信息完善度
+        <text class="right_detail">点击编辑</text>
+      </view>
+      <progress class="progress_sty" percent="{{percent}}" stroke-width="15" active show-info activeColor="{{percent>=80?'lightgreen':'crimson'}}" />
+      <block wx:if="{{percent>=80}}">
+        <view class='warn'>
+          <icon type='success' size='20'></icon>
+          <text class='warn_content'>个人信息已完善。</text>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='warn'>
+          <icon type='warn' size='20'></icon>
+          <text class='warn_content'>个人信息完善度未达80%，不能进行导师选择。</text>
+        </view>
+      </block>
     </view>
-    <progress class="progress_sty" percent="{{percent}}" stroke-width="15" active show-info activeColor="{{percent>=80?'lightgreen':'crimson'}}" />
-    <block wx:if="{{percent>=80}}">
-      <view class='warn'>
-        <icon type='success' size='20'></icon>
-        <text class='warn_content'>个人信息已完善。</text>
-      </view>
-    </block>
-    <block wx:else>
-      <view class='warn'>
-        <icon type='warn' size='20'></icon>
-        <text class='warn_content'>个人信息完善度未达80%，不能进行导师选择。</text>
-      </view>
-    </block>
-  </view>
   </block>
 
   <!--以下是导师的模块-->
@@ -62,10 +66,13 @@
       </view>
       <view class="my_stu">
         <block wx:for='{{students}}' wx:key='unique'>
-          <view wx:if="{{item.status=='接受'}}" style='color:green;' class='student'> {{item.name}} </view>
-          <view wx:elif="{{item.status=='拒绝'}}" style='color:red;' class='student'> {{item.name}} </view>
-          <view wx:elif="{{item.status=='超期'}}" style='color:black;' class='student'> {{item.name}} </view>
-          <view wx:else style='color:grey;' class='student'> {{item.name}} </view>
+          <block wx:if="{{index<4}}">
+            <view wx:if="{{item.status=='接受'}}" style='color:green;' class='student'> {{item.name}} </view>
+            <view wx:elif="{{item.status=='拒绝'}}" style='color:red;' class='student'> {{item.name}} </view>
+            <view wx:elif="{{item.status=='超期'}}" style='color:black;' class='student'> {{item.name}} </view>
+            <view wx:else style='color:grey;' class='student'> {{item.name}} </view>
+          </block>
+          <view wx:elif="{{index==4}}" style='color:grey;' class='student'> ... </view>
         </block>
       </view>
     </view>
@@ -121,6 +128,7 @@
     </view>
   </view>
   <view class="line"></view>
-  <view class="hr"></view>
+  <view style="height:40rpx"></view>
   <button bindtap="register" type="warn">退出登录</button>
+  <view style="height:40rpx"></view>
 </view>
