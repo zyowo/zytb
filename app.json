@@ -1,10 +1,11 @@
 {
   "pages": [
+        "pages/my/my",
     "pages/tutor/tutor",
     "pages/tutor/info_s",
     "pages/index/index",
     "pages/tutor/info_t",
-    "pages/my/my",
+
     "pages/login/login",
     "pages/register/register",
     "pages/edit/edit",

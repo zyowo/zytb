@@ -139,6 +139,7 @@ Page({
       this.setData({ 
         timeNode : 5
         })    // 输出最后一条
+      app.globalData.timeNode = 5;
       days = date.getTime() - nodeDate.getTime();
     }
 
