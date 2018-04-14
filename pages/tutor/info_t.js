@@ -24,24 +24,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
     var recline = remark.getRecord();
-   
-    //if (isStu) {
-       var infoT = remark.getTutor();
-       this.setData({
-         uname: infoT[recline].name
+    var infoT = remark.getTutor();
+      
+       that.setData({
+         uname: infoT[recline].name,
+         uid: infoT[recline].tid,
+         academy: infoT[recline].department
        })
-       /*}
-    else { 
-      var infoS = remark.getStu();
-      this.setData({
-        uname: infoS[recline].sname
-      }) 
-    }*/
     
-    
-    /**console.log('hhhhh', remark.faculties);
-    console.log('hhhhh', remark.record_line);**/
+    console.log(this.data.uid);
   },
 
   /**

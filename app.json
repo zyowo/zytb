@@ -7,7 +7,7 @@
     "pages/tutor/tutor",
     "pages/index/index",
     "pages/my/my",
-
+    "pages/login/login",
     "pages/tutor/info_s",
     "pages/tutor/info_t",
     "pages/register/register",

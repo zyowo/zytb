@@ -24,20 +24,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    /**var recline = remark.getRecord();
-   
-    if (isStu) {
-       var infoT = remark.getTutor();
+    var recline = remark.getRecord();
+       var infoS = remark.getStu();
        this.setData({
-         uname: infoT[recline].name
+         uname: infoS[recline].sname,
+         uid: infoS[recline].sid,
+         academy: infoS[recline].sclass,
        })
-       }
-    else { 
-      var infoS = remark.getStu();
-      this.setData({
-        uname: infoS[recline].sname
-      })
-    }**/
+       
+   
+      
+  
 
 
     /**console.log('hhhhh', remark.faculties);
