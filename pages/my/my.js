@@ -1,6 +1,5 @@
 // pages/my/my.js
 var app = getApp()
-var isStu = getApp().globalData.isStudent;
 var idInfoList = [];  // 这里存了学生的选导记录
 
 Page({
@@ -14,7 +13,7 @@ Page({
     canIUse: wx.canIUse('image.open-type.getUserInfo'),
     my_choice: idInfoList,    // 在这里，把选导记录重新赋给 my_choice
     // --- 判断是学生还是导师 ---
-    isStudent: isStu,
+    isStudent: null,
     // --- 判断学生是否含有选导记录 ---
     isNoTutor: true,
     percent: 0,
@@ -338,6 +337,11 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    this.setData({
+      isStudent: app.globalData.isStudent
+    })
+    console.log(app.globalData.isStudent);
+    console.log(this.data.isStudent);
     wx.hideNavigationBarLoading();
   },
 

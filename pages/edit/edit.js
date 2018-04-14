@@ -150,7 +150,17 @@ Page({
       url: 'http://localhost:8443/info/update_student_info',
       method: 'POST',
       data: {
-        studentInfo: stuInfo
+        sid: this.data.sid,
+        sname: this.data.sname,
+        sclass: e.detail.value.sclass,
+        // 把下标替换成字符串
+        politicalStatus: this.data.array[e.detail.value.politicalStatus],
+        phone: e.detail.value.phone,
+        email: e.detail.value.email,
+        directionInterest: e.detail.value.directionInterest,
+        honor: e.detail.value.honor,
+        directionInauguration: e.detail.value.directionInauguration,
+        introduction: e.detail.value.introduction
       },
       header: {
         'content-type': 'application/json' // 默认值
@@ -201,7 +211,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    /*
     wx.setStorage({   //TODELETE: 模拟缓存
       key: '个人信息',
       data: {
@@ -219,7 +228,6 @@ Page({
         }
       },
     })
-  */
     var that = this;
     wx.getStorage({
       key: '个人信息',

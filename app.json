@@ -1,13 +1,11 @@
 {
   "pages": [
-
-
-       
-
-    "pages/tutor/tutor",
-    "pages/index/index",
-    "pages/my/my",
     "pages/login/login",
+    "pages/index/index",
+    
+    "pages/tutor/tutor",
+    
+    "pages/my/my",
     "pages/tutor/info_s",
     "pages/tutor/info_t",
     "pages/register/register",

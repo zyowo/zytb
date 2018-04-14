@@ -138,6 +138,8 @@ Page({
           duration: 1500,
           mask: true,
         })
+        // 重要：赋值globalData
+        app.globalData.isStudent = true;
         // 切换到主页
         wx.switchTab({
           url: '../index/index',

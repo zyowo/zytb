@@ -7,7 +7,7 @@ var checkindex = [];
 var choice_stu = 0;
 var recordindex = 0;
 //var select = ['选择', '退选']
-var isStu = getApp().globalData.isStudent;
+var isStu = null;
 var voluneidinfolist = [
   { "sid": 105, "tid": 1002, "name": "王秀梅", "choice": '第一志愿', "status": '处理中' },
 ]
@@ -53,7 +53,7 @@ Page({
     record_line: 0,
     tutor_pick: true,
     selectall: false,
-    isStudent: isStu,
+    isStudent: null,
     my_choice: volinfolist,
     checkindex: checkindex
   },
@@ -484,7 +484,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.setData({
+      isStudent : getApp().globalData.isStudent
+    })
+    isStu = this.data.isStudent;
   },
 
   /**
