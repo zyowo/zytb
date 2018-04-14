@@ -72,17 +72,25 @@ Page({
 
           // [1.1]  在这里判断好学生还是老师
           if (app.globalData.uid > 99999)
+          {
             app.globalData.isStudent = true;
-          else
+            wx.setStorage({
+              key: '个人信息',
+              data: {
+                studentInfo: res.data.userInfo
+              },
+            })
+          }
+          else  //如果是老师的话，就存成teacherInfo
+          {
             app.globalData.isStudent = false;
-
-          // [1.2] 将登录返回的个人信息存入数据缓存
-          wx.setStorage({
-            key: '个人信息',
-            data: {
-              studentInfo: res.data.userInfo
-            },
-          })
+            wx.setStorage({
+              key: '个人信息',
+              data: {
+                teacherInfo: res.data.userInfo
+              },
+            })
+          }
 
           // [1.3] 切换到主页
           wx.switchTab({
