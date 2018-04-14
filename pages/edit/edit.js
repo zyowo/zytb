@@ -211,6 +211,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    /*
     wx.setStorage({   //TODELETE: 模拟缓存
       key: '个人信息',
       data: {
@@ -228,6 +229,7 @@ Page({
         }
       },
     })
+    */
     var that = this;
     wx.getStorage({
       key: '个人信息',
