@@ -62,6 +62,9 @@ Page({
   },
   // -- 点击 退出登录 --
   register() {
+    // 清除所有本地缓存
+    wx.clearStorage();
+    // 跳转到登录页面
     wx.redirectTo({
       url: '../login/login'
     })
@@ -112,8 +115,8 @@ Page({
             academy: '计算机科学与技术学院、软件学院'
           })
           var count = 0;
-          for (var i in res) { // 统计一下有哪些项是填好的
-            if (res[i]) count++;
+          for (var i in st_value.studentInfo) { // 统计一下有哪些项是填好的
+            if (st_value.studentInfo[i]) count++;
           }
           count *= 10;
           // 这里就计算出学生的信息完善度了
@@ -182,9 +185,6 @@ Page({
         }
       })
     }
-    this.setData({
-      percent: app.globalData.percent
-    })
 
     // [3] TODO: 获取选导记录、学生记录 
     if (isStu) // 如果是学生
@@ -345,7 +345,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      percent: app.globalData.percent
+    })
   },
 
   /**
