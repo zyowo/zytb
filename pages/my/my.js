@@ -1,7 +1,7 @@
 // pages/my/my.js
 var app = getApp()
 var idInfoList = [];  // 这里存了学生的选导记录
-
+var isStu = null;
 Page({
   data: {
     // --- 展示用户头像 ---
@@ -100,6 +100,11 @@ Page({
     wx.showNavigationBarLoading();
     var that = this;    // 很重要，存入一份this指针的变量，后面调用
 
+    this.setData({
+      isStudent: app.globalData.isStudent
+    })
+    isStu = this.data.isStudent;
+    
     // [1] 获取个人信息
     // 因为后面马上就要用到缓存传参，所以这里必须是同步的
     try {
@@ -337,9 +342,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.setData({
-      isStudent: app.globalData.isStudent
-    })
+
     console.log(app.globalData.isStudent);
     console.log(this.data.isStudent);
     wx.hideNavigationBarLoading();
