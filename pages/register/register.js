@@ -11,12 +11,12 @@ const form = {  //新建一个表单
 }
 
 Page({
-// 在 data 对象里可以初始化页面要用到的函数，data 会以 JSON 的形式由逻辑层传至渲染层(视图层)，所以其数据必须是可以转成 JSON 的格式：字符串、数字、布尔值、对象、数组。在页面中通过数据绑定的方式取出，如 <view>{{name}}</view>  
-  data: { 
+  // 在 data 对象里可以初始化页面要用到的函数，data 会以 JSON 的形式由逻辑层传至渲染层(视图层)，所以其数据必须是可以转成 JSON 的格式：字符串、数字、布尔值、对象、数组。在页面中通过数据绑定的方式取出，如 <view>{{name}}</view>  
+  data: {
     checknum: false,
     checkpsd: false,
     validpsd: false,
-    validcolor:"white",
+    validcolor: "white",
   },
 
   // 检测学号
@@ -36,7 +36,7 @@ Page({
   // 检测密码
   getPsd: function (e) {
     var len = e.detail.value.length;
-    if (len >= 6){
+    if (len >= 6) {
       this.setData({
         checkpsd: true // 密码是否超过6位
       })
@@ -48,32 +48,32 @@ Page({
   },
 
   // 确认密码是否相同
-  checkPsd:function(e){ 
+  checkPsd: function (e) {
     const validate = e.detail.value;
     const psw = form["password"];
-    if (psw == validate){
-    this.setData({
-     validpsd: true,
-     validcolor: "white"
-   })
-    }
-  else {
-    this.setData({
-      validpsd: false,
-      validcolor: "red"
+    if (psw == validate) {
+      this.setData({
+        validpsd: true,
+        validcolor: "white"
       })
-  }
+    }
+    else {
+      this.setData({
+        validpsd: false,
+        validcolor: "red"
+      })
+    }
   },
 
-  register(){
+  register() {
     wx.showLoading({
       title: '提交中...',
     })
     wx.request({
-      url: 'http://localhost:8443/register',  
-            // zhr：在上面输入你的本机Servlet地址
+      url: 'http://localhost:8443/register',
+      // zhr：在上面输入你的本机Servlet地址
       method: 'POST',
-      data:{
+      data: {
         uid: form["username"],
         psw: form["password"]
       },
@@ -81,33 +81,42 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
-        wx.hideLoading();
-        wx.showToast({
-          title: res.data.message,
-          icon:'success',
-          duration: 1500,
-          mask: true,
-        })
-        app.globalData.uid = form["username"];  //login
-        wx.redirectTo({
-          url: '../login/login',
-        })
-      },
-      fail: function(res) {
+        // [1] 如果学号和服务器一致
+        if (res.data.success) {
           wx.hideLoading();
           wx.showToast({
-            title: '服务器连接失败',
+            title: res.data.message,
+            icon: 'success',
+            duration: 1500,
+            mask: true,
+          })
+          app.globalData.uid = form["username"];  //login
+          wx.redirectTo({
+            url: '../login/login',
+          })
+        }
+        // [2] 连接成功，但登录失败
+        else {
+          wx.hideLoading();
+          wx.showToast({
+            title: res.data.message,
             image: '../../img/fail.png',
             duration: 1500,
             mask: true,
           })
+        }
+      },
+      fail: function (res) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '服务器连接失败',
+          image: '../../img/fail.png',
+          duration: 1500,
+          mask: true,
+        })
       }
     })
   },
-
-
-
-
 
 
   /**

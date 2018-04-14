@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    checknum: true,
     uid: 0
   },
 
@@ -71,8 +72,7 @@ Page({
           app.globalData.uid = form["username"];
 
           // [1.1]  在这里判断好学生还是老师
-          if (app.globalData.uid > 99999)
-          {
+          if (app.globalData.uid > 99999) {
             app.globalData.isStudent = true;
             wx.setStorage({
               key: '个人信息',
@@ -130,7 +130,7 @@ Page({
     })
     wx.getStorage({
       key: '个人信息',
-      success: function(res) {
+      success: function (res) {
         wx.hideLoading();
         wx.showToast({
           title: '自动登录成功',
@@ -145,7 +145,7 @@ Page({
           url: '../index/index',
         })
       },
-      fail: function(res){
+      fail: function (res) {
         wx.hideLoading();
         //需要登录，不要提示用户
       }
@@ -153,7 +153,7 @@ Page({
     this.setData({
       uid: getApp().globalData.uid
     })
-    
+
   },
 
   /**

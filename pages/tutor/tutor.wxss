@@ -19,6 +19,7 @@
 
 .tableChoice{
   border: 2px solid darkgray;  
+  border-radius: 5px;
   width: 95%;  
   margin-top: 10rpx;  
   margin-left: 15rpx;  
@@ -39,7 +40,7 @@
     border-top: 2px solid #ddd;  
     border-right: 2px solid #ddd; 
     font-size: 85%;
-    color: red;
+    color: cornflowerblue
 } 
 .td_1Choice {  
     width:33%;
@@ -49,7 +50,7 @@
     align-items: center;   
     border-top: 2px solid #ddd;  
     font-size: 85%;
-    color: red;
+    color: cornflowerblue;
 } 
 .bg{
   position:absolute;
@@ -94,7 +95,7 @@
   height:35px;
   border:1px solid #CCCCCC;
   border-radius: 5px;
-  width:500rpx;
+  width:490rpx;
   margin-top: 50rpx;
 }
 .label{
@@ -105,6 +106,7 @@
 }
 .table{
   border: 2px solid darkgray;  
+  border-radius: 5px;
   width: 95%;  
   margin-top: 50rpx;  
   margin-left: 15rpx;  
@@ -144,7 +146,7 @@
     font-size: 85%;
 } 
 .bg_w{  
-  background: #afb4db;  
+  background:  burlywood;  
 }  
 .bg_g{  
   background: #E6F3F9;  
