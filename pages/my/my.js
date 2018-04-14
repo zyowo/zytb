@@ -1,9 +1,7 @@
 // pages/my/my.js
 var app = getApp()
 var isStu = getApp().globalData.isStudent;
-var idInfoList = [
-  // { name:王万良 choice:1~3 status:0~2 } 
-];  // 这里存了学生的选导记录
+var idInfoList = [];  // 这里存了学生的选导记录
 
 Page({
   data: {
@@ -64,6 +62,9 @@ Page({
   },
   // -- 点击 退出登录 --
   register() {
+    // 清除所有本地缓存
+    wx.clearStorage();
+    // 跳转到登录页面
     wx.redirectTo({
       url: '../login/login'
     })
@@ -102,10 +103,10 @@ Page({
 
     // [1] 获取个人信息
     // 因为后面马上就要用到缓存传参，所以这里必须是同步的
-    try{
+    try {
       var st_value = wx.getStorageSync('个人信息')
       console.log("读取个人信息")
-      if (st_value){
+      if (st_value) {
         if (isStu) // 如果是学生，则初始化学生数据
         {
           that.setData({
@@ -114,8 +115,8 @@ Page({
             academy: '计算机科学与技术学院、软件学院'
           })
           var count = 0;
-          for (var i in res) { // 统计一下有哪些项是填好的
-            if (res[i]) count++;
+          for (var i in st_value.studentInfo) { // 统计一下有哪些项是填好的
+            if (st_value.studentInfo[i]) count++;
           }
           count *= 10;
           // 这里就计算出学生的信息完善度了
@@ -184,9 +185,6 @@ Page({
         }
       })
     }
-    this.setData({
-      percent: app.globalData.percent
-    })
 
     // [3] TODO: 获取选导记录、学生记录 
     if (isStu) // 如果是学生
@@ -202,54 +200,55 @@ Page({
           'content-type': 'application/json' // 默认值
         },
         success: function (res) {
-          if(res.data.success)
-          { // 如果查询成功，说明有导师
+          if (res.data.success) { // 如果查询成功，说明有导师
             that.setData({
               isNoTutor: false
             })
-          /* CANUSE: 成功获取服务端的内容，先存一份缓存
-          wx.setStorage({
-            key: '选导记录',
-            data: {
-              //这里存的是 sid - tid - status - choice
-              reportItemList: res.data.reportItemList,
-              
-              //这里存的是 tid-tname-allnum-picknum-reportItem
-              //教师工号、姓名、总人数、已选人数、学生
-              reportList: res.data.reportList
-            },
-          })*/
-          // [3.2] 遍历sid-tid表，录入第一、第二、第三志愿
+            /* CANUSE: 成功获取服务端的内容，先存一份缓存
+            wx.setStorage({
+              key: '选导记录',
+              data: {
+                //这里存的是 sid - tid - status - choice
+                reportItemList: res.data.reportItemList,
+                
+                //这里存的是 tid-tname-allnum-picknum-reportItem
+                //教师工号、姓名、总人数、已选人数、学生
+                reportList: res.data.reportList
+              },
+            })*/
+            // [3.2] 遍历sid-tid表，录入第一、第二、第三志愿
             var st_item = res.data.reportItemList;
             var st_index = 0, st_tid = 0;
-            for(var i in st_item)
-            {
+            for (var i in st_item) {
               // 判断是第几志愿，
-              if(st_item[i].choiceNumber == 1)
+              if (st_item[i].choiceNumber == 1)
                 st_index = 0;
               else if (st_item[i].choiceNumber == 2)
                 st_index = 1;
               else st_index = 2;
 
-            // 先定义一个item，方便填表呀！
-            var fill = {
-              name: '',
-              status: 0,
-              choice: 0
-            }
+              // 先定义一个item，方便填表呀！
+              var fill = {
+                name: '',
+                status: 0,
+                choice: 0
+              }
 
-            // 填表 idInfoList[] name choice status
+              // 填表 idInfoList[] name choice status
               st_tid = st_item[i].tid;
-              for (var j in res.data.reportList)
-              {
-                if(res.data.reportList[j].tid == st_tid)
-                  fill.name = res.data.reportList[j].tname; 
+              for (var j in res.data.reportList) {
+                if (res.data.reportList[j].tid == st_tid)
+                  fill.name = res.data.reportList[j].tname;
               } // 名字填好了
               fill.status = st_item[i].status;
               fill.choice = st_item[i].choiceNumber;
 
               idInfoList[st_index] = fill;
             } // st_item 结束
+
+            that.renderToView();      //异步更新
+            that.updateInfoList();    //异步更新
+            
             // 将填好的数据存入缓存
             // 把学生的选导记录存到本地缓存
             wx.setStorage({
@@ -270,11 +269,14 @@ Page({
           // 尝试调取本地的缓存
           wx.getStorage({
             key: '选导记录',
-            success: function(res) {
+            success: function (res) {
               that.setData({
                 isNoTutor: false,
               })
-              idInfoList: res.data.idInfoList;
+              idInfoList = res.data.idInfoList;
+              console.log(idInfoList);
+              that.renderToView();      //异步更新
+              that.updateInfoList();    //异步更新
             },
             fail: function (res) {
               that.setData({
@@ -287,24 +289,39 @@ Page({
       })
     }
     else {  // 如果是老师
-        // TODO: 写老师获取学生的逻辑
+      // TODO: 写老师获取学生的逻辑
     }
-    // [3-1] 渲染到视图，需要把 数字 改成 字符串 显示 (可以在HTML层实现)
-    for(var i in idInfoList)
-    {
-      switch(idInfoList[i].choice)
-      {
+  },
+
+
+
+
+
+  /** ———— 自定义函数 ————
+   *  渲染到视图，需要把 数字 改成 字符串 显示 (可以在HTML层实现)
+   */
+  renderToView: function () {
+    for (var i in idInfoList) {
+      switch (idInfoList[i].choice) {
         case 1: idInfoList[i].choice = '第一志愿'; break;
         case 2: idInfoList[i].choice = '第二志愿'; break;
-        default: idInfoList.choice = '随机匹配';
+        default: idInfoList[i].choice = '随机匹配';
       }
-      switch(idInfoList[i].status)
-      {
+      switch (idInfoList[i].status) {
         case 0: idInfoList[i].status = '处理中'; break;
         case 1: idInfoList[i].status = '成功'; break;
         case 2: idInfoList[i].status = '失败'; break;
       }
     }
+  },
+
+  /** ———— 自定义函数 ————
+   *  异步更新选导记录
+   */
+  updateInfoList: function () {
+    this.setData({
+      my_choice: idInfoList
+    })
   },
 
   getUserInfo: function (e) {
@@ -328,7 +345,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      percent: app.globalData.percent
+    })
   },
 
   /**
@@ -349,6 +368,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    console.log(idInfoList);
     wx.stopPullDownRefresh()
   },
 

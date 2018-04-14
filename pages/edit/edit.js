@@ -1,4 +1,5 @@
 // pages/edit/edit.js
+var app = getApp();
 Page({
 
   /**
@@ -8,15 +9,21 @@ Page({
     //本地
     array: ['群众', '团员', '中共党员'],
     index: -1,
-    //服务器表单
-    class: '',
+    checkClass: true,
+    checkPhone: true,
+    checkEmail: true,
+    //服务器表单（隐藏）
+    sid: null,
+    sname: '',
+    //服务器表单（显示）
+    sclass: '',
     long: null,
     short: null,
     email: '',
     direction: '',
     honor: '',
     research: '',
-    intro: ''
+    introduction: ''
   },
   /**
    * 监听普通picker选择器
@@ -28,9 +35,166 @@ Page({
     });
   },
 
+  /**
+   * 判断班级是否正确
+   */
+  checkClass: function(e){
+    var len = e.detail.value.length;
+    if(len > 3)
+    {
+      this.setData({
+        checkClass: true,
+      })
+    }
+  },
+
+  /**
+   * 判断电话是否正确
+   */
+  checkPhone: function (e) {
+    var str = e.detail.value;
+    var len = str.length;
+    if (len == 11 && str > 1) {
+      this.setData({
+        checkPhone: true,
+      })
+    }
+    else this.setData({
+      checkPhone: false,
+    })
+  },
+
+  /**
+   * 判断邮箱是否正确
+   */
+  checkEmail: function (e) {
+    var str = e.detail.value;
+    var len = str.length;
+    if (len > 8 && str.indexOf('@') >= 0 && str.indexOf('.') >= 0) {
+      this.setData({
+        checkEmail: true,
+      })
+    }
+    else this.setData({
+      checkEmail: false,
+    })
+  },
+
+  // 用户点击 提交 按钮
   formSubmit: function (e) {
-    wx.navigateBack({
-      percent: 60
+    wx.showLoading({
+      title: '提交中...',
+    })
+    console.log(e);
+    // 计算一下 percent
+    var newpercent = 0;
+    for(var i in e.detail.value)
+    {
+      if(e.detail.value) newpercent++;
+    }
+    newpercent *= 10;
+    // 制作对象
+    var stuInfo = {
+      sid: this.data.sid,
+      sname: this.data.sname,
+      sclass: e.detail.value.sclass,
+      // 把下标替换成字符串
+      politicalStatus: this.data.array[e.detail.value.politicalStatus],
+      phone: e.detail.value.phone,
+      email: e.detail.value.email,
+      directionInterest: e.detail.value.directionInterest,
+      honor: e.detail.value.honor,
+      directionInauguration: e.detail.value.directionInauguration,
+      introduction: e.detail.value.introduction
+    }
+    // 判断一下必填项是不是空的
+    if(!stuInfo.sclass)
+    {
+      wx.hideLoading();
+      wx.showToast({
+        title: '班级不能为空！',
+        image: '../../img/fail.png',
+        duration: 1500,
+        mask: true,
+      })
+      this.setData({
+        checkClass: false
+      })
+    }
+    else if (!stuInfo.phone) {
+      wx.hideLoading();
+      wx.showToast({
+        title: '电话不能为空！',
+        image: '../../img/fail.png',
+        duration: 1500,
+        mask: true,
+      })
+      this.setData({
+        checkPhone: false
+      })
+    }
+    else if (!stuInfo.email) {
+      wx.hideLoading();
+      wx.showToast({
+        title: '邮箱不能为空！',
+        image: '../../img/fail.png',
+        duration: 1500,
+        mask: true,
+      })
+      this.setData({
+        checkEmail: false
+      })
+    }
+    // 如果本地检测表单逻辑都正确，则发送修改
+    else wx.request({
+      url: 'http://localhost:8443/info/update_student_info',
+      method: 'POST',
+      data: {
+        studentInfo: stuInfo
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        // 判断服务器是否正确返回
+        if (res.data.success)
+        { 
+          // 先用服务器传下来的info替换
+          wx.setStorage({
+            key: '个人信息',
+            data: {
+              studentInfo: res.data.userInfo
+            },
+          })
+          wx.hideLoading();
+          wx.showToast({
+            title: '编辑成功',
+            icon: 'success',
+            duration: 1500,
+            mask: true,
+          })
+          app.globalData.percent = newpercent;
+          wx.navigateBack();
+        }
+        else {
+          wx.hideLoading();
+          wx.showToast({
+            title: '失败，请重试',
+            image: '../../img/fail.png',
+            duration: 1500,
+            mask: true,
+          })
+        }
+      },
+      fail: function (res) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '服务器连接失败',
+          image: '../../img/fail.png',
+          duration: 1500,
+          mask: true,
+        })
+      }
     })
   },
   /**
@@ -51,16 +215,16 @@ Page({
         directionInterest:null,
         honor:null,
         directionInauguration:null,
-        intro:null
+        introduction:null
         }
       },
     })
   */
-  var that = this;
+    var that = this;
     wx.getStorage({
       key: '个人信息',
       success: function (res) {
-        //成功获得本地缓存
+        // 成功获得本地缓存
         console.log("缓存成功");
         var po_index = -1;
         if (res.data.studentInfo.politicalStatus == "群众")
@@ -70,21 +234,22 @@ Page({
         else po_index = 2;
 
         that.setData({
-            class: res.data.studentInfo.sclass,
-            index: po_index,
-            long: res.data.studentInfo.phone,
-            email:res.data.studentInfo.email,
-            direction: res.data.studentInfo.directionInterest,
-            honor:res.data.studentInfo.honor,
-            research: res.data.studentInfo.directionInauguration,
-            intro: res.data.studentInfo.intro
+          sid: res.data.studentInfo.sid,
+          sname: res.data.studentInfo.sname,
+          sclass: res.data.studentInfo.sclass,
+          index: po_index,
+          long: res.data.studentInfo.phone,
+          email: res.data.studentInfo.email,
+          direction: res.data.studentInfo.directionInterest,
+          honor: res.data.studentInfo.honor,
+          research: res.data.studentInfo.directionInauguration,
+          introduction: res.data.studentInfo.introduction
         })
       },
       fail: function (res) {
         // 如果缓存失败，请求学生的基本信息
         wx.request({
           url: 'http://localhost:8443/info',
-          // zhr：在上面输入你的本机Servlet地址
           method: 'GET',
           data: {
             uid: 0

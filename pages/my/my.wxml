@@ -29,8 +29,10 @@
             <view class="td">{{item.choice}}</view>
             <view class="td_1">{{item.status}}</view>
           </view>
+
         </block>
       </view>
+
     </view>
     <view bindtap="edit" class="message_border">
       <view class="title_line">个人信息完善度
