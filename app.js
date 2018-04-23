@@ -32,9 +32,9 @@ App({
   globalData: {
 
     userInfo: null,   //用户信息
-    percent:80,       //个人信息完善度
+    percent:70,       //个人信息完善度
     uid:2011  ,         //学号/工号
     isStudent: false,   //是否为学生
-    timeNode:2        //时间节点
+    timeNode:1       //时间节点
   }
 })

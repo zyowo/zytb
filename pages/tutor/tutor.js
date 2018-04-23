@@ -44,9 +44,9 @@ Page({
     animationData: {},
     percent: 0,
     uid: '',
-    listData: tutorinfolist,
+    tutorinfolist: [],
     facultyList: facultyli,
-    stuList: stuinfolist,
+    stuList: [],
     xindex: -1,
     tutors: [],
     faculties: [],
@@ -57,7 +57,8 @@ Page({
     selectall: false,
     isStudent: isStu,
     my_choice: [],
-    checkindex: checkindex
+    checkindex: checkindex,
+    timeNode:0
   },
   bindPickerChange: function (e) {
     this.setData({
@@ -68,7 +69,7 @@ Page({
     var x = this.data.xindex;
     var facul = facultyli[x];
     var arr = new Array();
-    for (var i in tutorinfolist) {
+    for (var i =0;i< tutorinfolist.length;i++) {
       var m = tutorinfolist[i];
       if (facul == m.department) arr.push(m);
     }
@@ -100,6 +101,51 @@ Page({
       checkindex: checkindex,
     })
 
+  },
+  cancel:function(e){
+    this.setData({
+      record_line: e.currentTarget.dataset.index
+    });
+    recordline = this.data.record_line;
+    checkindex[recordline] = true;
+    this.setData({
+      checkindex: checkindex
+    })
+    /*wx.showLoading({
+      title: '提交中...',
+    })
+    wx.request({
+      url: 'http://localhost:8443/report/findReportItem',//???
+      // zhr：在上面输入你的本机Servlet地址
+      method: 'POST',
+      data: {
+        sid: getApp().globalData.uid,//向数据库提交 sid-tid,查询该条数据，并修改status为0
+        tid: tutor_name[recordline].tid,
+      }
+      ,
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        wx.hideLoading();
+        wx.showToast({
+          title: res.data.message,
+          icon: 'success',
+          duration: 1500,
+          mask: true,
+        })
+
+      },
+      fail: function (res) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '服务器连接失败',
+          image: '../../img/fail.png',
+          duration: 1500,
+          mask: true,
+        })
+      }
+    }) */
   },
   choose: function (e) {
     this.setData({
@@ -705,9 +751,10 @@ Page({
     var that = this;
     that.setData({
       percent: getApp().globalData.percent,
-      uid: getApp().globalData.uid
+      uid: getApp().globalData.uid,
+      timeNode: getApp().globalData.timeNode,
     })
-
+console.log(this.data.timeNode)
     if (isStu) {//如果是学生则请求老师信息
       /*wx.showLoading({
         title: '加载中...',
@@ -747,8 +794,10 @@ Page({
             mask: true,
           })
         }
-      })*/
-
+      })
+     
+      */
+     
       /*wx.showLoading({
         title: '加载中...',
       })
@@ -804,12 +853,15 @@ Page({
         }
       }
       that.setData({
-        my_choice: volinfolist
+        my_choice: volinfolist,
+        tutorinfolist: tutorinfolist,
+        stuList:stuinfolist
+
       })
       console.log('当前你的志愿情况', volinfolist)
     }
     else {//如果是老师则请求学生信息
-      if (getApp().globalData.timeNode == 2) {
+      if (that.data.timeNode == 2) {
         /*wx.showLoading({//导师第一轮选取学生
           title: '加载中...',
         })
