@@ -98,6 +98,12 @@
   width:490rpx;
   margin-top: 50rpx;
 }
+.tip{
+  margin-top:30rpx;
+  margin-left:10rpx;
+  border-bottom: 1px solid #CCCCCC;
+  color:lightcoral;
+}
 .label{
   display: flex;  
   line-height:35px;
@@ -108,7 +114,7 @@
   border: 2px solid darkgray;  
   border-radius: 5px;
   width: 95%;  
-  margin-top: 50rpx;  
+  margin-top: 40rpx;  
   margin-left: 15rpx;  
 }
 .searchcube{

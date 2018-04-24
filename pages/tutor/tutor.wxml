@@ -1,5 +1,6 @@
 <!--pages/tutor/tutor.wxml-->
 <image class='bg' src="../../img/back.jpg"></image>
+<view></view>
 <block wx:if="{{isStudent}}">
   <block wx:if="{{(timeNode<=1)&&(percent>=80)}}">
     <view class="dis">
@@ -190,82 +191,140 @@
 
 
 <block wx:else>
-  <view class="dis">
-    <view style="margin-left:10rpx;margin-top:60rpx;font-size:95%;">学生姓名:</view>
-    <input bindblur="searchStu" class="input"></input>
+  <block wx:if="{{timeNode>=2&&timeNode<=4}}">
+    <view class="dis">
+      <view style="margin-left:10rpx;margin-top:60rpx;font-size:95%;">学生姓名:</view>
+      <input bindblur="searchStu" class="input"></input>
 
-  </view>
-  <view class="dis">
-    <view style="margin-top:60rpx;margin-left:10rpx;">点击姓名可查看详细信息</view>
-    <button class="searchcube" bindtap='selectall'>查看全部</button>
-  </view>
-  <view class="table">
-    <view class="tr bg_w">
-      <view style="width:33%" class="th">姓名</view>
-      <view style="width:33%" class="th">研究所</view>
-      <view style="width:34%" class="th_1">选择/拒绝</view>
     </view>
-    <block wx:if="{{selectall}}">
-      <block wx:for="{{stuList}}" wx:key="{{code}}">
-        <view class="tr bg_g" wx:if="{{index % 2 == 0}}">
-          <view bindtap="studetail" data-index="{{index}}" style="width:33%" class="td">{{item.sname}}</view>
-          <view style="width:33%" class="td">{{item.sclass}}</view>
+    <view class="dis">
+      <view style="margin-top:60rpx;margin-left:10rpx;">点击姓名可查看详细信息</view>
+      <button class="searchcube" bindtap='selectall'>查看全部</button>
+    </view>
+    <view class="tip">当前为第{{timeNode-1}}轮</view>
+    <view class="table">
+      <view class="tr bg_w">
+        <view style="width:33%" class="th">姓名</view>
+        <view style="width:33%" class="th">研究所</view>
+        <view style="width:34%" class="th_1">选择/拒绝</view>
+      </view>
+      <block wx:if="{{selectall}}">
+        <block wx:for="{{stuList}}" wx:key="{{code}}">
+          <view class="tr bg_g" wx:if="{{index % 2 == 0}}">
+            <view bindtap="studetail" data-index="{{index}}" style="width:33%" class="td">{{item.sname}}</view>
+            <view style="width:33%" class="td">{{item.sclass}}</view>
 
-<block wx:if="{{checkindex[index]}}">
-          <view bindtap="unchoose" data-index="{{index}}" style="color:red;width:17%" class="td">拒绝</view>
-          <view class="td">|</view>
-          <view bindtap="choose" data-index="{{index}}" style="color:blue;width:17%" class="td">选择</view>
-</block>
-<block wx:else>
- <view bindtap="cancel" data-index="{{index}}" style="color:red;width:34%" class="td">取消</view>
-</block>
+            <block wx:if="{{checkindex[index]}}">
+              <view bindtap="unchoose" data-index="{{index}}" style="color:red;width:17%" class="td">拒绝</view>
+              <view class="td">|</view>
+              <view bindtap="choose" data-index="{{index}}" style="color:blue;width:17%" class="td">选择</view>
+            </block>
+            <block wx:else>
+              <view bindtap="cancel" data-index="{{index}}" style="color:red;width:34%" class="td">取消</view>
+            </block>
 
 
-        </view>
-        <view class="tr" wx:else>
-          <view bindtap="studetail" data-index="{{index}}" style="width:33%" class="td">{{item.sname}}</view>
-          <view style="width:33%" class="td">{{item.sclass}}</view>
+          </view>
+          <view class="tr" wx:else>
+            <view bindtap="studetail" data-index="{{index}}" style="width:33%" class="td">{{item.sname}}</view>
+            <view style="width:33%" class="td">{{item.sclass}}</view>
 
-         <block wx:if="{{checkindex[index]}}">
-          <view bindtap="unchoose" data-index="{{index}}" style="color:red;width:17%" class="td">拒绝</view>
-          <view class="td">|</view>
-          <view bindtap="choose" data-index="{{index}}" style="color:blue;width:17%" class="td">选择</view>
-</block>
-<block wx:else>
- <view bindtap="cancel" data-index="{{index}}" style="color:red;width:34%" class="td">取消</view>
-</block>
-        </view>
+            <block wx:if="{{checkindex[index]}}">
+              <view bindtap="unchoose" data-index="{{index}}" style="color:red;width:17%" class="td">拒绝</view>
+              <view class="td">|</view>
+              <view bindtap="choose" data-index="{{index}}" style="color:blue;width:17%" class="td">选择</view>
+            </block>
+            <block wx:else>
+              <view bindtap="cancel" data-index="{{index}}" style="color:red;width:34%" class="td">取消</view>
+            </block>
+          </view>
+        </block>
       </block>
-    </block>
-    <block wx:else>
-      <block wx:for="{{students}}" wx:key="{{code}}">
-        <view class="tr bg_g" wx:if="{{index % 2 == 0}}">
-          <view bindtap="studetail" data-index="{{index}}" style="width:33%" class="td">{{item.sname}}</view>
-          <view style="width:33%" class="td">{{item.sclass}}</view>
-          <block wx:if="{{checkindex[index]}}">}}">
-          <view bindtap="unchoose" data-index="{{index}}" style="color:red;width:17%" class="td">拒绝</view>
-          <view class="td">|</view>
-          <view bindtap="choose" data-index="{{index}}" style="color:blue;width:17%" class="td">选择</view>
-</block>
-<block wx:else>
- <view bindtap="cancel" data-index="{{index}}" style="color:red;width:34%" class="td">取消</view>
-</block>
+      <block wx:else>
+        <block wx:for="{{students}}" wx:key="{{code}}">
+          <view class="tr bg_g" wx:if="{{index % 2 == 0}}">
+            <view bindtap="studetail" data-index="{{index}}" style="width:33%" class="td">{{item.sname}}</view>
+            <view style="width:33%" class="td">{{item.sclass}}</view>
+            <block wx:if="{{checkindex[index]}}">
+              <view bindtap="unchoose" data-index="{{index}}" style="color:red;width:17%" class="td">拒绝</view>
+              <view class="td">|</view>
+              <view bindtap="choose" data-index="{{index}}" style="color:blue;width:17%" class="td">选择</view>
+            </block>
+            <block wx:else>
+              <view bindtap="cancel" data-index="{{index}}" style="color:red;width:34%" class="td">取消</view>
+            </block>
 
-        </view>
-        <view class="tr" wx:else>
-          <view bindtap="studetail" data-index="{{index}}" style="width:33%" class="td">{{item.sname}}</view>
-          <view style="width:33%" class="td">{{item.sclass}}</view>
+          </view>
+          <view class="tr" wx:else>
+            <view bindtap="studetail" data-index="{{index}}" style="width:33%" class="td">{{item.sname}}</view>
+            <view style="width:33%" class="td">{{item.sclass}}</view>
 
-         <block wx:if="{{checkindex[index]}}">}}">
-          <view bindtap="unchoose" data-index="{{index}}" style="color:red;width:17%" class="td">拒绝</view>
-          <view class="td">|</view>
-          <view bindtap="choose" data-index="{{index}}" style="color:blue;width:17%" class="td">选择</view>
-</block>
-<block wx:else>
- <view bindtap="cancel" data-index="{{index}}" style="color:red;width:34%" class="td">取消</view>
-</block>
-        </view>
+            <block wx:if="{{checkindex[index]}}">
+              <view bindtap="unchoose" data-index="{{index}}" style="color:red;width:17%" class="td">拒绝</view>
+              <view class="td">|</view>
+              <view bindtap="choose" data-index="{{index}}" style="color:blue;width:17%" class="td">选择</view>
+            </block>
+
+            <block wx:else>
+              <view bindtap="cancel" data-index="{{index}}" style="color:red;width:34%" class="td">取消</view>
+            </block>
+          </view>
+        </block>
       </block>
-    </block>
-  </view>
+    </view>
+  </block>
+  <block wx:else><!--相对于导师，填报结束时-->
+    <view animation="{{animationData}}" class="animation">该轮志愿填报未开始或已结束>>></view>
+ <view class="dis">
+      <view style="margin-left:10rpx;margin-top:60rpx;font-size:95%;">学生姓名:</view>
+      <input bindblur="searchStu" class="input"></input>
+
+    </view>
+    <view class="dis">
+      <view style="margin-top:60rpx;margin-left:10rpx;">点击姓名可查看详细信息</view>
+      <button class="searchcube" bindtap='selectall'>查看全部</button>
+    </view>
+    <view class="tip">当前仅可执行查询功能</view>
+    <view class="table">
+      <view class="tr bg_w">
+        <view style="width:33%" class="th">姓名</view>
+        <view style="width:33%" class="th">研究所</view>
+        <view style="width:34%" class="th_1">选择/拒绝</view>
+      </view>
+      <block wx:if="{{selectall}}">
+        <block wx:for="{{stuList}}" wx:key="{{code}}">
+          <view class="tr bg_g" wx:if="{{index % 2 == 0}}">
+            <view bindtap="studetail" data-index="{{index}}" style="width:33%" class="td">{{item.sname}}</view>
+            <view style="width:33%" class="td">{{item.sclass}}</view>
+            <view style="color:gray;width:34%" class="td">已选</view>
+           
+
+
+          </view>
+          <view class="tr" wx:else>
+            <view bindtap="studetail" data-index="{{index}}" style="width:33%" class="td">{{item.sname}}</view>
+            <view style="width:33%" class="td">{{item.sclass}}</view>
+
+              <view style="color:gray;width:34%" class="td">已选</view>
+          </view>
+        </block>
+      </block>
+      <block wx:else>
+        <block wx:for="{{students}}" wx:key="{{code}}">
+          <view class="tr bg_g" wx:if="{{index % 2 == 0}}">
+            <view bindtap="studetail" data-index="{{index}}" style="width:33%" class="td">{{item.sname}}</view>
+            <view style="width:33%" class="td">{{item.sclass}}</view>
+              <view style="color:gray;width:34%" class="td">已选</view>
+
+          </view>
+          <view class="tr" wx:else>
+            <view bindtap="studetail" data-index="{{index}}" style="width:33%" class="td">{{item.sname}}</view>
+            <view style="width:33%" class="td">{{item.sclass}}</view>
+
+              <view style="color:gray;width:34%" class="td">已选</view>
+          </view>
+        </block>
+      </block>
+    </view>
+  </block>
 </block>

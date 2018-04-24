@@ -6,16 +6,18 @@ var recordline = 0;
 var checkindex = [];
 var choice_stu = 0;
 var recordindex = 0;
-var isStu = getApp().globalData.isStudent;
+var facultyli = ['数字媒体', '网络工程', '软件工程', '计算机智能系统研究所']; 
+//var select = ['选择', '退选']
+var isStu = null;
 var voluneidinfolist = [
-  { "sid": 105, "tid": 1002, "choice": 1, "status": 0 },
-  { "sid": 101, "tid": 1002, "choice": 1, "status": 0 },
-  { "sid": 104, "tid": 1002, "choice": 1, "status": 0 },
-  { "sid": 103, "tid": 1002, "choice": 1, "status": 0 },
+
+  /*{ "sid": 105, "tid": 1002, "choice": 1, "status": 0 },
+  { "sid": 101, "tid": 1003, "choice": 2, "status": 1 },
+  { "sid": 104, "tid": 1011, "choice": 3, "status": 2 },*/
 
 ]
 var tutorinfolist = [
-  { "tid": 1004, "tname": "潘翔", "department": '数字媒体', "picknum": 20, "allnum": 30 },
+ /* { "tid": 1004, "tname": "潘翔", "department": '数字媒体', "picknum": 20, "allnum": 30 },
   { "tid": 1002, "tname": "王秀梅", "department": '网络工程', "picknum": 10, "allnum": 50 },
   { "tid": 1003, "tname": "王鑫", "department": '软件工程', "picknum": 15, "allnum": 10 },
   { "tid": 1005, "tname": "亦文", "department": '数字媒体', "picknum": 20, "allnum": 30 },
@@ -24,27 +26,28 @@ var tutorinfolist = [
   { "tid": 1008, "tname": "王万良1", "department": '计算机自动化', "picknum": 13, "allnum": 26 },
   { "tid": 1009, "tname": "王春平", "department": '软件工程', "picknum": 5, "allnum": 10 },
   { "tid": 1000, "tname": "龙胜春", "department": '软件工程', "picknum": 5, "allnum": 10 },
-  { "tid": 1011, "tname": "王万良", "department": '计算机自动化', "picknum": 13, "allnum": 26 },
+  { "tid": 1011, "tname": "王万良", "department": '计算机自动化', "picknum": 13, "allnum": 26 },*/
 ]
 
 var stuinfolist = [
-  { "sid": 101, "sname": "钟亦文1", "sclass": '数字媒体' },
+ /* { "sid": 101, "sname": "钟亦文1", "sclass": '数字媒体' },
   { "sid": 106, "sname": "钟亦文2", "sclass": '网络工程' },
   { "sid": 104, "sname": "钟亦文3", "sclass": '软件工程' },
   { "sid": 103, "sname": "钟亦文4", "sclass": '数字媒体' },
   { "sid": 105, "sname": "钟亦文5", "sclass": '网络工程' },
-  { "sid": 102, "sname": "钟亦文6", "sclass": '计算机自动化' },
+  { "sid": 102, "sname": "钟亦文6", "sclass": '计算机自动化' },*/
 ]
 var volinfolist = [];
 //volinfolist = voluneidinfolist;
-var facultyli = ['数字媒体', '网络工程', '软件工程', '计算机自动化']
+
 Page({
   data: {
     animation: '',
     animationData: {},
     percent: 0,
-    uid: '',
+    uid: 0,
     tutorinfolist: [],
+    voluneidinfolist:[],
     facultyList: facultyli,
     stuList: [],
     xindex: -1,
@@ -55,9 +58,9 @@ Page({
     record_line: 0,
     tutor_pick: true,
     selectall: false,
-    isStudent: isStu,
+    isStudent: null,
     my_choice: [],
-    checkindex: checkindex,
+    checkindex: [],
     timeNode:0
   },
   bindPickerChange: function (e) {
@@ -107,10 +110,7 @@ Page({
       record_line: e.currentTarget.dataset.index
     });
     recordline = this.data.record_line;
-    checkindex[recordline] = true;
-    this.setData({
-      checkindex: checkindex
-    })
+    
     /*wx.showLoading({
       title: '提交中...',
     })
@@ -134,7 +134,10 @@ Page({
           duration: 1500,
           mask: true,
         })
-
+checkindex[recordline] = true;
+    this.setData({
+      checkindex: checkindex
+    })
       },
       fail: function (res) {
         wx.hideLoading();
@@ -154,7 +157,7 @@ Page({
 
     if (isStu) {
       choice_stu++;
-      if (choice_stu == 3) {
+      if (choice_stu >= 3) {
         var toastText = '超过啦!';
         wx.showToast({
           title: toastText,
@@ -391,10 +394,7 @@ Page({
       record_line: e.currentTarget.dataset.index
     });
     recordline = this.data.record_line;
-    checkindex[recordline] = true;
-    this.setData({
-      checkindex: checkindex
-    })
+   
     if (isStu) {
       //向数据库请求数据，当前选择的数据和数据库中的数据对比(name,faculty,uid,choice)，若一样则选取该条数据，进行删除操作
       /* wx.showLoading({
@@ -420,7 +420,10 @@ Page({
              duration: 1500,
              mask: true,
            })
- 
+  checkindex[recordline] = true;
+    this.setData({
+      checkindex: checkindex
+    })
          },
          fail: function (res) {
            wx.hideLoading();
@@ -598,11 +601,11 @@ Page({
 
   },
   searchtutor: function (e) {
-    var name = e.detail.value;
+    var tname = e.detail.value;
     var arr = new Array();
     for (var i = 0; i < tutorinfolist.length; i++) {
       var m = tutorinfolist[i];
-      if (name == m.name) arr.push(m);
+      if (tname == m.tname) arr.push(m);
     }
     this.setData({
       tutors: arr,
@@ -717,7 +720,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
@@ -747,28 +750,84 @@ Page({
   onReachBottom: function () {
 
   },
+  updatetutorInfoList: function () {
+    this.setData({
+      tutorinfolist: tutorinfolist,
+    })
+    console.log(this.data.tutorinfolist)
+  }, 
+  updatevoluneInfoList: function () {
+    this.setData({
+      voluneidinfolist: voluneidinfolist,
+    })
+    console.log(voluneidinfolist)
+    for (var i = 0; i < voluneidinfolist.length; i++) {//找到自己志愿的导师
+      var fill = {
+        name: '',
+        choice: 0,
+        status: 0
+      }
+      for (var j = 0; j < tutorinfolist.length; j++) {
+        if (voluneidinfolist[i].tid == tutorinfolist[j].tid) {
+          fill.name = tutorinfolist[j].tname;
+          fill.choice = voluneidinfolist[i].choiceNumber;
+          fill.status = voluneidinfolist[i].status;
+          volinfolist[i] = fill;
+
+        }
+      }
+    }
+
+
+    for (var i = 0; i < volinfolist.length; i++) {
+      switch (volinfolist[i].choice) {
+        case 1: volinfolist[i].choice = '第一志愿'; break;
+        case 2: volinfolist[i].choice = '第二志愿'; break;
+        case 3: volinfolist[i].choice = '随机匹配';
+      }
+      switch (volinfolist[i].status) {
+        case 0: volinfolist[i].status = '处理中'; break;
+        case 1: volinfolist[i].status = '成功'; break;
+        case 2: volinfolist[i].status = '失败'; break;
+      }
+    }
+    this.setData({
+      my_choice: volinfolist,
+
+    })
+   
+  },
   onLoad: function () {
     var that = this;
+     
     that.setData({
       percent: getApp().globalData.percent,
       uid: getApp().globalData.uid,
       timeNode: getApp().globalData.timeNode,
+      isStudent: getApp().globalData.isStudent,
+      
     })
-console.log(this.data.timeNode)
+    
+    isStu = this.data.isStudent;
     if (isStu) {//如果是学生则请求老师信息
-      /*wx.showLoading({
+      wx.showLoading({
         title: '加载中...',
       })
+      
       wx.request({
-        url: 'http://localhost:8443/report/mychoice',//？？？
+        url: 'https://zyowo.cn/choice/report/mychoice',
         // zhr：在上面输入你的本机Servlet地址
         method: 'POST',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
         data: {
           sid: app.globalData.uid,
         },
+        
         success: function (res) {
           wx.hideLoading();
-          var List = res.data.reportList;
+          var List = res.data.reportItemList;
           if (List == null) {
             var toastText = '暂无已选导师';
             wx.showToast({
@@ -779,9 +838,8 @@ console.log(this.data.timeNode)
             })
           }
           else {
-
             voluneidinfolist = List;//获取到自己sid下的tid-sid-choice-status列表
-
+            that.updatevoluneInfoList();
           }
 
         },
@@ -796,21 +854,24 @@ console.log(this.data.timeNode)
         }
       })
      
-      */
+      
      
-      /*wx.showLoading({
+      wx.showLoading({
         title: '加载中...',
       })
       wx.request({
-        url: 'http://localhost:8443/report/index',//？？？请求所有导师的信息repotrtlist        // zhr：在上面输入你的本机Servlet地址
+        url: 'https://zyowo.cn/choice/report/index',//？？？请求所有导师的信息repotrtlist        // zhr：在上面输入你的本机Servlet地址
         method: 'POST',
+        data: { },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
         success: function (res) {
-
           wx.hideLoading();
-          var List = res.data.report;
+          var List = res.data.reportList;
           tutorinfolist = List;
+          that.updatetutorInfoList();
          
-
         },
         fail: function (res) {
           wx.hideLoading();
@@ -821,44 +882,10 @@ console.log(this.data.timeNode)
             mask: true,
           })
         }
-      })*/
-
-      for (var i = 0; i < voluneidinfolist.length; i++) {//找到自己志愿的导师
-        var fill = {
-          name: '',
-          choice: 0,
-          status: 0
-        }
-        for (var j = 0; j < tutorinfolist.length; j++) {
-          if (voluneidinfolist[i].tid == tutorinfolist[j].tid) {
-            fill.name = tutorinfolist[j].tname;
-            fill.choice = voluneidinfolist[i].choice;
-            fill.status = voluneidinfolist[i].status;
-            volinfolist[i] = fill;
-
-          }
-        }
-      }
-
-      for (var i = 0; i < volinfolist.length; i++) {
-        switch (volinfolist[i].choice) {
-          case 1: volinfolist[i].choice = '第一志愿'; break;
-          case 2: volinfolist[i].choice = '第二志愿'; break;
-          case 3: volinfolist[i].choice = '随机匹配';
-        }
-        switch (volinfolist[i].status) {
-          case 0: volinfolist[i].status = '处理中'; break;
-          case 1: volinfolist[i].status = '成功'; break;
-          case 2: volinfolist[i].status = '失败'; break;
-        }
-      }
-      that.setData({
-        my_choice: volinfolist,
-        tutorinfolist: tutorinfolist,
-        stuList:stuinfolist
-
       })
-      console.log('当前你的志愿情况', volinfolist)
+      
+    
+      //console.log('当前你的志愿情况', volinfolist)
     }
     else {//如果是老师则请求学生信息
       if (that.data.timeNode == 2) {

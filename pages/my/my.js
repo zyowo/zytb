@@ -1,8 +1,7 @@
 // pages/my/my.js
 var app = getApp()
-var isStu = getApp().globalData.isStudent;
 var idInfoList = [];  // 这里存了学生的选导记录
-
+var isStu = null;
 Page({
   data: {
     // --- 展示用户头像 ---
@@ -14,7 +13,7 @@ Page({
     canIUse: wx.canIUse('image.open-type.getUserInfo'),
     my_choice: idInfoList,    // 在这里，把选导记录重新赋给 my_choice
     // --- 判断是学生还是导师 ---
-    isStudent: isStu,
+    isStudent: null,
     // --- 判断学生是否含有选导记录 ---
     isNoTutor: true,
     percent: 0,
@@ -101,6 +100,11 @@ Page({
     wx.showNavigationBarLoading();
     var that = this;    // 很重要，存入一份this指针的变量，后面调用
 
+    this.setData({
+      isStudent: app.globalData.isStudent
+    })
+    isStu = this.data.isStudent;
+    
     // [1] 获取个人信息
     // 因为后面马上就要用到缓存传参，所以这里必须是同步的
     try {
@@ -209,7 +213,7 @@ Page({
               key: '选导记录',
               data: {
                 //这里存的是 sid - tid - status - choice
-                reportItemList: res.data.reportItemList,
+                reportItemList: res.data.c,
                 
                 //这里存的是 tid-tname-allnum-picknum-reportItem
                 //教师工号、姓名、总人数、已选人数、学生
@@ -338,6 +342,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+
+    console.log(app.globalData.isStudent);
+    console.log(this.data.isStudent);
     wx.hideNavigationBarLoading();
   },
 
