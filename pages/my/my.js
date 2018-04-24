@@ -142,7 +142,7 @@ Page({
     } catch (e) {
       // 如果缓存失败，请求学生的基本信息
       wx.request({
-        url: 'http://localhost:8443/info',
+        url: 'https://zyowo.cn/choice/info',
         // zhr：在上面输入你的本机Servlet地址
         method: 'GET',
         data: {
@@ -194,7 +194,7 @@ Page({
     if (isStu) // 如果是学生
     {
       wx.request({
-        url: 'http://localhost:8443/report/mychoice',
+        url: 'https://zyowo.cn/choice/report/mychoice',
         data: {
           // 已经读过缓存了，用全局变量写入
           sid: app.globalData.uid,

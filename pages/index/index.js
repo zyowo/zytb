@@ -93,7 +93,7 @@ Page({
     var that = this;
     //从服务器获取时间节点
     wx.request({
-      url: 'http://localhost:8443/time',
+      url: 'https://zyowo.cn/choice/time',
       data: {
         get: ''
       },

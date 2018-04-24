@@ -147,7 +147,7 @@ Page({
     }
     // 如果本地检测表单逻辑都正确，则发送修改
     else wx.request({
-      url: 'http://localhost:8443/info/update_student_info',
+      url: 'https://zyowo.cn/choice/info/update_student_info',
       method: 'POST',
       data: {
         sid: this.data.sid,
@@ -173,7 +173,7 @@ Page({
           wx.setStorage({
             key: '个人信息',
             data: {
-              studentInfo: res.data.userInfo
+              studentInfo: res.data.userinfo
             },
           })
           wx.hideLoading();
@@ -259,7 +259,7 @@ Page({
       fail: function (res) {
         // 如果缓存失败，请求学生的基本信息
         wx.request({
-          url: 'http://localhost:8443/info',
+          url: 'https://zyowo.cn/choice/info',
           method: 'GET',
           data: {
             uid: 0

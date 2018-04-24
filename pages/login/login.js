@@ -49,7 +49,7 @@ Page({
       title: '提交中...',
     })
     wx.request({
-      url: 'http://localhost:8443/login',
+      url: 'https://zyowo.cn/choice/login',
       // zhr：在上面输入你的本机Servlet地址
       method: 'POST',
       data: {

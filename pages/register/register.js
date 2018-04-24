@@ -70,7 +70,7 @@ Page({
       title: '提交中...',
     })
     wx.request({
-      url: 'http://localhost:8443/register',
+      url: 'https://zyowo.cn/choice/register',
       // zhr：在上面输入你的本机Servlet地址
       method: 'POST',
       data: {
