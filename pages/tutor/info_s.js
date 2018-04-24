@@ -13,10 +13,12 @@ Page({
     uname: '钟亦文',
     uid: '201526810530',
     academy: '数字媒体',
-    tel: 12345678234,
+    tel: '',
+    poliface: '',
     email: 'wwl@zjut.edu.cn',
-    qqnum: '26884685',
-    research: '跑步冠军、乒乓球冠军、acm金牌',
+    inauguration: '',
+    interest: '26884685',
+    honor: '跑步冠军、乒乓球冠军、acm金牌',
     intro: '比较爱好电脑，猫里奥世界纪录保持者'
   },
 
@@ -28,17 +30,17 @@ Page({
     var recline = remark.getRecord();
     var infoS = remark.getStu();
     that.setData({
-      uname: infoS[recline].sname
+      uid: infoS[recline].sid
     })
-/*wx.showLoading({
+    wx.showLoading({
       title: '提交中...',
     })
     wx.request({
-      url: 'http://localhost:8443/report/findReportItem',//???
+      url: 'https://zyowo.cn/choice//info',//???
       // zhr：在上面输入你的本机Servlet地址
       method: 'POST',
       data: {//在教师详细信息的表中搜索
-         tid: that.data.uid
+        uid: that.data.uid
       }
       ,
       header: {
@@ -47,22 +49,39 @@ Page({
       success: function (res) {
         wx.hideLoading();
         wx.showToast({
-          title: res.data.message,
+          title: '',
           icon: 'success',
           duration: 1500,
           mask: true,
         })
-       var detailNews = res.data.reportList;
-       myNews=detailNews;
-       that.setData({
-         uname: myNews.sname,
-         academy: myNews.sclass,
-         tel: myNews.tel,
-         email: myNews.email,
-         qqnum:myNews.qqnum,
-         research: myNews.research,
-         intro: myNews.intro
-       })
+        var detailNews = res.data.studentInfo;
+        myNews = detailNews;
+
+        var selection = ['群众', '团员', '党员']
+        var m = myNews.politicalStatus;
+        if (m == 0)
+          that.setData({
+            poliface: '群众'
+          })
+        if (m == 1)
+          that.setData({
+            poliface: '团员'
+          })
+        if (m == 2) that.setData({
+          poliface: '党员'
+        })
+
+        that.setData({
+          uname: myNews.sname,
+          academy: myNews.sclass,
+          tel: myNews.phone,
+          email: myNews.email,
+          inauguration: myNews.directionInauguration,
+          interest: myNews.directionInterest,
+          honor: myNews.honor,
+          intro: myNews.introduction
+
+        })
       },
       fail: function (res) {
         wx.hideLoading();
@@ -73,7 +92,7 @@ Page({
           mask: true,
         })
       }
-    }) */
+    })
 
 
   },

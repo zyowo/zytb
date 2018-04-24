@@ -35,6 +35,6 @@ App({
     percent:80,       //个人信息完善度
     uid: 201526810528,  //学号/工号
     isStudent: true,   //是否为学生
-    timeNode:1       //时间节点
+    timeNode:1      //时间节点
   }
 })

@@ -14,6 +14,10 @@
       <text class='label'>学院：</text>
       <text class='value'>{{academy}}</text>
     </view>
+    <view class='item'>
+      <text class='label'>政治面貌：</text>
+      <text class='value'>{{poliface}}</text>
+    </view>
   </view>
   <view class='blur'>
     <view class='item'>
@@ -24,17 +28,23 @@
       <text class='label'>电子邮箱：</text>
       <text class='value'>{{email}}</text>
     </view>
-     <view class='item'>
-      <text class='label'>QQ:</text>
-      <text class='value'>{{qqnum}}</text>
-    </view>
+     
     
   </view>
   <view class='blur'>
-    <view class='item'>
-      <text class='label'>个人奖项</text>
-      <text class='value'>{{research}}</text>
+     <view class='item'>
+      <text class='label'>爱好:</text>
+      <text class='value'>{{interest}}</text>
     </view>
+    <view class='item'>
+      <text class='label'>个人奖项:</text>
+      <text class='value'>{{honor}}</text>
+    </view>
+    <view class='item'>
+      <text class='label'>个人方向:</text>
+      <text class='value'>{{inauguration}}</text>
+    </view>
+ 
     </view>
  <view class='blur'>
     <view class='item'>
