@@ -213,7 +213,7 @@ Page({
               key: '选导记录',
               data: {
                 //这里存的是 sid - tid - status - choice
-                reportItemList: res.data.reportItemList,
+                reportItemList: res.data.c,
                 
                 //这里存的是 tid-tname-allnum-picknum-reportItem
                 //教师工号、姓名、总人数、已选人数、学生
