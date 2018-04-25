@@ -1,6 +1,6 @@
 <!--pages/tutor/tutor.wxml-->
-<image class='bg' src="../../img/back.jpg"></image>
-<view></view>
+<image class='bg' src="../../img/backf.jpg"></image>
+
 <block wx:if="{{isStudent}}">
   <block wx:if="{{(timeNode<=1)&&(percent>=80)}}">
     <view class="dis">
@@ -33,7 +33,7 @@
       </block>
     </view>
 
-    <view style="margin-top:40rpx;margin-left:10rpx">点击老师姓名可查看详细信息</view>
+    <view style="margin-top:40rpx;margin-left:10rpx;color:gray">点击老师姓名可查看详细信息</view>
     <view class="table">
       <view class="tr bg_w">
         <view style="width:20%" class="th">姓名</view>
@@ -191,7 +191,7 @@
 
 
 <block wx:else>
-  <block wx:if="{{timeNode>=2&&timeNode<=4}}">
+  <block wx:if="{{timeNode>=2&&timeNode<=3}}">
     <view class="dis">
       <view style="margin-left:10rpx;margin-top:60rpx;font-size:95%;">学生姓名:</view>
       <input bindblur="searchStu" class="input"></input>
@@ -199,7 +199,7 @@
     </view>
     <view class="dis">
       <view style="margin-top:60rpx;margin-left:10rpx;">点击姓名可查看详细信息</view>
-      <button class="searchcube" bindtap='selectall'>查看全部</button>
+      <button class="searchcube"  bindtap='selectall'>查看全部</button>
     </view>
     <view class="tip">当前为第{{timeNode-1}}轮</view>
     <view class="table">

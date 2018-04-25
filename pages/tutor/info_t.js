@@ -31,15 +31,15 @@ Page({
     that.setData({
       uid: infoT[recline].tid,
     })
-    /*wx.showLoading({
+    wx.showLoading({
       title: '提交中...',
     })
     wx.request({
-      url: 'http://localhost:8443/report/findReportItem',//???
+      url: 'https://zyowo.cn/choice//info',//???
       // zhr：在上面输入你的本机Servlet地址
       method: 'POST',
       data: {//在教师详细信息的表中搜索
-         tid: that.data.uid
+         uid: that.data.uid
       }
       ,
       header: {
@@ -48,21 +48,22 @@ Page({
       success: function (res) {
         wx.hideLoading();
         wx.showToast({
-          title: res.data.message,
+          title: '',
           icon: 'success',
           duration: 1500,
           mask: true,
         })
-       var detailNews = res.data.reportList;
+        var detailNews = res.data.teacherInfo;
        myNews=detailNews;
+       console.log(detailNews)
        that.setData({
          uname: myNews.tname,
          academy: myNews.department,
          office: myNews.office,
-         tel: myNews.tel,
+         tel: myNews.phone,
          email: myNews.email,
-         research: myNews.research,
-         intro: myNews.intro
+         research: myNews.researchField,
+         //intro: myNews.intro
        })
       },
       fail: function (res) {
@@ -74,7 +75,7 @@ Page({
           mask: true,
         })
       }
-    }) */
+    }) 
     console.log(this.data.uid);
   },
 

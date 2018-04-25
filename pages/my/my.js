@@ -364,7 +364,9 @@ Page({
       percent: app.globalData.percent
     })
     var that = this;
+
     // 重新获取老师信息并渲染
+    // TOIMPROVE：打开时渲染了两次。
     wx.getStorage({
       key: '个人信息',
       success: function(res) {
