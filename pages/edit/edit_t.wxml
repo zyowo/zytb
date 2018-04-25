@@ -6,7 +6,7 @@
     <view class="item">
       <view class="title">办公室</view>
       <view style="width:70%">
-      <input maxlength='20' class="input" name="class" confirm-type="next" placeholder="请输入办公室地址" value="{{office}}"></input>
+      <input maxlength='20' class="input" name="office" confirm-type="next" placeholder="请输入办公室地址" value="{{office}}"></input>
       </view>
     </view>
 
@@ -15,11 +15,11 @@
     <view class="item">
       <view class="title">联系电话</view>
       <view style='width:36%'>
-        <input maxlength='11' type="number" name="class" confirm-type="next" placeholder="长号" value="{{long}}"></input>
+        <input maxlength='11' type="number" name="phone" confirm-type="next" placeholder="长号" value="{{long}}"></input>
       </view>
       <text style='width:6%'>/</text>
       <view style='width:28%'>
-        <input maxlength='6' class="input_dh" type="number" name="class" confirm-type="next" placeholder="短号" value="{{short}}"></input>
+        <input maxlength='6' class="input_dh" type="number" name="short" confirm-type="next" placeholder="短号" value="{{short}}"></input>
       </view>
     </view>
 
@@ -28,7 +28,7 @@
     <view class="item">
       <view class="title">电子邮箱</view>
       <view style="width:70%">
-      <input class="input" name="class" confirm-type="next" placeholder="请输入电子邮箱" value="{{email}}"></input>
+      <input class="input" name="email" confirm-type="next" placeholder="请输入电子邮箱" value="{{email}}"></input>
       </view>
     </view>
 
@@ -37,7 +37,7 @@
     <view class="item">
       <view class="title">研究方向</view>
       <view style="width:70%">
-      <input class="input" value="{{research}}" confirm-type="next" placeholder="请输入您的研究方向，例如“人工智能 / 模式识别”"></input>
+      <input class="input" name='research' value="{{research}}" confirm-type="next" placeholder="请输入您的研究方向，例如“人工智能 / 模式识别”"></input>
       </view>
     </view>
 

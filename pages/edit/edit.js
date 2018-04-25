@@ -86,13 +86,16 @@ Page({
       title: '提交中...',
     })
     console.log(e);
+
     // 计算一下 percent
-    var newpercent = 0;
+    var newpercent = 2;
     for(var i in e.detail.value)
-    {
-      if(e.detail.value) newpercent++;
+    { //算出来都是90？
+      if(e.detail.value[i]) newpercent++;
+      if (newpercent > 10) newpercent=10;
     }
     newpercent *= 10;
+
     // 制作对象
     var stuInfo = {
       sid: this.data.sid,
@@ -153,8 +156,8 @@ Page({
         sid: this.data.sid,
         sname: this.data.sname,
         sclass: e.detail.value.sclass,
-        // 把下标替换成字符串
-        politicalStatus: this.data.array[e.detail.value.politicalStatus],
+
+        politicalStatus: e.detail.value.politicalStatus,
         phone: e.detail.value.phone,
         email: e.detail.value.email,
         directionInterest: e.detail.value.directionInterest,

@@ -33,8 +33,8 @@ App({
 
     userInfo: null,   //用户信息
     percent:80,       //个人信息完善度
-    uid: 201526810528,  //学号/工号
-    isStudent: true,   //是否为学生
-    timeNode:1       //时间节点
+    uid:"",         //学号/工号
+    isStudent: false,   //是否为学生
+    timeNode:0        //时间节点
   }
 })

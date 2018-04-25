@@ -6,7 +6,8 @@ var recordline = 0;
 var checkindex = [];
 var choice_stu = 0;
 var recordindex = 0;
-var facultyli = ['数字媒体', '网络工程', '软件工程', '计算机智能系统研究所']; 
+
+var facultyli = ['计算机教学研究中心', '计算机软件研究所', '计算机视觉研究所', '计算机智能系统研究所', '智能技术工程中心', '空间信息计算研究所','数字媒体技术研究所']; 
 //var select = ['选择', '退选']
 var isStu = null;
 var voluneidinfolist = [

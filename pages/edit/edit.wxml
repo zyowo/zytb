@@ -75,7 +75,7 @@
 
     <view class="item">
       <view class="title">个人介绍</view>
-      <textarea class="inputarea" name='introduction' placeholder="请输入个人介绍"></textarea>
+      <textarea class="inputarea" name='introduction' value="{{introduction}}" placeholder="请输入个人介绍"></textarea>
     </view>
 
     <view class='line'></view>

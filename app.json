@@ -1,8 +1,8 @@
 {
-  "pages": ["pages/tutor/tutor",
+  "pages": [
     "pages/login/login",
+    "pages/tutor/tutor",
     "pages/index/index",
-    
     "pages/my/my",
     "pages/tutor/info_s",
     "pages/tutor/info_t",

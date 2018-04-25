@@ -89,10 +89,11 @@ Page({
             icon: 'success',
             duration: 1500,
             mask: true,
-          })
-          app.globalData.uid = form["username"];  //login
-          wx.redirectTo({
-            url: '../login/login',
+            success: function(res){
+              app.globalData.uid = form["username"];  //login
+              wx.navigateBack({
+              })
+            }
           })
         }
         // [2] 连接成功，但登录失败

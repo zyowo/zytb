@@ -60,9 +60,12 @@ Page({
     })
   },
   // -- 点击 退出登录 --
-  register() {
+  logout() {
     // 清除所有本地缓存
     wx.clearStorage();
+    // 清除全局变量
+    app.globalData.percent = 0;    //个人信息完善度
+    app.globalData.uid = "";       //学号/工号
     // 跳转到登录页面
     wx.redirectTo({
       url: '../login/login'
@@ -191,6 +194,14 @@ Page({
     }
 
     // [3] TODO: 获取选导记录、学生记录 
+    this.getReportItem(that);
+  },
+
+
+  /** ———— 自定义函数 ————
+   *  获取学生的选导记录 和 老师的学生记录，支持下拉刷新
+   */
+  getReportItem: function (that) {
     if (isStu) // 如果是学生
     {
       wx.request({
@@ -252,7 +263,7 @@ Page({
 
             that.renderToView();      //异步更新
             that.updateInfoList();    //异步更新
-            
+
             // 将填好的数据存入缓存
             // 把学生的选导记录存到本地缓存
             wx.setStorage({
@@ -297,14 +308,11 @@ Page({
     }
   },
 
-
-
-
-
   /** ———— 自定义函数 ————
    *  渲染到视图，需要把 数字 改成 字符串 显示 (可以在HTML层实现)
    */
   renderToView: function () {
+    if(idInfoList)
     for (var i in idInfoList) {
       switch (idInfoList[i].choice) {
         case 1: idInfoList[i].choice = '第一志愿'; break;
@@ -355,26 +363,30 @@ Page({
     this.setData({
       percent: app.globalData.percent
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+    var that = this;
+    // 重新获取老师信息并渲染
+    wx.getStorage({
+      key: '个人信息',
+      success: function(res) {
+        console.log(getCurrentPages());
+        if(res.data.teacherInfo)
+        {
+          that.setData({
+            office: res.data.teacherInfo.office,
+            email: res.data.teacherInfo.email,
+            tel: res.data.teacherInfo.phone,
+            research: res.data.teacherInfo.researchField,
+          })
+        }
+      },
+    })
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    this.getReportItem(this);
     console.log(idInfoList);
     wx.stopPullDownRefresh()
   },

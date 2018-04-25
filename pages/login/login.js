@@ -139,7 +139,9 @@ Page({
           mask: true,
         })
         // 重要：赋值globalData
-        app.globalData.isStudent = true;
+        if(res.data.studentInfo)
+          app.globalData.isStudent = true;
+        else app.globalData.isStudent = false;
         // 切换到主页
         wx.switchTab({
           url: '../index/index',
@@ -150,10 +152,17 @@ Page({
         //需要登录，不要提示用户
       }
     })
-    this.setData({
-      uid: getApp().globalData.uid
-    })
 
+    // 在这里自动填入信息
+    var getUid = getApp().globalData.uid;
+    console.log(getUid);
+    if(getUid && getUid != 4040404)
+    {
+      form["username"] = getUid;
+      this.setData({
+        uid: getUid
+      })
+    }
   },
 
   /**
