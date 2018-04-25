@@ -62,6 +62,7 @@ Page({
     isStudent: null,
     my_choice: [],
     checkindex: [],
+    refreshFlag: false,
     timeNode: 0
   },
   bindPickerChange: function (e) {
@@ -106,6 +107,7 @@ Page({
     })
 
   },
+
   cancel: function (e) {
     var that = this;
     that.setData({
@@ -154,7 +156,7 @@ Page({
         }
       })
     }
-    else{
+    else {
       recordline = that.data.record_line;
       wx.showLoading({
         title: '提交中...',
@@ -211,7 +213,7 @@ Page({
         wx.showToast({
           title: toastText,
           image: '../../img/none.png',
-          duration: 2000,
+          duration: 1500,
           mask: true,
         })
         choice_stu--;
@@ -239,7 +241,7 @@ Page({
           console.log(res.data.message)
           wx.hideLoading();
           wx.showToast({
-            title: '',
+            title: res.data.message,
             icon: 'success',
             duration: 1500,
             mask: true,
@@ -635,7 +637,7 @@ Page({
       for (var j = 0; j < student_name.length; j++) {
         if (voluneidinfolist[i].sid == student_name[j].sid) {
           if (voluneidinfolist[i].status != 0) {
-          checkindex[j] = false;
+            checkindex[j] = false;
             console.log(voluneidinfolist[i])
           }
         }
@@ -812,6 +814,245 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    var that = this;
+    isStu = this.data.isStudent;
+    if (isStu) {//如果是学生则请求老师信息
+
+      wx.showLoading({
+        title: '加载中...',
+      })
+      wx.request({
+        url: 'https://zyowo.cn/choice/report/index',//？？？请求所有导师的信息repotrtlist        // zhr：在上面输入你的本机Servlet地址
+        method: 'POST',
+        data: {},
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: function (res) {
+          wx.hideLoading();
+          var List = res.data.reportList;
+          tutorinfolist = List;
+          that.updatetutorInfoList();
+
+          wx.request({
+            url: 'https://zyowo.cn/choice/report/mychoice',
+            // zhr：在上面输入你的本机Servlet地址
+            method: 'POST',
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            data: {
+              sid: app.globalData.uid,
+            },
+
+            success: function (res) {
+
+              var List = res.data.reportItemList;
+              if (List == null) {
+                var toastText = '暂无已选导师';
+                wx.showToast({
+                  title: toastText,
+                  icon: '',
+                  duration: 1500,
+                  mask: true,
+                })
+              }
+              else {
+                voluneidinfolist = List;//获取到自己sid下的tid-sid-choice-status列表
+                that.supdatevoluneInfoList();
+               
+              }
+
+            },
+            fail: function (res) {
+              wx.hideLoading();
+              wx.showToast({
+                title: '服务器连接失败',
+                image: '../../img/fail.png',
+                duration: 2000,
+                mask: true,
+              })
+            }
+          })
+        },
+        fail: function (res) {
+          wx.hideLoading();
+          wx.showToast({
+            title: '服务器连接失败',
+            image: '../../img/fail.png',
+            duration: 2000,
+            mask: true,
+          })
+        }
+      })
+
+
+      //console.log('当前你的志愿情况', volinfolist)
+    }
+    else {//如果是老师则请求学生信息
+      if (that.data.timeNode == 2) {
+        wx.showLoading({//导师第一轮选取学生
+          title: '加载中...',
+        })
+        wx.request({
+          url: 'https://zyowo.cn/choice/report/findReportItem',
+          // zhr：在上面输入你的本机Servlet地址
+          method: 'POST',
+          data: {
+            tid: app.globalData.uid,
+            //choiceNumber: 2
+          },
+          success: function (res) {
+            wx.hideLoading();
+            var List = res.data.reportItemList;
+            if (List == null) {
+              var toastText = '无学生';
+              wx.showToast({
+                title: toastText,
+                icon: '',
+                duration: 1500,
+                mask: true,
+              })
+            }
+            else {
+              voluneidinfolist = List;//获取到自己tid下第一轮的tid-sid-choice-status列表
+              that.tupdatevoluneInfoList();
+
+              console.log(that.data.uid)
+              wx.request({
+                url: 'https://zyowo.cn/choice/report/findReportItem',//？？？获取到所有学生的信息
+                // zhr：在上面输入你的本机Servlet地址
+                method: 'POST',
+                data: {
+                  tid: that.data.uid
+                },
+
+                success: function (res) {
+
+                  var List = res.data.studentInfos;
+                  if (List == null) {
+                    var toastText = '';
+                    wx.showToast({
+                      title: toastText,
+                      icon: '',
+                      duration: 1500,
+                      mask: true,
+                    })
+                  }
+                  else {
+                    stuinfolist = List;//获取到自己tid下第一轮的tid-sid-choice-status列表
+                    that.updatestuInfoList();
+                  }
+
+
+                },
+                fail: function (res) {
+                  wx.hideLoading();
+                  wx.showToast({
+                    title: '服务器连接失败',
+                    image: '../../img/fail.png',
+                    duration: 2000,
+                    mask: true,
+                  })
+                }
+              })
+            }
+          },
+          fail: function (res) {
+            wx.hideLoading();
+            wx.showToast({
+              title: '服务器连接失败',
+              image: '../../img/fail.png',
+              duration: 2000,
+              mask: true,
+            })
+          }
+        })
+      }
+
+      else {
+        wx.showLoading({//导师第二轮选取学生
+          title: '加载中...',
+        })
+        wx.request({
+          url: 'https://zyowo.cn/choice/report/findReportItem',
+          // zhr：在上面输入你的本机Servlet地址
+          method: 'POST',
+          data: {
+            tid: app.globalData.uid,
+            //choiceNumber: 2
+          },
+          success: function (res) {
+            wx.hideLoading();
+            var List = res.data.reportItemList;
+            if (List == null) {
+              var toastText = '无学生';
+              wx.showToast({
+                title: toastText,
+                icon: '',
+                duration: 1500,
+                mask: true,
+              })
+            }
+            else {
+              voluneidinfolist = List;//获取到自己tid下第一轮的tid-sid-choice-status列表
+              that.tupdatevoluneInfoList();
+
+              console.log(that.data.uid)
+              wx.request({
+                url: 'https://zyowo.cn/choice/report/findReportItem',//？？？获取到所有学生的信息
+                // zhr：在上面输入你的本机Servlet地址
+                method: 'POST',
+                data: {
+                  tid: that.data.uid
+                },
+
+                success: function (res) {
+
+                  var List = res.data.studentInfos;
+                  if (List == null) {
+                    var toastText = '';
+                    wx.showToast({
+                      title: toastText,
+                      icon: '',
+                      duration: 1500,
+                      mask: true,
+                    })
+                  }
+                  else {
+                    stuinfolist = List;//获取到自己tid下第一轮的tid-sid-choice-status列表
+                    that.updatestuInfoList();
+                  }
+
+
+                },
+                fail: function (res) {
+                  wx.hideLoading();
+                  wx.showToast({
+                    title: '服务器连接失败',
+                    image: '../../img/fail.png',
+                    duration: 2000,
+                    mask: true,
+                  })
+                }
+              })
+            }
+          },
+          fail: function (res) {
+            wx.hideLoading();
+            wx.showToast({
+              title: '服务器连接失败',
+              image: '../../img/fail.png',
+              duration: 2000,
+              mask: true,
+            })
+          }
+        })
+
+      }
+    }
+
+    wx.stopPullDownRefresh()
 
   },
 

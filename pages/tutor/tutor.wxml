@@ -1,6 +1,6 @@
 <!--pages/tutor/tutor.wxml-->
 <image class='bg' src="../../img/backf.jpg"></image>
-<view></view>
+
 <block wx:if="{{isStudent}}">
   <block wx:if="{{(timeNode<=1)&&(percent>=80)}}">
     <view class="dis">
